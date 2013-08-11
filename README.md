@@ -11,7 +11,7 @@ you can reuse clients which works with Sentry to report exception to Prison:
 Installation
 ===============
 
-php composer.phar install # install project dependencies
-cp config/autoload/local.php.dist config/autoload/local.php # copy local configuration
-vim config/autload/local.php # add doctrine connection details
-vendor/bin/doctrine-module orm:schema-tool:create # create database schemas out of doctrine entities
+* php composer.phar install # install project dependencies
+* cp config/autoload/local.php.dist config/autoload/local.php # copy local configuration
+* vim config/autload/local.php # add doctrine connection details
+* vendor/bin/doctrine-module orm:schema-tool:create # create database schemas out of doctrine entities
