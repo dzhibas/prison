@@ -1,52 +1,17 @@
-ZendSkeletonApplication
+Prison (exceptions)
 =======================
 
-Introduction
-------------
-This is a simple, skeleton application using the ZF2 MVC layer and module
-systems. This application is meant to be used as a starting place for those
-looking to get their feet wet with ZF2.
+real time event logging and aggregation platform. error monitoring ported to PHP from well known python project Sentry
 
+you can reuse clients which works with Sentry to report exception to Prison:
+
+    - https://github.com/getsentry/raven-php (php client)
+    - https://github.com/getsentry/raven-js (javascript client)
 
 Installation
-------------
+===============
 
-Using Composer (recommended)
-----------------------------
-The recommended way to get a working copy of this project is to clone the repository
-and use `composer` to install dependencies using the `create-project` command:
-
-    curl -s https://getcomposer.org/installer | php --
-    php composer.phar create-project -sdev --repository-url="http://packages.zendframework.com" zendframework/skeleton-application path/to/install
-
-Alternately, clone the repository and manually invoke `composer` using the shipped
-`composer.phar`:
-
-    cd my/project/dir
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git
-    cd ZendSkeletonApplication
-    php composer.phar self-update
-    php composer.phar install
-
-(The `self-update` directive is to ensure you have an up-to-date `composer.phar`
-available.)
-
-Another alternative for downloading the project is to grab it via `curl`, and
-then pass it to `tar`:
-
-    cd my/project/dir
-    curl -#L https://github.com/zendframework/ZendSkeletonApplication/tarball/master | tar xz --strip-components=1
-
-You would then invoke `composer` to install dependencies per the previous
-example.
-
-Using Git submodules
---------------------
-Alternatively, you can install using native git submodules:
-
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git --recursive
-
-Virtual Host
-------------
-Afterwards, set up a virtual host to point to the public/ directory of the
-project and you should be ready to go!
+php composer.phar install # install project dependencies
+cp config/autoload/local.php.dist config/autoload/local.php # copy local configuration
+vim config/autload/local.php # add doctrine connection details
+vendor/bin/doctrine-module orm:schema-tool:create # create database schemas out of doctrine entities
