@@ -4,7 +4,7 @@ use Doctrine\ORM\Mapping AS ORM;
 
 /** 
  * @ORM\Entity 
- * @ORM\Table(name="event")
+ * @ORM\Table(name="event", indexes={@ORM\Index(name="checksum_idx", columns={"checksum"})})
  */
 class Event extends EventBase
 {
