@@ -3,7 +3,10 @@ namespace Prison\Entity;
 
 use Doctrine\ORM\Mapping AS ORM;
 
-/** @ORM\Entity */
+/** 
+ * @ORM\Entity
+ * @ORM\Table(name="user")
+ */
 class User
 {
     /**
@@ -32,7 +35,7 @@ class User
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true, name="date_added")
      */
     protected $dateAdded;
 

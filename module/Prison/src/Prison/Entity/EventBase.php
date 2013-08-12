@@ -1,7 +1,7 @@
 <?php
 namespace Prison\Entity;
 
-/** @EventBase */
+/** @IgnoreAnnotation("EventBase") */
 class EventBase
 {
     protected $project;

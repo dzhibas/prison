@@ -4,9 +4,10 @@ use Doctrine\ORM\Mapping AS ORM;
 
 /**
  * A team represents a group of individuals which maintain ownership of projects.
+ * 
+ * @ORM\Entity
+ * @ORM\Table(name="team")
  */
-
-/** @ORM\Entity */
 class Team
 {
     /**
@@ -30,14 +31,14 @@ class Team
 
     /**
      * @var User
-     * @ORM\ManyToOne(targetEntity="Prison\User")
-     * @ORM\JoinColumn(name="owner_id", referenceColumnName="id")
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
      */
     protected $owner;
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", name="date_added")
      */
     protected $dateAdded;
 
