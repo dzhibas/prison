@@ -1,42 +1,43 @@
 <?php
 namespace Prison\Entity;
+use Doctrine\ORM\Mapping AS ORM;
 
 /**
  * A team represents a group of individuals which maintain ownership of projects.
  */
 
-/** @Entity */
+/** @ORM\Entity */
 class Team
 {
     /**
      * @var int
-     * @Id @Column(type="integer")
-     * @GeneratedValue
+     * @ORM\Id @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
      */
     protected $id;
 
     /**
      * @var string
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     protected $slug;
 
     /**
      * @var string
-     * @Column(type="string", nullable=false)
+     * @ORM\Column(type="string", nullable=false)
      */
     protected $name;
 
     /**
      * @var User
-     * @ManyToOne(targetEntity="Prison\User")
-     * @JoinColumn(name="owner_id", referenceColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Prison\User")
+     * @ORM\JoinColumn(name="owner_id", referenceColumnName="id")
      */
     protected $owner;
 
     /**
      * @var \DateTime
-     * @Column(type="datetime")
+     * @ORM\Column(type="datetime")
      */
     protected $dateAdded;
 

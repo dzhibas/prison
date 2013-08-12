@@ -1,36 +1,38 @@
 <?php
 namespace Prison\Entity;
 
-/** @Entity */
+use Doctrine\ORM\Mapping AS ORM;
+
+/** @ORM\Entity */
 class User
 {
     /**
      * @var int
-     * @Id @Column(type="integer")
-     * @GeneratedValue
+     * @ORM\Id @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
      */
     protected $id;
 
     /**
      * @var string
-     * @Column(type="string", nullable=false, length=255)
+     * @ORM\Column(type="string", nullable=false, length=255)
      */
     protected $username;
 
     /**
      * @var string
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     protected $password;
     /**
      * @var string
-     * @Column(type="string", nullable=false, length=256)
+     * @ORM\Column(type="string", nullable=false, length=256)
      */
     protected $email;
 
     /**
      * @var \DateTime
-     * @Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $dateAdded;
 
