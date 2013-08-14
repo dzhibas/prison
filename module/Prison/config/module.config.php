@@ -12,6 +12,17 @@ return array(
                     ),
                 ),
             ),
+            'api' => array(
+                'type' => 'Zend\Mvc\Router\Http\Regex',
+                'options' => array(
+                    'regex' => '/api/(?P<projectId>\d+)/store/',
+                    'spec' => '/api/%projectId%/store/',
+                    'defaults' => array(
+                        'controller' => 'Prison\Controller\Api',
+                        'action' => 'store',
+                    )
+                ),
+            ),
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
@@ -65,7 +76,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Prison\Controller\Index' => 'Prison\Controller\IndexController'
+            'Prison\Controller\Index' => 'Prison\Controller\IndexController',
+            'Prison\Controller\Api' => 'Prison\Controller\ApiController',
         ),
     ),
     'view_manager' => array(
@@ -82,6 +94,9 @@ return array(
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
+        ),
+        'strategies' => array(
+            'ViewJsonStrategy',
         ),
     ),
     // Placeholder for console routes
