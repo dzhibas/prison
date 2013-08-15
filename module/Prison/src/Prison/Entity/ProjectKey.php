@@ -115,5 +115,13 @@ class ProjectKey
         return $this->dateAdded;
     }
 
+    /**
+     * @return Project
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
 
 }
