@@ -96,6 +96,8 @@ class ApiAuth implements ServiceLocatorAwareInterface
         }
 
         $this->setProjectKey($projectKey);
+
+        return $authVariables;
     }
 
     /**

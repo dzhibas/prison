@@ -1,5 +1,9 @@
 <?php
 
+# Transparent 1x1 gif
+# See http://probablyprogramming.com/2009/03/15/the-tiniest-gif-ever
+define('PIXEL', base64_decode("R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="));
+
 $PLATFORM_LIST = array(
     'csharp',
     'connect',

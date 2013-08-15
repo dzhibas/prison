@@ -1,4 +1,6 @@
 <?php
+include_once('constants.php');
+
 return array(
     'router' => array(
         'routes' => array(
