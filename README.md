@@ -1,4 +1,4 @@
-Prison (exceptions)
+(exception)Prison
 =======================
 
 real time event logging and aggregation platform. error monitoring ported to PHP from well known python project Sentry
