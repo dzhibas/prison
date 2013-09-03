@@ -2,6 +2,7 @@
 namespace Prison\Service;
 
 use Zend\Http\Request;
+use Zend\Http\Response;
 use Zend\Mvc\MvcEvent;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -142,7 +143,7 @@ class ApiAuth implements ServiceLocatorAwareInterface
     protected function forbidden($message = "Invalid api token")
     {
         $response = $this->event->getResponse();
-        $response->setStatusCode(403);
+        $response->setStatusCode(Response::STATUS_CODE_403);
         $response->setContent($message);
 
         return $response;
