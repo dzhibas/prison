@@ -3,7 +3,7 @@
 
 real time event logging and aggregation platform. error monitoring ported to PHP from well known python project Sentry
 
-you can reuse clients which works with Sentry to report exception to Prison:
+you can reuse clients which works with [Sentry](https://github.com/getsentry/sentry) to report exception to Prison:
 
     - https://github.com/getsentry/raven-php (php client)
     - https://github.com/getsentry/raven-js (javascript client)
