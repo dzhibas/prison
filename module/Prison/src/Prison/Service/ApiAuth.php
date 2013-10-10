@@ -140,12 +140,11 @@ class ApiAuth implements ServiceLocatorAwareInterface
      * @param string $message
      * @return \Zend\Stdlib\ResponseInterface
      */
-    protected function forbidden($message = "Invalid api token")
+    protected function forbidden()
     {
         $response = $this->event->getResponse();
         $response->setStatusCode(Response::STATUS_CODE_403);
-        $response->setContent($message);
-
-        return $response;
+        $response->sendHeaders();
+        exit;
     }
 }
