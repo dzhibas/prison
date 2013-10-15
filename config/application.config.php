@@ -7,6 +7,7 @@ return array(
         'DoctrineORMModule',
         'ZfcBase',
         'ZfcUser',
+        'ZfcUserDoctrineORM',
         'Prison',
     ),
 
