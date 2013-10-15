@@ -5,6 +5,8 @@ return array(
         'ZendDeveloperTools',
         'DoctrineModule',
         'DoctrineORMModule',
+        'ZfcBase',
+        'ZfcUser',
         'Prison',
     ),
 

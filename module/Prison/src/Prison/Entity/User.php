@@ -3,11 +3,13 @@ namespace Prison\Entity;
 
 use Doctrine\ORM\Mapping AS ORM;
 
+use ZfcUser\Entity\UserInterface;
+
 /** 
  * @ORM\Entity
  * @ORM\Table(name="user")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var int
@@ -38,6 +40,18 @@ class User
      * @ORM\Column(type="datetime", nullable=true, name="date_added")
      */
     protected $dateAdded;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     */
+    protected $displayName;
+
+    /**
+     * @var int
+     * @ORM\Column(type="integer")
+     */
+    protected $state;
 
     /**
      * @param \DateTime $dateAdded
@@ -80,6 +94,14 @@ class User
     }
 
     /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
      * @param string $password
      */
     public function setPassword($password)
@@ -111,5 +133,35 @@ class User
         return $this->username;
     }
 
+    /**
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->displayName;
+    }
 
+    /**
+     * @param string $name
+     */
+    public function setDisplayName($name)
+    {
+        $this->displayName = $name;
+    }
+
+    /**
+     * @return int
+     */
+    public function getState() 
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param int $state
+     */
+    public function setState($state) 
+    {
+        $this->state = $state;
+    }
 }
