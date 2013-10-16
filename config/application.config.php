@@ -8,6 +8,7 @@ return array(
         'ZfcBase',
         'ZfcUser',
         'ZfcUserDoctrineORM',
+        'ZfcTwig',
         'Prison',
     ),
 

@@ -1,0 +1,32 @@
+{% extends 'layout/layout.twig' %}
+
+{% block content %}
+    {% if flashMessenger().hasMessages() %}
+        <div class="ui red message">
+        {% for message in flashMessenger().getMessages() %}
+            {{ message }}
+        {% endfor %}
+        </div>
+    {% endif %}
+
+    <form action="{{ url('zfcuser/login') }}" method="post">
+        <div class="ui fluid form segment">
+            <h3 class="ui header">{{ translate("Log-in") }}</h3>
+            <div class="field">
+                <label>{{ translate("Email") }}</label>
+                <input placeholder="{{ translate("Email") }}" type="text" name="identity">
+            </div>
+            <div class="field">
+                <label>{{ translate("Password") }}</label>
+                <input type="password" name="credential">
+            </div>
+            <button type="submit" name="submit" class="ui blue submit button">{{ translate("Login") }}</button>
+        </div>
+        <input type="hidden" name="redirect" value="{{ redirect }}"/>
+    </form>
+
+    {% if enableRegistration %}
+        {{ translate("Not registered?") }} <a href="{{ url("zfcuser/register") }}{% if redirect %}?redirect={{ redirect }}{% endif %}">{{ translate("Sign up") }}</a>
+    {% endif %}
+
+{% endblock %}

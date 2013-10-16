@@ -1,3 +1,6 @@
+{% extends 'layout/layout.twig' %}
+
+{% block content %}
 <script src="//d3nslu0hdya83q.cloudfront.net/dist/1.0/raven.min.js"></script>
 <script>
     var options = {
@@ -14,3 +17,4 @@
 </script>
 
 <button onclick="javascript:new Exception('testing testing');">Trigger Javascript error</button> which will hit /api/:projectId/store with exception & sentry details
+{% endblock %}

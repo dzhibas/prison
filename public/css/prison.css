@@ -1,0 +1,9 @@
+body {
+    font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    color: #555555;
+    margin: 0;
+}
+.container {
+    width: 915px;
+    margin: 0px auto;
+}

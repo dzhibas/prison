@@ -1,0 +1,33 @@
+{{ docType() }}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% block title %}(exception) Prison{% endblock title %}
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block meta %}{% endblock meta %}
+
+    <link href="{{ basePath() }}/css/semantic.min.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="{{ basePath() }}/css/prison.css" media="screen" rel="stylesheet" type="text/css">
+    {% block style %}{% endblock style %}
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="{{ basePath() }}/javascript/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="{{ basePath() }}/javascript/semantic.min.js"></script>
+    <!--[if lt IE 9]><script type="text/javascript" src="{{ basePath() }}/javascript/html5.js"></script><![endif]-->
+    {% block script %}{% endblock script %}
+</head>
+<body>
+<div class="ui transparent inverted main menu">
+    <div class="container">
+        <a class="launch item" href="{{ basePath() }}"><i class="bug icon"></i> (exception)Prison</a>
+    </div>
+</div>
+<div class="main container">
+    {% block content %}{{ content|raw }}{% endblock content %}
+</div> <!-- /container -->
+{% block inline %}{% endblock inline %}
+</body>
+</html>

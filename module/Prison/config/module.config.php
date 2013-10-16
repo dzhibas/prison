@@ -89,8 +89,9 @@ return array(
         'not_found_template'       => 'error/404',
         'exception_template'       => 'error/index',
         'template_map' => array(
-            'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-            'prison/index/index' => __DIR__ . '/../view/prison/index/index.phtml',
+            'layout/layout'           => __DIR__ . '/../view/layout/layout.twig',
+            'prison/index/index'      => __DIR__ . '/../view/prison/index/index.twig',
+            'zfcuser/login'           => __DIR__ . '/../view/prison/user/login.twig',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ),
