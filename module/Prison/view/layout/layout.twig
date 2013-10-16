@@ -23,11 +23,30 @@
 <div class="ui transparent inverted main menu">
     <div class="container">
         <a class="launch item" href="{{ basePath() }}"><i class="bug icon"></i> (exception)Prison</a>
+
+        {% if zfcUserIdentity() %}
+        <div id="user" class="ui right dropdown item">
+            <i class="user icon"></i>{{ zfcUserIdentity().getEmail() }} <i class="dropdown icon"></i>
+            <div class="menu ui hidden">
+                <div class="item">
+                    {{ gravatar( zfcUserIdentity().getEmail(), {img_size:30}, {class: "ui mini image left"} ) }}
+                    {{ zfcUserIdentity().getDisplayName() }}
+                </div>
+                <div class="item">
+                    <i class="sign out icon"></i>
+                    <a href="{{ url("zfcuser/logout") }}">{{ translate("Logout") }}</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </div>
 <div class="main container">
     {% block content %}{{ content|raw }}{% endblock content %}
 </div> <!-- /container -->
 {% block inline %}{% endblock inline %}
+<script type="text/javascript">
+    $("#user").dropdown();
+</script>
 </body>
 </html>
