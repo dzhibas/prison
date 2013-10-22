@@ -22,6 +22,7 @@ $settings = array(
      * The entity class should implement ZfcUser\Entity\UserInterface
      */
     'user_entity_class' => 'Prison\Entity\User',
+    'enable_default_entities' => false,
 
     /**
      * Enable registration
@@ -30,7 +31,7 @@ $settings = array(
      *
      * Accepted values: boolean true or false
      */
-    'enable_registration' => false,
+    'enable_registration' => true,
 
     /**
      * Enable Username
@@ -101,7 +102,7 @@ $settings = array(
      *
      * Accepted values: boolean true or false
      */
-    //'login_after_registration' => true,
+    'login_after_registration' => true,
 
     /**
      * Registration Form Captcha
