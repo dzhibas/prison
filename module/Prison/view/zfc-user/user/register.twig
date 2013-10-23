@@ -1,0 +1,39 @@
+{% extends 'layout/layout.twig' %}
+
+{% block content %}
+    {% if flashMessenger().hasMessages() %}
+        <div class="ui red message">
+            {% for message in flashMessenger().getMessages() %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if enableRegistration %}
+    <form action="{{ url('zfcuser/register') }}" method="post">
+        <div class="ui fluid form segment">
+            <h3 class="ui header">{{ translate("Register") }}</h3>
+            <div class="field">
+                <label>{{ translate("Username") }}</label>
+                <input placeholder="{{ translate("Username") }}" type="text" name="username">
+            </div>
+            <div class="field">
+                <label for="email">{{ translate("Email") }}</label>
+                <input placeholder="{{ translate("Email") }}" type="text" name="email">
+            </div>
+            <div class="field">
+                <label>{{ translate("Password") }}</label>
+                <input type="password" name="password">
+            </div>
+            <div class="field">
+                <label for="passwordVerify">{{ translate("Password verify") }}</label>
+                <input type="password" name="passwordVerify"/>
+            </div>
+            <button type="submit" name="submit" class="ui blue submit button">{{ translate("Login") }}</button>
+        </div>
+        <input type="hidden" name="redirect" value="{{ redirect }}"/>
+    </form>
+    {% else %}
+        {{ translate("Registration is disabled") }}
+    {% endif %}
+{% endblock %}

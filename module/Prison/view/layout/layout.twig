@@ -32,10 +32,7 @@
                     {{ gravatar( zfcUserIdentity().getEmail(), {img_size:30}, {class: "ui mini image left"} ) }}
                     {{ zfcUserIdentity().getDisplayName() }}
                 </div>
-                <div class="item">
-                    <i class="sign out icon"></i>
-                    <a href="{{ url("zfcuser/logout") }}">{{ translate("Logout") }}</a>
-                </div>
+                <a href="{{ url("zfcuser/logout") }}" class="item"><i class="sign out icon"></i> {{ translate("Logout") }}</a>
             </div>
         </div>
         {% endif %}

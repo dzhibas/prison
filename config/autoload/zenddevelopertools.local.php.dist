@@ -71,7 +71,9 @@ return array(
              *
              * Expects: array
              */
-            'collectors' => array(),
+            'collectors' => array(
+                'viewvars'  => 'Prison\Collector\View'
+            ),
         ),
          /**
           * General Toolbar settings
@@ -130,7 +132,9 @@ return array(
              *
              * Expects: array
              */
-            'entries' => array(),
+            'entries' => array(
+                'viewvars' => 'prison/zendtoolbar/vars',
+            ),
         ),
     ),
 );

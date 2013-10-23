@@ -65,6 +65,9 @@ return array(
         'aliases' => array(
             'translator' => 'MvcTranslator',
         ),
+        'invokables' => array(
+            'Prison\Collector\View' => 'Prison\Collector\ViewCollector',
+        ),
     ),
     'translator' => array(
         'locale' => 'en_US',
