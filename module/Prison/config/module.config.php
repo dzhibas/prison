@@ -29,7 +29,7 @@ return array(
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
             // using the path /application/:controller/:action
-            'application' => array(
+            'prison' => array(
                 'type'    => 'Literal',
                 'options' => array(
                     'route'    => '/prison',
@@ -50,6 +50,29 @@ return array(
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
                             ),
                             'defaults' => array(
+                            ),
+                        ),
+                    ),
+                    'team' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/team[/:slug]',
+                            'constraints' => array(
+                                'slug' => '[a-zA-Z0-9\-_]+',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'Prison\Controller\Team',
+                                'action' => 'index',
+                            )
+                        ),
+                    ),
+                    'team-new'  => array(
+                        'type'  => 'Literal',
+                        'options' => array(
+                            'route' => '/team/new',
+                            'defaults' => array(
+                                'controller' => 'Prison\Controller\Team',
+                                'action'     => 'new',
                             ),
                         ),
                     ),
@@ -83,6 +106,7 @@ return array(
         'invokables' => array(
             'Prison\Controller\Index' => 'Prison\Controller\IndexController',
             'Prison\Controller\Api' => 'Prison\Controller\ApiController',
+            'Prison\Controller\Team' => 'Prison\Controller\TeamController',
         ),
     ),
     'view_manager' => array(

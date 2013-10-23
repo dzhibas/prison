@@ -26,7 +26,7 @@
     </form>
 
     {% if enableRegistration %}
-        {{ translate("Not registered?") }} <a href="{{ url("zfcuser/register") }}{% if redirect %}?redirect={{ redirect }}{% endif %}">{{ translate("Sign up") }}</a>
+        {{ translate("Not registered?") }} <a href="{{ url("zfcuser/register") }}{% if redirect %}?redirect={{ redirect }}{% endif %}">{{ translate("Create new account") }}</a>
     {% endif %}
 
 {% endblock %}

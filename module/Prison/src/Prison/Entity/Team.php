@@ -101,5 +101,21 @@ class Team
         return $this->slug;
     }
 
+    /**
+     * @param \Prison\Entity\User $owner
+     */
+    public function setOwner($owner)
+    {
+        $this->owner = $owner;
+    }
+
+    /**
+     * @return \Prison\Entity\User
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
 
 }

@@ -1,0 +1,24 @@
+{% extends "layout/layout.twig" %}
+
+{% block content %}
+    <h1>{{ translate("Create a New Team") }}</h1>
+    <p>
+        {{ translate("Teams in Prison represent a collection of users and projects. They're the top level component of your organization allowing you to control access and scope of events.") }}
+    </p>
+    {% if flashMessenger().hasMessages() %}
+        <div class="ui red message">
+            {% for message in flashMessenger().getMessages() %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="ui fluid form segment">
+        <form action="{{ url('prison/team-new') }}" method="post">
+            <div class="field">
+                <label>{{ formLabel(form.get("name")) }}</label>
+                {{ formInput(form.get("name")) }}
+            </div>
+            <button type="submit" name="submit" class="ui blue submit button">{{ translate("Create Team") }}</button>
+        </form>
+    </div>
+{% endblock %}

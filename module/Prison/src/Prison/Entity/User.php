@@ -1,6 +1,7 @@
 <?php
 namespace Prison\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 
 use ZfcUser\Entity\UserInterface;
@@ -52,6 +53,22 @@ class User implements UserInterface
      * @ORM\Column(type="integer", nullable=true)
      */
     protected $state;
+
+    /**
+     * Teams in which user is in
+     * @ORM\OneToMany(targetEntity="Team", mappedBy="owner")
+     */
+    private $teams;
+
+    public function __construct()
+    {
+        $this->teams = new ArrayCollection();
+    }
+
+    public function getTeams()
+    {
+        return $this->teams;
+    }
 
     /**
      * @param \DateTime $dateAdded
