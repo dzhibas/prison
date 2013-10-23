@@ -9,6 +9,9 @@ class IndexController extends AbstractController
     {
         $this->loginRequired();
 
-        return $this->redirect()->toRoute("prison/team");
+        if ($this->hasIdentity())
+        {
+            return $this->redirect()->toRoute("prison/team");
+        }
     }
 }

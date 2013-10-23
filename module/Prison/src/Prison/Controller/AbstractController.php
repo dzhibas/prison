@@ -15,6 +15,12 @@ class AbstractController extends AbstractActionController
         }
     }
 
+    protected function hasIdentity()
+    {
+        $auth = $this->getServiceLocator()->get('zfcuser_auth_service');
+        return $auth->hasIdentity();
+    }
+
     protected function getIdentity()
     {
         $auth = $this->getServiceLocator()->get('zfcuser_auth_service');

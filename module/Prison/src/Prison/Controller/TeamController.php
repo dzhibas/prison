@@ -58,7 +58,7 @@ class TeamController extends AbstractController
 
         if (!$teamSlug) {
             // check if user has team created
-            if (sizeof($this->getIdentity()->getTeams()) > 0)
+            if ($this->hasIdentity() && sizeof($this->getIdentity()->getTeams()) > 0)
             {
                 /** @var \Prison\Entity\Team $team */
                 $team = array_pop($this->getIdentity()->getTeams()->toArray());
