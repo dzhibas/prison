@@ -1,5 +1,6 @@
 <?php
 namespace Prison\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping AS ORM;
 
 /**
@@ -44,6 +45,27 @@ class Team
 
     /** @todo add relation */
     protected $members;
+
+    /**
+     * Teams in which user is in
+     * @ORM\OneToMany(targetEntity="Project", mappedBy="team")
+     */
+    private $projects;
+
+    public function __construct()
+    {
+        $this->projects = new ArrayCollection();
+    }
+
+    /**
+     * returns team projects
+     *
+     * @return ArrayCollection
+     */
+    public function getProjects()
+    {
+        return $this->projects;
+    }
 
     /**
      * @return int

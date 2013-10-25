@@ -92,7 +92,7 @@ return array(
                     'project-new' => array(
                         'type'  => 'Segment',
                         'options' => array(
-                            'route' => '/team[/:teamslug]/project/new',
+                            'route' => '/team[/:teamslug]/projects/new',
                             'constraints' => array(
                                 'teamslug' => '[a-zA-Z0-9\-_]+',
                             ),

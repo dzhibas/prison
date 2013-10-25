@@ -1,6 +1,7 @@
 <?php
 namespace Prison\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Rhumsaa\Uuid\Uuid;
 
 /**
  *
@@ -123,5 +124,73 @@ class ProjectKey
         return $this->project;
     }
 
+    /**
+     * @param \Prison\Entity\Project $project
+     */
+    public function setProject($project)
+    {
+        $this->project = $project;
+    }
+
+    /**
+     * @param \Prison\Entity\User $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return \Prison\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param \Prison\Entity\User $userAdded
+     */
+    public function setUserAdded($userAdded)
+    {
+        $this->userAdded = $userAdded;
+    }
+
+    /**
+     * @return \Prison\Entity\User
+     */
+    public function getUserAdded()
+    {
+        return $this->userAdded;
+    }
+
+    public function generateKeys()
+    {
+        if (!$this->getPublicKey()) {
+            $this->setPublicKey($this->generateKey());
+        }
+        if (!$this->getSecretKey()) {
+            $this->setSecretKey($this->generateKey());
+        }
+    }
+
+    public function generateKey()
+    {
+        $uuid = Uuid::uuid4();
+        return md5($uuid->toString());
+    }
+
+
+    public function getDsn($public = false)
+    {
+        // @TODO fix this domain and schema to be taken from zend app or prison configuration
+        $schema = 'http';
+        $domain = 'localhost/prison/api';
+        $key = $this->getPublicKey().':'.$this->getSecretKey();
+        if ($public) {
+            $key = $this->getPublicKey();
+        }
+        return sprintf('%s://%s@%s/%s', $schema, $key, $domain, $this->getProject()->getId());
+    }
 
 }
