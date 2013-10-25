@@ -22,27 +22,32 @@ class TeamController extends AbstractController
             $form->setData($this->request->getPost());
             if ($form->isValid()) {
                 $name = $form->get("name")->getValue();
-
-                /** @var \Doctrine\ORM\EntityManager $em */
-                $em = $this->serviceLocator->get('Doctrine\ORM\EntityManager');
-                $team = $em->getRepository('Prison\Entity\Team')->findOneBy(array("name" => $name));
-
-                if (!$team) {
-                    $team = new Entity\Team();
-
-                    $team->setName($name);
-                    $slugifyFilter = new Filter\Slugify();
-                    $team->setSlug($slugifyFilter->filter($name));
-                    $team->setDateAdded(new \DateTime("now"));
-                    $team->setOwner($this->getIdentity());
-
-                    $em->persist($team);
-                    $em->flush();
-
-                    return $this->redirect()->toRoute("prison/team", array("slug" => $team->getSlug()));
+                $config = $this->serviceLocator->get('config');
+                if (in_array($name, $config['prison']['reserved_team_slugs']))
+                {
+                    $form->get("name")->setMessages(array("This name is reserved"));
                 } else {
-                    $this->flashMessenger()->addMessage("This team already exists");
-                    return $this->redirect()->toRoute("prison/team", array("slug" => $team->getSlug()));
+                    /** @var \Doctrine\ORM\EntityManager $em */
+                    $em = $this->serviceLocator->get('Doctrine\ORM\EntityManager');
+                    $team = $em->getRepository('Prison\Entity\Team')->findOneBy(array("name" => $name));
+
+                    if (!$team) {
+                        $team = new Entity\Team();
+
+                        $team->setName($name);
+                        $slugifyFilter = new Filter\Slugify();
+                        $team->setSlug($slugifyFilter->filter($name));
+                        $team->setDateAdded(new \DateTime("now"));
+                        $team->setOwner($this->getIdentity());
+
+                        $em->persist($team);
+                        $em->flush();
+
+                        return $this->redirect()->toRoute("prison/project", array("teamslug" => $team->getSlug()));
+                    } else {
+                        $this->flashMessenger()->addMessage("This team already exists");
+                        return $this->redirect()->toRoute("prison/team", array("slug" => $team->getSlug()));
+                    }
                 }
             } else {
                 $this->flashMessenger()->addMessage("Please provide name");

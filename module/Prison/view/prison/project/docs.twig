@@ -1,0 +1,7 @@
+{% extends "layout/layout.twig" %}
+
+{% block content %}
+    Configuring {{  project.getPlatform() }} for project {{ project.getName() }}
+
+    {{ documentation|raw }}
+{% endblock %}

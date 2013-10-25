@@ -14,6 +14,7 @@ return array(
                     ),
                 ),
             ),
+
             'api' => array(
                 'type' => 'Zend\Mvc\Router\Http\Regex',
                 'options' => array(
@@ -25,10 +26,7 @@ return array(
                     )
                 ),
             ),
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
+
             'prison' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -99,6 +97,20 @@ return array(
                             'defaults' => array(
                                 'controller' => 'Prison\Controller\Project',
                                 'action' => 'new',
+                            )
+                        ),
+                    ),
+                    'project-doc' => array(
+                        'type'  => 'Segment',
+                        'options' => array(
+                            'route' => '/[:team]/[:project]/docs[/:platform]',
+                            'constraints' => array(
+                                'team' => '[a-zA-Z0-9\-_]+',
+                                'project' => '[a-zA-Z0-9\-_]+',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'Prison\Controller\Project',
+                                'action' => 'docs',
                             )
                         ),
                     ),
@@ -195,5 +207,6 @@ return array(
     ),
     'prison' => array(
         'platforms' => $PLATFORM_LIST,
+        'reserved_team_slugs' => $RESERVED_TEAM_SLUGS,
     )
 );

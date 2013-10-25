@@ -1,5 +1,6 @@
 <?php
 namespace Prison\Entity;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -69,6 +70,34 @@ class Project
      * @ORM\Column(type="string", length=32, nullable=true)
      */
     protected $platform;
+
+    /**
+     * Project keys
+     *
+     * @ORM\OneToMany(targetEntity="ProjectKey", mappedBy="project")
+     */
+    private $keys;
+
+    public function __construct()
+    {
+        $this->keys = new ArrayCollection();
+    }
+
+    /**
+     * @param mixed $keys
+     */
+    public function setKeys($keys)
+    {
+        $this->keys = $keys;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getKeys()
+    {
+        return $this->keys;
+    }
 
     /**
      * @param \DateTime $dateAdded

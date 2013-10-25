@@ -1,0 +1,36 @@
+<p>Start by installing <a href="https://github.com/getsentry/raven-php">raven-php</a>.</p>
+
+<p>Register the autoloader:</p>
+
+<pre>require('/path/to/Raven/Autoloader.php');
+
+Raven_Autoloader::register();</pre>
+
+<p>Create an instance of the client:</p>
+
+<pre>$client = new Raven_Client('{% if key %}{{ key.getDsn() }}{% else %}<strong>SENTRY_DSN</strong>{% endif %}');</pre>
+
+<p>Now call out to the raven client to capture events:</p>
+
+<pre>// record a simple message
+$client->captureMessage('hello world!');
+
+// capture an exception
+try {
+    throw new Exception('Uh oh!');
+}
+catch (Exception $e) {
+    $client->captureException($e);
+}</pre>
+
+<p>You can also optionally install a default error handler to catch all exceptions:</p>
+
+<pre>$error_handler = new Raven_ErrorHandler($client);
+
+// Register error handler callbacks
+set_error_handler(array($error_handler, 'handleError'));
+set_exception_handler(array($error_handler, 'handleException'));</pre>
+
+<p><strong>Note:</strong> We dont recommend registering the generic error handler as it can be quite noisey.</p>
+
+<p>For more information on other uses of Raven with PHP, please see the <a href="https://github.com/getsentry/raven-php">official documentation for raven-php</a>.</p>

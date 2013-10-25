@@ -2,6 +2,7 @@
 namespace Prison\Controller;
 
 use Prison\Filter\Slugify;
+use Prison\Service\ProjectService;
 use Zend\Http\Response;
 use Prison\Form;
 use Prison\Entity;
@@ -56,7 +57,11 @@ class ProjectController extends AbstractController
 
                     $em->flush();
 
-                    return $this->redirect()->toRoute("prison/project", array("teamslug" => $team->getSlug()));
+                    return $this->redirect()->toRoute("prison/project-doc", array(
+                        "team" => $team->getSlug(),
+                        "project" => $project->getSlug(),
+                        "platform" => "php",
+                    ));
                 } else {
                     $this->flashMessenger()->addErrorMessage("Such project name already exists");
                 }
@@ -97,5 +102,42 @@ class ProjectController extends AbstractController
             'projects' => $projects,
             'team' => $team,
         ));
+    }
+
+    public function docsAction()
+    {
+        $r = $this->loginRequired();
+        if ($r instanceof Response) return $r;
+
+        $teamSlug = $this->params()->fromRoute("team", null);
+        $projectSlug = $this->params()->fromRoute("project", null);
+        $platformName = $this->params()->fromRoute("platform", null);
+
+        $config = $this->serviceLocator->get("config");
+
+        // specified platform is not in our list
+        if (!in_array($platformName, $config['prison']['platforms'])) {
+            return $this->redirect()->toRoute("prison");
+        }
+
+        $projectService = new ProjectService($this->serviceLocator);
+        $project = $projectService->getProjectBySlug($projectSlug);
+
+        if (!$project) return $this->redirect()->toRoute('prison');
+
+        $keys = $project->getKeys()->toArray();
+
+        $vm = new ViewModel(array("key" => array_pop($keys)));
+        $vm->setTemplate("prison/docs/php.twig");
+        $test = $this->serviceLocator->get('ZfcTwigRenderer')->render($vm);
+
+        $context = array(
+            'team' => $project->getTeam(),
+            'project' => $project,
+            'platform' => $platformName,
+            'documentation' => $test
+        );
+
+        return new ViewModel($context);
     }
 }
