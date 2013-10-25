@@ -23,6 +23,7 @@ class ViewCollector extends AbstractCollector
         if (!isset($this->data))
         {
             $this->data = array();
+            $this->data['vars'] = array();
         }
 
         $view = $mvcEvent->getViewModel();

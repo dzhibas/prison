@@ -4,13 +4,17 @@ namespace Prison\Controller;
 use Prison\Entity;
 use Prison\Form;
 use Prison\Filter;
+use Zend\Http\Response;
 use Zend\View\Model\ViewModel;
 
 class TeamController extends AbstractController
 {
     public function newAction()
     {
-        $this->loginRequired();
+        $r = $this->loginRequired();
+        if ($r instanceof Response) {
+            return $r;
+        }
 
         $form = new Form\Team();
 
@@ -52,7 +56,10 @@ class TeamController extends AbstractController
 
     public function indexAction()
     {
-        $this->loginRequired();
+        $r = $this->loginRequired();
+        if ($r instanceof Response) {
+            return $r;
+        }
 
         $teamSlug = $this->params()->fromRoute("slug", null);
 

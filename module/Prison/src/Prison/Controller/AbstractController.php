@@ -13,6 +13,7 @@ class AbstractController extends AbstractActionController
                 $this->url()->fromRoute("zfcuser/login") .
                 "?redirect=" . urlencode($this->url()->fromRoute("home")));
         }
+        return true;
     }
 
     protected function hasIdentity()

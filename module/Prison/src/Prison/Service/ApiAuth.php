@@ -137,7 +137,7 @@ class ApiAuth implements ServiceLocatorAwareInterface
     }
 
     /**
-     * @param string $message
+     * @internal param string $message
      * @return \Zend\Stdlib\ResponseInterface
      */
     protected function forbidden()

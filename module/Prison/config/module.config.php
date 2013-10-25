@@ -76,6 +76,32 @@ return array(
                             ),
                         ),
                     ),
+                    'project' => array(
+                        'type'  => 'Segment',
+                        'options' => array(
+                            'route' => '/team[/:teamslug]/projects',
+                            'constraints' => array(
+                                'teamslug' => '[a-zA-Z0-9\-_]+',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'Prison\Controller\Project',
+                                'action' => 'index',
+                            )
+                        ),
+                    ),
+                    'project-new' => array(
+                        'type'  => 'Segment',
+                        'options' => array(
+                            'route' => '/team[/:teamslug]/project/new',
+                            'constraints' => array(
+                                'teamslug' => '[a-zA-Z0-9\-_]+',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'Prison\Controller\Project',
+                                'action' => 'new',
+                            )
+                        ),
+                    ),
                 ),
             ),
         ),
@@ -107,6 +133,7 @@ return array(
             'Prison\Controller\Index' => 'Prison\Controller\IndexController',
             'Prison\Controller\Api' => 'Prison\Controller\ApiController',
             'Prison\Controller\Team' => 'Prison\Controller\TeamController',
+            'Prison\Controller\Project' => 'Prison\Controller\ProjectController',
         ),
     ),
     'view_manager' => array(
@@ -152,6 +179,7 @@ return array(
             )
         )
     ),
+
     'log' => array(
         'Log\Prison' => array(
             'writers' => array(
@@ -165,4 +193,7 @@ return array(
             ),
         ),
     ),
+    'prison' => array(
+        'platforms' => $PLATFORM_LIST,
+    )
 );

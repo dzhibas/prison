@@ -1,0 +1,30 @@
+{% extends "layout/layout.twig" %}
+
+{% block content %}
+    <h1>{{ translate("Create a New Project") }}</h1>
+    <p>
+        {{ translate("Projects allow you to scope events to a specific application in your organization. For example, you might have seperate projects for production vs development instances, or separate projects for your web app and mobile app.") }}
+    </p>
+    {% if flashMessenger().hasErrorMessages() %}
+        <div class="ui red message">
+            {% for message in flashMessenger().getErrorMessages() %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="ui fluid form segment">
+        <form action="" method="post">
+            <div class="field">
+                {{ formElementErrors(form.get("name")) }}
+                {{ formLabel(form.get("name")) }}
+                {{ formElement(form.get("name")) }}
+            </div>
+            <div class="field">
+                {{ formElementErrors(form.get("platform")) }}
+                {{ formLabel(form.get("platform")) }}
+                {{ formElement(form.get("platform")) }}
+            </div>
+            {{ formElement(form.get("submit")) }}
+        </form>
+    </div>
+{% endblock %}

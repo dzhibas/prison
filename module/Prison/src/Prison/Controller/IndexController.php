@@ -2,12 +2,14 @@
 namespace Prison\Controller;
 
 use Zend\View\Model\ViewModel;
+use Zend\Http\Response;
 
 class IndexController extends AbstractController
 {
     public function indexAction()
     {
-        $this->loginRequired();
+        $r = $this->loginRequired();
+        if ($r instanceof Response) return $r;
 
         if ($this->hasIdentity())
         {

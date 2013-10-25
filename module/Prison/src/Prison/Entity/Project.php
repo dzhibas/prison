@@ -50,7 +50,7 @@ class Project
      * @var boolean
      * @ORM\Column(type="boolean")
      */
-    protected $public;
+    protected $public = false;
 
     /**
      * @var \DateTime
@@ -62,7 +62,7 @@ class Project
      * @var integer
      * @ORM\Column(type="integer", columnDefinition="SMALLINT(2) NOT NULL")
      */
-    protected $status;
+    protected $status = 0;
 
     /**
      * @var string
@@ -174,5 +174,35 @@ class Project
         return $this->status;
     }
 
+    /**
+     * @param \Prison\Entity\User $owner
+     */
+    public function setOwner($owner)
+    {
+        $this->owner = $owner;
+    }
 
+    /**
+     * @return \Prison\Entity\User
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * @param \Prison\Entity\Team $team
+     */
+    public function setTeam($team)
+    {
+        $this->team = $team;
+    }
+
+    /**
+     * @return \Prison\Entity\Team
+     */
+    public function getTeam()
+    {
+        return $this->team;
+    }
 }
