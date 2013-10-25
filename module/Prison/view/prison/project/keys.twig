@@ -1,0 +1,13 @@
+{% extends "layout/layout.twig" %}
+
+{% block content %}
+    <h1>Project "{{ project }}" keys</h1>
+
+    <ul>
+    {% for key in keys %}
+        <li>{{ key.getDsn() }} <a href="{{ url("prison/key-revoke", {"key":key.getId()}) }}" class="ui tiny button">{{ translate("Revoke key") }}</a></li>
+    {% endfor %}
+    </ul>
+
+    <a href="{{ url("prison/key-new", {"team": team.getSlug(), "project": project.getSlug()}) }}" class="ui button">Add new API key</a>
+{% endblock %}

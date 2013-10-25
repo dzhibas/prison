@@ -27,95 +27,7 @@ return array(
                 ),
             ),
 
-            'prison' => array(
-                'type'    => 'Literal',
-                'options' => array(
-                    'route'    => '/prison',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Prison\Controller',
-                        'controller'    => 'Index',
-                        'action'        => 'index',
-                    ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:controller[/:action]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
-                    ),
-                    'team' => array(
-                        'type' => 'Segment',
-                        'options' => array(
-                            'route' => '/team[/:slug]',
-                            'constraints' => array(
-                                'slug' => '[a-zA-Z0-9\-_]+',
-                            ),
-                            'defaults' => array(
-                                'controller' => 'Prison\Controller\Team',
-                                'action' => 'index',
-                            )
-                        ),
-                    ),
-                    'team-new'  => array(
-                        'type'  => 'Literal',
-                        'options' => array(
-                            'route' => '/team/new',
-                            'defaults' => array(
-                                'controller' => 'Prison\Controller\Team',
-                                'action'     => 'new',
-                            ),
-                        ),
-                    ),
-                    'project' => array(
-                        'type'  => 'Segment',
-                        'options' => array(
-                            'route' => '/team[/:teamslug]/projects',
-                            'constraints' => array(
-                                'teamslug' => '[a-zA-Z0-9\-_]+',
-                            ),
-                            'defaults' => array(
-                                'controller' => 'Prison\Controller\Project',
-                                'action' => 'index',
-                            )
-                        ),
-                    ),
-                    'project-new' => array(
-                        'type'  => 'Segment',
-                        'options' => array(
-                            'route' => '/team[/:teamslug]/projects/new',
-                            'constraints' => array(
-                                'teamslug' => '[a-zA-Z0-9\-_]+',
-                            ),
-                            'defaults' => array(
-                                'controller' => 'Prison\Controller\Project',
-                                'action' => 'new',
-                            )
-                        ),
-                    ),
-                    'project-doc' => array(
-                        'type'  => 'Segment',
-                        'options' => array(
-                            'route' => '/[:team]/[:project]/docs[/:platform]',
-                            'constraints' => array(
-                                'team' => '[a-zA-Z0-9\-_]+',
-                                'project' => '[a-zA-Z0-9\-_]+',
-                            ),
-                            'defaults' => array(
-                                'controller' => 'Prison\Controller\Project',
-                                'action' => 'docs',
-                            )
-                        ),
-                    ),
-                ),
-            ),
+            'prison' => require_once('routes.config.php'),
         ),
     ),
     'service_manager' => array(
@@ -146,6 +58,7 @@ return array(
             'Prison\Controller\Api' => 'Prison\Controller\ApiController',
             'Prison\Controller\Team' => 'Prison\Controller\TeamController',
             'Prison\Controller\Project' => 'Prison\Controller\ProjectController',
+            'Prison\Controller\Key' => 'Prison\Controller\KeyController',
         ),
     ),
     'view_manager' => array(

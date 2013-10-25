@@ -234,4 +234,9 @@ class Project
     {
         return $this->team;
     }
+
+    function __toString()
+    {
+        return $this->getName();
+    }
 }

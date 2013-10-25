@@ -21,7 +21,7 @@ class User implements UserInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string", nullable=false, length=255)
+     * @ORM\Column(type="string", nullable=true, length=255)
      */
     protected $username;
 

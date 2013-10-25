@@ -140,4 +140,26 @@ class ProjectController extends AbstractController
 
         return new ViewModel($context);
     }
+
+    public function keysAction()
+    {
+        $r = $this->loginRequired();
+        if ($r instanceof Response) return $r;
+
+        $projectSlug = $this->params()->fromRoute('project', null);
+        if (!$projectSlug) return $this->redirect()->toRoute('prison');
+
+        $projectService = new ProjectService($this->serviceLocator);
+        $project = $projectService->getProjectBySlug($projectSlug);
+
+        if (!$project) return $this->redirect()->toRoute('prison');
+
+        $context = array(
+            'project' => $project,
+            'team' => $project->getTeam(),
+            'keys' => $project->getKeys(),
+        );
+
+        return new ViewModel($context);
+    }
 }
