@@ -193,4 +193,14 @@ class ProjectKey
         return sprintf('%s://%s@%s/%s', $schema, $key, $domain, $this->getProject()->getId());
     }
 
+    public function getPrivateDsn()
+    {
+        return $this->getDsn(false);
+    }
+
+    public function getPublicDsn()
+    {
+        return $this->getDsn(true);
+    }
+
 }
