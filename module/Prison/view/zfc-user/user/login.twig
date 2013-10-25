@@ -2,31 +2,45 @@
 
 {% block content %}
     {% if flashMessenger().hasMessages() %}
-        <div class="ui red message">
+        <div class="ui error message">
+            <ul>
         {% for message in flashMessenger().getMessages() %}
-            {{ message }}
+            <li>{{ message }}</li>
         {% endfor %}
+            </ul>
         </div>
     {% endif %}
 
-    <form action="{{ url('zfcuser/login') }}" method="post">
-        <div class="ui fluid form segment">
-            <h3 class="ui header">{{ translate("Log-in") }}</h3>
-            <div class="field">
-                <label>{{ translate("Email") }}</label>
-                <input placeholder="{{ translate("Email") }}" type="text" name="identity">
-            </div>
-            <div class="field">
-                <label>{{ translate("Password") }}</label>
-                <input type="password" name="credential">
-            </div>
-            <button type="submit" name="submit" class="ui blue submit button">{{ translate("Login") }}</button>
+    <div class="ui two column middle aligned grid basic segment">
+        <div class="column">
+            <form action="{{ url('zfcuser/login') }}" method="post">
+                <div class="ui form blue segment">
+                    <div class="field {% if loginForm.get("identity").getMessages() %}error{% endif %}">
+                        {{ formLabel(loginForm.get("identity")) }}
+                        {{ formElement(loginForm.get("identity")) }}
+                    </div>
+                    <div class="field">
+                        {{ formElementErrors(loginForm.get("credential")) }}
+                        {{ formLabel(loginForm.get("credential")) }}
+                        {{ formElement(loginForm.get("credential")) }}
+                    </div>
+                    <button type="submit" name="submit" class="ui blue submit button">{{ translate("Login") }}</button>
+                </div>
+                <input type="hidden" name="redirect" value="{{ redirect }}"/>
+            </form>
         </div>
-        <input type="hidden" name="redirect" value="{{ redirect }}"/>
-    </form>
+        {% if enableRegistration %}
+        <div class="ui vertical divider">
+            {{ translate("Or") }}
+        </div>
+        <div class="center aligned column">
+            <a href="{{ url("zfcuser/register") }}{% if redirect %}?redirect={{ redirect }}{% endif %}" class="medium green ui labeled icon button"><i class="signup icon"></i> {{ translate("Create new account") }}</a>
+        </div>
+        {% endif %}
+    </div>
 
-    {% if enableRegistration %}
-        {{ translate("Not registered?") }} <a href="{{ url("zfcuser/register") }}{% if redirect %}?redirect={{ redirect }}{% endif %}">{{ translate("Create new account") }}</a>
-    {% endif %}
+
+
+
 
 {% endblock %}
