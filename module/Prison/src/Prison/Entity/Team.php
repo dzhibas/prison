@@ -139,5 +139,19 @@ class Team
         return $this->owner;
     }
 
+    /**
+     * returns array representation of entity
+     * used by zend forms to populate form fields
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return array(
+            "id" => $this->getId(),
+            "name" => $this->getName(),
+            "slug" => $this->getSlug()
+        );
+    }
 
 }

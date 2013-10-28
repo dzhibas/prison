@@ -62,9 +62,7 @@ class TeamController extends AbstractController
     public function indexAction()
     {
         $r = $this->loginRequired();
-        if ($r instanceof Response) {
-            return $r;
-        }
+        if ($r instanceof Response) return $r;
 
         $teamSlug = $this->params()->fromRoute("slug", null);
 
@@ -79,6 +77,7 @@ class TeamController extends AbstractController
         } else {
             /** @var \Doctrine\ORM\EntityManager $em */
             $em = $this->serviceLocator->get('Doctrine\ORM\EntityManager');
+            /** @var Entity\Team $team */
             $team = $em->getRepository('Prison\Entity\Team')->findOneBy(array("slug" => $teamSlug, "owner" => $this->getIdentity()));
         }
 
@@ -86,6 +85,25 @@ class TeamController extends AbstractController
             $this->redirect()->toRoute("prison/team-new");
         }
 
-        return new ViewModel(array("team" => $team));
+        $form = new Form\TeamEdit();
+
+        if ($this->request->isPost())
+        {
+            $form->setData($this->request->getPost());
+            if ($form->isValid() && $form->get("id")->getValue() == $team->getId())
+            {
+                $team->setName($form->get("name")->getValue());
+                $slugify = new Filter\Slugify();
+                $team->setSlug($slugify->filter($form->get("slug")->getValue()));
+
+                $em->persist($team);
+                $em->flush();
+                return $this->redirect()->toRoute("prison/team", array("slug" => $team->getSlug()));
+            }
+        }
+
+        $form->setData($team->toArray());
+
+        return new ViewModel(array("team" => $team, "form" => $form));
     }
 } 

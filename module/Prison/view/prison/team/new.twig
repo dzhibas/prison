@@ -19,6 +19,7 @@
                 {{ formLabel(form.get("name")) }}
                 {{ formInput(form.get("name")) }}
             </div>
+            {{ formElement(form.get("csrf")) }}
             <button type="submit" name="submit" class="ui blue submit button">{{ translate("Create Team") }}</button>
         </form>
     </div>

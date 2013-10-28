@@ -21,6 +21,16 @@ class Team extends Form implements InputFilterProviderInterface
                 'type'  => 'text',
             ),
         ));
+
+        $this->add(array(
+            'type' => 'Zend\Form\Element\Csrf',
+            'name' => 'csrf',
+            'options' => array(
+                'csrf_options' => array(
+                    'timeout' => 600
+                )
+            )
+        ));
     }
 
     public function getInputFilterSpecification()
