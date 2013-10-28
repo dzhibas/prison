@@ -14,4 +14,8 @@ Installation
 * php composer.phar install # install project dependencies
 * cp config/autoload/local.php.dist config/autoload/local.php # copy local configuration
 * vim config/autload/local.php # add doctrine connection details
+* create database (database name was mentioned in configuration file local.php)
 * vendor/bin/doctrine-module orm:schema-tool:create # create database schemas out of doctrine entities
+
+prison is up and running. hit URL, create new account, team and project and you will see guide how to register
+exception handler for your specified platform.
