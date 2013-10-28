@@ -1,0 +1,11 @@
+<div class="ui menu">
+    <a class="item {% if active == "settings" or not active %}active{% endif %}" href="{{ url("prison/team", {"slug": team.getSlug()}) }}"><i class="icon settings"></i>Settings</a>
+    <a class="item {% if active == "projects" %}active{% endif %}" href="{{ url("prison/project", {"teamslug": team.getSlug()}) }}"><i class="icon list"></i>Projects</a>
+    <a class="item inactive {% if active == "members" %}active{% endif %}" href=""><i class="icon users"></i>Members</a>
+
+    <div class="right menu">
+        <div class="item">
+            <a class="ui green button" href="{{ url("prison/project-new", {"teamslug": team.getSlug()}) }}">new project</a>
+        </div>
+    </div>
+</div>

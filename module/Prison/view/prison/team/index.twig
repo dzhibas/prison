@@ -1,5 +1,24 @@
 {% extends "layout/layout.twig" %}
 
 {% block content %}
-    <h1>Team "{{ team.name }}"</h1>
+    {% include "prison/team/teams-menu.twig" %}
+
+    <h1>Team "{{ team.name }}" details</h1>
+
+    <div class="ui fluid form segment">
+        <form action="" method="post">
+            <div class="field">
+                {{ formElementErrors(form.get("name")) }}
+                {{ formLabel(form.get("name")) }}
+                {{ formInput(form.get("name")) }}
+            </div>
+            <div class="field">
+                {{ formElementErrors(form.get("slug")) }}
+                {{ formLabel(form.get("slug")) }}
+                {{ formInput(form.get("slug")) }}
+            </div>
+            {{ formElement(form.get("id")) }}
+            <button type="submit" name="submit" class="ui blue submit button">{{ translate("Update Team") }}</button>
+        </form>
+    </div>
 {% endblock %}
