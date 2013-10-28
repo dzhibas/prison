@@ -47,6 +47,16 @@ class Project extends Form implements InputFilterProviderInterface, ServiceLocat
         ));
 
         $this->add(array(
+            'type' => 'Zend\Form\Element\Csrf',
+            'name' => 'csrf',
+            'options' => array(
+                'csrf_options' => array(
+                    'timeout' => 600
+                )
+            )
+        ));
+
+        $this->add(array(
             "type" => "submit",
             "name" => "submit",
             "attributes" => array("value" => "Create new project", "class" => "ui blue submit button"),

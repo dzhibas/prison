@@ -17,6 +17,7 @@ class TeamEdit extends Team
                 'type'  => 'text',
             ),
         ));
+
         $this->add(array(
             "name" => "id",
             'attributes' => array(
