@@ -8,7 +8,7 @@ Raven_Autoloader::register();</pre>
 
 <p>Create an instance of the client:</p>
 
-<pre>$client = new Raven_Client('{% if key %}{{ key.getDsn() }}{% else %}<strong>SENTRY_DSN</strong>{% endif %}');</pre>
+<pre>$client = new Raven_Client('{% if key %}{{ key.getDsn() }}{% else %}<strong>PRISON_DSN</strong>{% endif %}');</pre>
 
 <p>Now call out to the raven client to capture events:</p>
 
