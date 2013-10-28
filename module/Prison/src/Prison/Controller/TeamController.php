@@ -82,7 +82,7 @@ class TeamController extends AbstractController
         }
 
         if (!$team) {
-            $this->redirect()->toRoute("prison/team-new");
+            return $this->redirect()->toRoute("prison/team-new");
         }
 
         $form = new Form\TeamEdit();
