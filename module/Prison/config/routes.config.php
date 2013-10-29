@@ -24,6 +24,32 @@ return array(
                 ),
             ),
         ),
+        'api' => array(
+            'type' => 'Segment',
+            'options' => array(
+                'route' => '/api/[:project]',
+                'constrains' => array(
+                    'project' => '\d+'
+                ),
+                'defaults' => array(
+                    'controller' => 'Prison\Controller\Api',
+                    'action' => 'store',
+                )
+            ),
+            'may_terminate' => true,
+            'child_routes' => array(
+                'store' => array(
+                    'type' => 'Literal',
+                    'options' => array(
+                        'route' => '/store',
+                        'defaults' => array(
+                            'controller'    => 'Prison\Controller\Api',
+                            'action'        => 'store',
+                        ),
+                    )
+                )
+            )
+        ),
         'team' => array(
             'type' => 'Segment',
             'options' => array(

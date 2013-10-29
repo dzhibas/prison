@@ -2,13 +2,18 @@
 namespace Prison\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Rhumsaa\Uuid\Uuid;
+use Zend\ServiceManager\ServiceLocatorAwareInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\ServiceManager\ServiceManager;
+use Zend\Uri\Uri;
+use Zend\Uri\UriFactory;
 
 /**
  *
  * @ORM\Entity
  * @ORM\Table(name="project_key")
  */
-class ProjectKey
+class ProjectKey implements ServiceLocatorAwareInterface
 {
     /**
      * @var int
@@ -59,6 +64,29 @@ class ProjectKey
      * @ORM\Column(name="date_added", type="datetime")
      */
     protected $dateAdded;
+
+    /** @var  ServiceManager */
+    protected $sm;
+
+    /**
+     * Set service locator
+     *
+     * @param ServiceLocatorInterface $serviceLocator
+     */
+    public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
+    {
+        $this->sm = $serviceLocator;
+    }
+
+    /**
+     * Get service locator
+     *
+     * @return ServiceLocatorInterface
+     */
+    public function getServiceLocator()
+    {
+        return $this->sm;
+    }
 
     /**
      * @return int
@@ -183,14 +211,21 @@ class ProjectKey
 
     public function getDsn($public = false)
     {
-        // @TODO fix this domain and schema to be taken from zend app or prison configuration
-        $schema = 'http';
-        $domain = 'localhost/prison/api';
+        $cp = $this->getServiceLocator()->get('ControllerPluginManager');
+        /** @var \Zend\Mvc\Controller\Plugin\Url $urlPlugin */
+        $urlPlugin = $cp->get('url');
+        $url = $urlPlugin->fromRoute('prison/api',
+            array('project' => $this->getProject()->getId()),
+            array('force_canonical' => true)
+        );
+        /** @var \Zend\Uri\Uri $uri */
+        $uri = UriFactory::factory($url);
         $key = $this->getPublicKey().':'.$this->getSecretKey();
         if ($public) {
             $key = $this->getPublicKey();
         }
-        return sprintf('%s://%s@%s/%s', $schema, $key, $domain, $this->getProject()->getId());
+
+        return sprintf('%s://%s@%s%s', $uri->getScheme(), $key, $uri->getHost(), $uri->getPath());
     }
 
     public function getPrivateDsn()

@@ -3,6 +3,7 @@ namespace Prison;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use \Prison\Listener\ServiceManagerListener;
 
 class Module
 {
@@ -11,6 +12,12 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+
+        $serviceManager = $e->getApplication()->getServiceManager();
+        /** @var \Doctrine\ORM\EntityManager $entityManager */
+        $entityManager = $serviceManager->get('Doctrine\ORM\EntityManager');
+        $dem = $entityManager->getEventManager();
+        $dem->addEventListener(array(\Doctrine\ORM\Events::postLoad), new ServiceManagerListener($serviceManager));
     }
 
     public function getConfig()
