@@ -11,6 +11,8 @@ you can reuse clients which works with [Sentry](https://github.com/getsentry/sen
 Installation
 ===============
 
+* clone project
+* curl -sS https://getcomposer.org/installer | php  # install composer
 * php composer.phar install # install project dependencies
 * cp config/autoload/local.php.dist config/autoload/local.php # copy local configuration
 * vim config/autload/local.php # add doctrine connection details
