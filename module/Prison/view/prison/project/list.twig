@@ -1,0 +1,13 @@
+{% extends "layout/layout.twig" %}
+
+{% block content %}
+    {% include "prison/team/teams-menu.twig" with {"active": "projects"} %}
+    <h1>list of projects for team '{{ team.getName() }}'</h1>
+
+    <ul>
+    {% for project in projects %}
+        <li><a href="{{ url("prison/project", {"team": team.getSlug(), "project": project.getSlug() }) }}">{{ project.getName() }}</a> added {{ project.getDateAdded().format("Y-m-d") }}</li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

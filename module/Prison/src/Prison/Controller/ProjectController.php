@@ -79,6 +79,11 @@ class ProjectController extends AbstractController
 
     public function indexAction()
     {
+        return new ViewModel(array("project"=>"test"));
+    }
+
+    public function listAction()
+    {
         $r = $this->loginRequired();
         if ($r instanceof Response) return $r;
 

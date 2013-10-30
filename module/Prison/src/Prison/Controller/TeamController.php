@@ -43,7 +43,7 @@ class TeamController extends AbstractController
                         $em->persist($team);
                         $em->flush();
 
-                        return $this->redirect()->toRoute("prison/project", array("teamslug" => $team->getSlug()));
+                        return $this->redirect()->toRoute("prison/projects", array("teamslug" => $team->getSlug()));
                     } else {
                         $this->flashMessenger()->addMessage("This team already exists");
                         return $this->redirect()->toRoute("prison/team", array("slug" => $team->getSlug()));

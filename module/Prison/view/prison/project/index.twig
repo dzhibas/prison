@@ -1,13 +1,16 @@
 {% extends "layout/layout.twig" %}
 
 {% block content %}
-    {% include "prison/team/teams-menu.twig" with {"active": "projects"} %}
-    <h1>list of projects for team '{{ team.getName() }}'</h1>
+    {% include "prison/project/menu.twig" %}
 
-    <ul>
-    {% for project in projects %}
-        <li><a href="{{ url("prison/project", {"teamslug": team.getSlug(), "projectslug": project.getSlug() }) }}">{{ project.getName() }}</a> added {{ project.getDateAdded().format("Y-m-d") }}</li>
-    {% endfor %}
-    </ul>
-
+    <div class="ui icon green message">
+        <i class="bug icon"></i>
+        <div class="content">
+            <div class="header">
+                No events to show.
+            </div>
+            <p>We'll notify you if that changes. In the meantime why not take a moment to become more familiar with Prison</p>
+            <p class="links"><a href="docs/php" class="ui small blue button">Installation instructions</a> <a href="settings/" class="ui small blue button">Project settings</a></p>
+        </div>
+    </div>
 {% endblock %}

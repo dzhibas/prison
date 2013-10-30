@@ -50,6 +50,19 @@ return array(
                 )
             )
         ),
+        'projects' => array(
+            'type'  => 'Segment',
+            'options' => array(
+                'route' => '/team[/:teamslug]/projects',
+                'constraints' => array(
+                    'teamslug' => '[a-zA-Z0-9\-_]+',
+                ),
+                'defaults' => array(
+                    'controller' => 'Prison\Controller\Project',
+                    'action' => 'list',
+                )
+            ),
+        ),
         'team' => array(
             'type' => 'Segment',
             'options' => array(
@@ -73,19 +86,6 @@ return array(
                 ),
             ),
         ),
-        'project' => array(
-            'type'  => 'Segment',
-            'options' => array(
-                'route' => '/team[/:teamslug]/projects',
-                'constraints' => array(
-                    'teamslug' => '[a-zA-Z0-9\-_]+',
-                ),
-                'defaults' => array(
-                    'controller' => 'Prison\Controller\Project',
-                    'action' => 'index',
-                )
-            ),
-        ),
         'project-new' => array(
             'type'  => 'Segment',
             'options' => array(
@@ -99,7 +99,20 @@ return array(
                 )
             ),
         ),
-
+        'project' => array(
+            'type'  => 'Segment',
+            'options' => array(
+                'route' => '/[:team]/[:project][/]',
+                'constraints' => array(
+                    'team' => '(?!team)[a-zA-Z0-9\-_]+',
+                    'project' => '[a-zA-Z0-9\-_]+',
+                ),
+                'defaults' => array(
+                    'controller' => 'Prison\Controller\Project',
+                    'action' => 'index',
+                )
+            ),
+        ),
         'project-doc' => array(
             'type'  => 'Segment',
             'options' => array(
@@ -135,6 +148,7 @@ return array(
                 ),
             ),
         ),
+
         'key-revoke' => array(
             'type' => 'Segment',
             'options' => array(
