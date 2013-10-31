@@ -1,9 +1,11 @@
 (exception)Prison
 =======================
 
+![prison](https://raw.github.com/dzhibas/prison/master/public/images/prison-logo.png)
+
 real time event logging and aggregation platform. error monitoring ported to PHP from well known python project Sentry
 
-you can reuse clients which works with [Sentry](https://github.com/getsentry/sentry) to report exception to Prison:
+you can re-use [Sentry](https://github.com/getsentry/sentry) clients (Raven-*) to report exception to Prison:
 
     - https://github.com/getsentry/raven-php (php client)
     - https://github.com/getsentry/raven-js (javascript client)
