@@ -1,0 +1,16 @@
+<script src="//d3nslu0hdya83q.cloudfront.net/dist/1.0/raven.min.js"></script>
+<script>
+    var options = {
+        logger: 'my-logger',
+        ignoreUrls: [
+            /graph\.facebook\.com/i
+        ],
+        includePaths: [
+            /https?:\/\/(www\.)?getsentry\.com/,
+            /https?:\/\/d3nslu0hdya83q\.cloudfront\.net/
+        ]
+    };
+    Raven.config('http://2be0439fce9d11db55b9363b4826a4d4:8a49f1cfe988cc575dffba0f34463b2e@localhost/prison/public/prison/1', options).install();
+</script>
+
+<button onclick="javascript:new Exception('testing testing');">Trigger Javascript error</button> which will hit /api/:projectId/store with exception & sentry details

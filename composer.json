@@ -17,6 +17,7 @@
         "zf-commons/zfc-user": "dev-master",
         "zf-commons/zfc-user-doctrine-orm": "dev-master",
         "zf-commons/zfc-twig": "dev-master",
-        "rhumsaa/uuid": "2.4"
+        "rhumsaa/uuid": "2.4",
+        "raven/raven": "dev-master"
     }
 }

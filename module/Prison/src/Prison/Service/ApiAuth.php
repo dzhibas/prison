@@ -49,10 +49,18 @@ class ApiAuth implements ServiceLocatorAwareInterface
     public function extractAuthVars()
     {
         $sentryKeys = array();
-        if (substr($this->request->getHeader('HTTP_X_SENTRY_AUTH', ''), 0, 6) == "Sentry") {
-            return $this->parseHeader($this->request->getHeader('HTTP_X_SENTRY_AUTH'));
-        } else if (substr($this->request->getHeader('HTTP_AUTHORIZATION', ''), 0, 6) == "Sentry") {
-            return $this->parseHeader($this->request->getHeader('HTTP_AUTHORIZATION'));
+
+        if ($this->request->getHeader('X_SENTRY_AUTH', '') &&
+            substr($this->request->getHeader('X_SENTRY_AUTH', '')->getFieldValue(), 0, 6) == "Sentry") {
+            return $this->parseHeader($this->request->getHeader('X_SENTRY_AUTH')->getFieldValue());
+
+        } else if ($this->request->getHeader('HTTP_X_SENTRY_AUTH', '') &&
+            substr($this->request->getHeader('HTTP_X_SENTRY_AUTH', '')->getFieldValue(), 0, 6) == "Sentry") {
+            return $this->parseHeader($this->request->getHeader('HTTP_X_SENTRY_AUTH')->getFieldValue());
+
+        } else if ($this->request->getHeader('HTTP_AUTHORIZATION', '') &&
+            substr($this->request->getHeader('HTTP_AUTHORIZATION', '')->getFieldValue(), 0, 6) == "Sentry") {
+            return $this->parseHeader($this->request->getHeader('HTTP_AUTHORIZATION')->getFieldValue());
         } else {
             foreach ($this->request->getQuery() as $qKey => $qVal) {
                 if (substr($qKey, 0, 7) == "sentry_") {
@@ -69,6 +77,9 @@ class ApiAuth implements ServiceLocatorAwareInterface
      */
     public function parseHeader($headerValue)
     {
+        if (substr($headerValue, 0, 6) == "Sentry")
+            $headerValue = substr($headerValue, 7);
+        $headerValue = str_replace(", ", "&", $headerValue);
         $params = new Parameters();
         $params->fromString($headerValue);
         return $params;

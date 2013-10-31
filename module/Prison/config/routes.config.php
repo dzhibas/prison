@@ -24,32 +24,6 @@ return array(
                 ),
             ),
         ),
-        'api' => array(
-            'type' => 'Segment',
-            'options' => array(
-                'route' => '/api/[:project]',
-                'constrains' => array(
-                    'project' => '\d+'
-                ),
-                'defaults' => array(
-                    'controller' => 'Prison\Controller\Api',
-                    'action' => 'store',
-                )
-            ),
-            'may_terminate' => true,
-            'child_routes' => array(
-                'store' => array(
-                    'type' => 'Literal',
-                    'options' => array(
-                        'route' => '/store',
-                        'defaults' => array(
-                            'controller'    => 'Prison\Controller\Api',
-                            'action'        => 'store',
-                        ),
-                    )
-                )
-            )
-        ),
         'projects' => array(
             'type'  => 'Segment',
             'options' => array(
@@ -177,6 +151,44 @@ return array(
                         ),
                     ),
                 ),
+            ),
+        ),
+        'api' => array(
+            'type' => 'Segment',
+            'options' => array(
+                'route' => '/api/[:project]',
+                'constrains' => array(
+                    'project' => '\d+'
+                ),
+                'defaults' => array(
+                    'controller' => 'Prison\Controller\Api',
+                    'action' => 'store',
+                )
+            ),
+            'may_terminate' => true,
+            'child_routes' => array(
+                'store' => array(
+                    'type' => 'Regex',
+                    'options' => array(
+                        'regex' => '/store/{0,1}',
+                        'defaults' => array(
+                            'controller'    => 'Prison\Controller\Api',
+                            'action'        => 'store',
+                        ),
+                        'spec' => '/store',
+                    )
+                )
+            )
+        ),
+        'api-alias' => array(
+            'type' => 'Regex',
+            'options' => array(
+                'regex' => '/api/store/?',
+                'defaults' => array(
+                    'controller' => 'Prison\Controller\Api',
+                    'action' => 'store',
+                ),
+                'spec' => '/api/store',
             ),
         ),
     ),
