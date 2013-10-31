@@ -5,14 +5,13 @@
 
     <div class="ui grid">
         <div class="five wide column">
-            {% include "prison/project/vertical-menu.twig" with {active: "php"} %}
+            {% include "prison/project/vertical-menu.twig" with {active: "settings"} %}
         </div>
 
         <div class="eleven wide column">
 
-            Configuring {{  project.getPlatform() }} for project {{ project.getName() }}
+           form
 
-            {{ documentation|raw }}
         </div>
     </div>
 {% endblock %}

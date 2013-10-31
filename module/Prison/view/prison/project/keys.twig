@@ -1,13 +1,26 @@
 {% extends "layout/layout.twig" %}
 
 {% block content %}
-    <h1>Project "{{ project }}" keys</h1>
 
-    <ul>
-    {% for key in keys %}
-        <li>{{ key.getDsn() }} <a href="{{ url("prison/key-revoke", {"key":key.getId()}) }}" class="ui tiny button">{{ translate("Revoke key") }}</a></li>
-    {% endfor %}
-    </ul>
+    {% include "prison/project/menu.twig" with {active: "settings"} %}
 
-    <a href="{{ url("prison/key-new", {"team": team.getSlug(), "project": project.getSlug()}) }}" class="ui button">Add new API key</a>
+    <div class="ui grid">
+        <div class="five wide column">
+            {% include "prison/project/vertical-menu.twig" with {active: "keys"} %}
+        </div>
+
+        <div class="eleven wide column">
+
+            <h1>keys</h1>
+
+            <ul>
+                {% for key in keys %}
+                    <li>{{ key.getDsn() }} <a href="{{ url("prison/project/keys/revoke", {"key":key.getId(), "team": team.getSlug(), "project": project.getSlug()}) }}" class="ui tiny button">{{ translate("Revoke key") }}</a></li>
+                {% endfor %}
+            </ul>
+
+            <a href="{{ url("prison/project/keys/new", {"team": team.getSlug(), "project": project.getSlug()}) }}" class="ui button">Add new API key</a>
+
+        </div>
+    </div>
 {% endblock %}

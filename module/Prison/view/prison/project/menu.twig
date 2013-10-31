@@ -1,4 +1,4 @@
 <div class="ui menu">
-    <a class="item active" href=""><i class="icon list"></i>Events</a>
-    <a class="item" href=""><i class="icon settings"></i>Settings</a>
+    <a class="item {% if active=="events" %}active{% endif %}" href="{{ url("prison/project", {team: team.getSlug(), project: project.getSlug()}) }}"><i class="icon list"></i>Events</a>
+    <a class="item {% if active=="settings" %}active{% endif %}" href="{{ url("prison/project/settings", {team: team.getSlug(), project: project.getSlug()}) }}"><i class="icon settings"></i>Settings</a>
 </div>

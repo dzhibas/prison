@@ -99,10 +99,12 @@ return array(
                 )
             ),
         ),
+
+        /*** PROJECT ***/
         'project' => array(
             'type'  => 'Segment',
             'options' => array(
-                'route' => '/[:team]/[:project][/]',
+                'route' => '/[:team]/[:project]',
                 'constraints' => array(
                     'team' => '(?!team)[a-zA-Z0-9\-_]+',
                     'project' => '[a-zA-Z0-9\-_]+',
@@ -112,50 +114,68 @@ return array(
                     'action' => 'index',
                 )
             ),
-        ),
-        'project-doc' => array(
-            'type'  => 'Segment',
-            'options' => array(
-                'route' => '/[:team]/[:project]/docs[/:platform]',
-                'constraints' => array(
-                    'team' => '[a-zA-Z0-9\-_]+',
-                    'project' => '[a-zA-Z0-9\-_]+',
-                ),
-                'defaults' => array(
-                    'controller' => 'Prison\Controller\Project',
-                    'action' => 'docs',
-                )
-            ),
-        ),
-        'project-keys' => array(
-            'type' => 'Segment',
-            'options' => array(
-                'route' => '/[:team]/[:project]/keys',
-                'defaults' => array(
-                    'controller' => 'Prison\Controller\Project',
-                    'action' => 'keys',
-                )
-            ),
-        ),
 
-        'key-new' => array(
-            'type' => 'Segment',
-            'options' => array(
-                'route' => '/[:team]/[:project]/keys/new',
-                'defaults' => array(
-                    'controller' => 'Prison\Controller\Key',
-                    'action' => 'new'
+            'may_terminate' => true,
+            'child_routes' => array(
+                'settings' => array(
+                    'type' => 'Literal',
+                    'options' => array(
+                        'route' => '/settings',
+                        'defaults' => array(
+                            'controller' => 'Prison\Controller\Project',
+                            'action' => 'settings'
+                        )
+                    )
                 ),
-            ),
-        ),
 
-        'key-revoke' => array(
-            'type' => 'Segment',
-            'options' => array(
-                'route' => '/key/[:key]/revoke',
-                'defaults' => array(
-                    'controller' => 'Prison\Controller\Key',
-                    'action' => 'revoke'
+                'doc' => array(
+                    'type'  => 'Segment',
+                    'options' => array(
+                        'route' => '/docs[/:platform]',
+                        'constraints' => array(
+                            'team' => '[a-zA-Z0-9\-_]+',
+                            'project' => '[a-zA-Z0-9\-_]+',
+                        ),
+                        'defaults' => array(
+                            'controller' => 'Prison\Controller\Project',
+                            'action' => 'docs',
+                        )
+                    ),
+                ),
+
+                /*** KEYS ***/
+                'keys' => array(
+                    'type' => 'Segment',
+                    'options' => array(
+                        'route' => '/keys',
+                        'defaults' => array(
+                            'controller' => 'Prison\Controller\Project',
+                            'action' => 'keys',
+                        )
+                    ),
+                    'may_terminate' => true,
+                    'child_routes' => array(
+                        'new' => array(
+                            'type' => 'Segment',
+                            'options' => array(
+                                'route' => '/new',
+                                'defaults' => array(
+                                    'controller' => 'Prison\Controller\Key',
+                                    'action' => 'new'
+                                ),
+                            ),
+                        ),
+                        'revoke' => array(
+                            'type' => 'Segment',
+                            'options' => array(
+                                'route' => '/[:key]/revoke',
+                                'defaults' => array(
+                                    'controller' => 'Prison\Controller\Key',
+                                    'action' => 'revoke'
+                                ),
+                            ),
+                        ),
+                    ),
                 ),
             ),
         ),

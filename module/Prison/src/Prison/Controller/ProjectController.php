@@ -57,16 +57,15 @@ class ProjectController extends AbstractController
 
                     $em->flush();
 
-                    return $this->redirect()->toRoute("prison/project-doc", array(
+                    return $this->redirect()->toRoute("prison/project/doc", array(
                         "team" => $team->getSlug(),
                         "project" => $project->getSlug(),
                         "platform" => "php",
                     ));
                 } else {
                     $this->flashMessenger()->addErrorMessage("Such project name already exists");
+                    return $this->redirect()->toRoute("prison/project-new", array("teamslug" => $teamSlug));
                 }
-            } else {
-                $this->flashMessenger()->addErrorMessage("Please fill in all required fields");
             }
         }
 
@@ -79,7 +78,42 @@ class ProjectController extends AbstractController
 
     public function indexAction()
     {
-        return new ViewModel(array("project"=>"test"));
+        // @TODO check if logged in user is member of project!
+        $r = $this->loginRequired();
+        if ($r instanceof Response) return $r;
+
+        $teamSlug = $this->params()->fromRoute("team", null);
+        $projectSlug = $this->params()->fromRoute("project", null);
+
+        $projectService = new ProjectService($this->serviceLocator);
+        $project = $projectService->getProjectBySlug($projectSlug);
+
+        if (!$project || $project->getTeam()->getSlug() != $teamSlug) return $this->redirect()->toRoute('prison');
+
+        return new ViewModel(array(
+            "project" => $project,
+            "team" => $project->getTeam()
+        ));
+    }
+
+    public function settingsAction()
+    {
+        // @TODO check if logged in user is member of project!
+        $r = $this->loginRequired();
+        if ($r instanceof Response) return $r;
+
+        $teamSlug = $this->params()->fromRoute("team", null);
+        $projectSlug = $this->params()->fromRoute("project", null);
+
+        $projectService = new ProjectService($this->serviceLocator);
+        $project = $projectService->getProjectBySlug($projectSlug);
+
+        if (!$project || $project->getTeam()->getSlug() != $teamSlug) return $this->redirect()->toRoute('prison');
+
+        return new ViewModel(array(
+            "project" => $project,
+            "team" => $project->getTeam()
+        ));
     }
 
     public function listAction()

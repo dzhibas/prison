@@ -1,0 +1,21 @@
+<div class="ui vertical menu">
+    <div class="header item">
+        <i class="settings icon"></i>
+        Details
+    </div>
+    <a class="item {% if active=="settings" %}active{% endif %}" href="{{ url("prison/project/settings", {team: team.getSlug(), project:project.getSlug()}) }}">Settings</a>
+    <a class="item">Notifications</a>
+    <a class="item">Tags</a>
+    <a class="item {% if active=="keys" %}active{% endif %}" href="{{ url("prison/project/keys", {team: team.getSlug(), project:project.getSlug()}) }}">Api keys</a>
+    <div class="header item">
+        <i class="add sign icon"></i>
+        Client configuration
+    </div>
+    <a class="item">All platforms</a>
+    <a class="item {% if active=="php" %}active{% endif %}" href="{{ url("prison/project/doc", {platform: "php", team: team.getSlug(), project:project.getSlug()}) }}">PHP</a>
+    <div class="header item">
+        <i class="icon calendar"></i>
+        Plugins
+    </div>
+    <a class="item">Manage plugins</a>
+</div>

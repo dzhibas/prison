@@ -35,7 +35,7 @@ class KeyController extends AbstractController
         $em->persist($projectKey);
         $em->flush();
 
-        return $this->redirect()->toRoute('prison/project-keys', array('project' => $projectSlug, 'team' => $teamSlug));
+        return $this->redirect()->toRoute('prison/project/keys', array('project' => $projectSlug, 'team' => $teamSlug));
     }
 
     public function revokeAction()
@@ -59,7 +59,7 @@ class KeyController extends AbstractController
         $this->getEm()->remove($key);
         $this->getEm()->flush();
 
-        return $this->redirect()->toRoute('prison/project-keys',
+        return $this->redirect()->toRoute('prison/project/keys',
             array('project' => $project->getSlug(), 'team' => $team->getSlug()));
     }
 

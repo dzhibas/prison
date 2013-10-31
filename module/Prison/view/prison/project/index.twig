@@ -1,16 +1,17 @@
 {% extends "layout/layout.twig" %}
 
 {% block content %}
-    {% include "prison/project/menu.twig" %}
+    {% include "prison/project/menu.twig" with {active: "events"} %}
 
     <div class="ui icon green message">
-        <i class="bug icon"></i>
+        <i class="unhide icon"></i>
         <div class="content">
             <div class="header">
                 No events to show.
             </div>
             <p>We'll notify you if that changes. In the meantime why not take a moment to become more familiar with Prison</p>
-            <p class="links"><a href="docs/php" class="ui small blue button">Installation instructions</a> <a href="settings/" class="ui small blue button">Project settings</a></p>
+            <p class="links"><a href="{{ url("prison/project/doc", {platform: "php", team:team.getSlug(),project:project.getSlug()}) }}" class="ui small blue button">Installation instructions</a>
+                <a href="{{ url("prison/project/settings", {team:team.getSlug(),project:project.getSlug()}) }}" class="ui small blue button">Project settings</a></p>
         </div>
     </div>
 {% endblock %}

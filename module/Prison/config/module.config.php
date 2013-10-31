@@ -15,18 +15,6 @@ return array(
                 ),
             ),
 
-            'api' => array(
-                'type' => 'Zend\Mvc\Router\Http\Regex',
-                'options' => array(
-                    'regex' => '/api/(?P<projectId>\d+)/store/',
-                    'spec' => '/api/%projectId%/store/',
-                    'defaults' => array(
-                        'controller' => 'Prison\Controller\Api',
-                        'action' => 'store',
-                    )
-                ),
-            ),
-
             'prison' => require_once('routes.config.php'),
         ),
     ),
