@@ -225,7 +225,7 @@ class ProjectKey implements ServiceLocatorAwareInterface
             $key = $this->getPublicKey();
         }
 
-        return sprintf('%s://%s@%s%s', $uri->getScheme(), $key, $uri->getHost(), $uri->getPath());
+        return sprintf('%s://%s@%s%s', $uri->getScheme(), $key, $uri->getHost(), str_replace("api/","",$uri->getPath()));
     }
 
     public function getPrivateDsn()
