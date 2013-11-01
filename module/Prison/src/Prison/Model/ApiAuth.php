@@ -82,5 +82,9 @@ class ApiAuth
         return $this->version;
     }
 
+    public function __toString()
+    {
+        return sprintf("%s (%s:%s)", $this->getClient(), $this->getPublicKey(), $this->getSecretKey());
+    }
 
 }

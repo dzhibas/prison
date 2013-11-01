@@ -2,6 +2,7 @@
 namespace Prison\Service;
 
 use Prison\Model;
+use Zend\Log\Logger;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -47,15 +48,44 @@ class Api implements ServiceLocatorAwareInterface
         {
             try {
                 $data = base64_decode($data);
-            } catch (\Exception $e) {}
-            try {
                 $data = gzuncompress($data);
             } catch (\Exception $e) {}
         }
 
         $data = json_decode($data, true);
+        if ($data === null)
+        {
+            /** @var Logger $log */
+            $log = $this->getServiceLocator()->get('Log\Prison');
+            $log->crit($this->auth . " " . $this->json_last_error_msg());
+            $this->data = array();
+        } else {
+            $this->data = $data;
+        }
+    }
 
-        $this->data = $data;
+    public function json_last_error_msg()
+    {
+        switch (json_last_error()) {
+            default:
+                return;
+            case JSON_ERROR_DEPTH:
+                $error = 'Maximum stack depth exceeded';
+                break;
+            case JSON_ERROR_STATE_MISMATCH:
+                $error = 'Underflow or the modes mismatch';
+                break;
+            case JSON_ERROR_CTRL_CHAR:
+                $error = 'Unexpected control character found';
+                break;
+            case JSON_ERROR_SYNTAX:
+                $error = 'Syntax error, malformed JSON';
+                break;
+            case JSON_ERROR_UTF8:
+                $error = 'Malformed UTF-8 characters, possibly incorrectly encoded';
+                break;
+        }
+        return $error;
     }
 
     /**
