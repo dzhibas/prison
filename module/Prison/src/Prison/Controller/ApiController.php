@@ -11,6 +11,7 @@ use Zend\Http\Request;
 
 class ApiController extends AbstractActionController
 {
+    /** @var  \Prison\Model\ApiAuth */
     protected $authVars;
 
     public function storeAction()
@@ -25,6 +26,19 @@ class ApiController extends AbstractActionController
          * 5. insert data to database or any other store (Redis for example)
          */
         if ($this->getRequest()->isPost()) {
+
+            /**
+             * 1. check if its gziped
+             * 2. safe ungzip + safe json_decode
+             */
+
+            /** @var \Prison\Service\Api $apiService */
+            $apiService = $this->serviceLocator->get('Prison\Service\Api');
+            $apiService->setAuth($this->authVars);
+
+            $apiService->setData($this->getRequest()->getContent());
+
+
             return new JsonModel(array("success" => true));
         } else if ($this->getRequest()->isGet()) {
             # Javascript clients

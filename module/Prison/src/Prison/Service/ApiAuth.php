@@ -97,7 +97,7 @@ class ApiAuth implements ServiceLocatorAwareInterface
         }
 
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $projectKey = $em->getRepository('Prison\Entity\ProjectKey')->findOneBy(array("publicKey" => $authVariables['sentry_key']));
+        $projectKey = $em->getRepository('Prison\Entity\ProjectKey')->findOneBy(array("publicKey" => $authVariables->get('sentry_key')));
 
         if (!$projectKey) {
             return $this->forbidden();
@@ -108,6 +108,7 @@ class ApiAuth implements ServiceLocatorAwareInterface
         }
 
         $this->setProjectKey($projectKey);
+        $authVariables->set("projectKey", $projectKey);
 
         return $authVariables;
     }

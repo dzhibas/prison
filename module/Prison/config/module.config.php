@@ -29,6 +29,14 @@ return array(
         'invokables' => array(
             'Prison\Collector\View' => 'Prison\Collector\ViewCollector',
         ),
+        'factories' => array(
+            'Prison\Service\Api' => function($sm) {
+                    $api = new Prison\Service\Api();
+                    $api->setServiceLocator($sm);
+
+                    return $api;
+            },
+        ),
     ),
     'translator' => array(
         'locale' => 'en_US',
