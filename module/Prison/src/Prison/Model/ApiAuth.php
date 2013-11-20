@@ -1,6 +1,7 @@
 <?php
 namespace Prison\Model;
 
+use Prison\Entity\ProjectKey;
 use Zend\Stdlib\Parameters;
 
 class ApiAuth
@@ -10,12 +11,32 @@ class ApiAuth
     protected $secretKey;
     protected $publicKey;
 
+    /** @var ProjectKey */
+    protected $projectKey;
+
     public function __construct(Parameters $authVars)
     {
         $this->setClient($authVars->get('sentry_client'));
         $this->setPublicKey($authVars->get('sentry_key'));
         $this->setSecretKey($authVars->get('sentry_secret'));
         $this->setVersion($authVars->get('sentry_version'));
+        $this->setProjectKey($authVars->get('projectKey'));
+    }
+
+    /**
+     * @param ProjectKey $projectKey
+     */
+    public function setProjectKey($projectKey)
+    {
+        $this->projectKey = $projectKey;
+    }
+
+    /**
+     * @return ProjectKey
+     */
+    public function getProjectKey()
+    {
+        return $this->projectKey;
     }
 
     /**

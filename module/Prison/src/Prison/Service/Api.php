@@ -89,6 +89,32 @@ class Api implements ServiceLocatorAwareInterface
     }
 
     /**
+     * validating incomming data
+     */
+    public function validateData()
+    {
+        /**
+         * ensure_valid_project_id
+         * not data.get('message'):
+         * len(data['message']) > MAX_MESSAGE_LENGTH:
+         * data.get('culprit') and len(data['culprit']) > MAX_CULPRIT_LENGTH:
+         * not data.get('event_id'):
+         * 'timestamp' in data: {process_data_timestamp(data)}
+         * data.get('modules') and type(data['modules']) != dict:
+         * data.get('extra') is not None and type(data['extra']) != dict:
+         * data.get('tags') is not None:
+         * check RESERVED_FIELDS
+         * check INTERFACE_ALIASES
+         *  'exception': 'sentry.interfaces.Exception',
+         *  'request': 'sentry.interfaces.Http',
+         *  'user': 'sentry.interfaces.User',
+         *  'stacktrace': 'sentry.interfaces.Stacktrace',
+         *  'template': 'sentry.interfaces.Template',
+         * and then log level
+         */
+    }
+
+    /**
      * @return mixed
      */
     public function getData()
