@@ -23,3 +23,9 @@ Installation
 
 prison is up and running. hit URL, create new account, team and project and you will see guide how to register
 exception handler for your specified platform.
+
+
+Queue workers
+================
+
+    php public/index.php queue doctrine "Prison\Queue" --start
