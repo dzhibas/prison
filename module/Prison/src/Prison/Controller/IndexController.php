@@ -1,7 +1,6 @@
 <?php
 namespace Prison\Controller;
 
-use Zend\View\Model\ViewModel;
 use Zend\Http\Response;
 
 class IndexController extends AbstractController

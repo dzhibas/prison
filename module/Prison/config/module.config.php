@@ -117,5 +117,17 @@ return array(
     'prison' => array(
         'platforms' => $PLATFORM_LIST,
         'reserved_team_slugs' => $RESERVED_TEAM_SLUGS,
+    ),
+    'slm_queue' => array(
+        'queue_manager' => array(
+            'factories' => array(
+                'Prison\Queue' => 'SlmQueueDoctrine\Factory\DoctrineQueueFactory'
+            )
+        ),
+        'job_manager' => array(
+            'factories' => array(
+
+            )
+        )
     )
 );

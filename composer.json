@@ -18,6 +18,8 @@
         "zf-commons/zfc-user-doctrine-orm": "dev-master",
         "zf-commons/zfc-twig": "dev-master",
         "rhumsaa/uuid": "2.4",
-        "raven/raven": "dev-master"
+        "raven/raven": "dev-master",
+        "slm/queue": "dev-master",
+        "slm/queue-doctrine": "dev-master"
     }
 }

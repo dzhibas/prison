@@ -1,7 +1,9 @@
 <?php
 namespace Prison\Controller;
 
+use Prison\Job\ExceptionBackgroundJob;
 use Prison\Service\ApiAuth;
+use SlmQueue\Queue\AbstractQueue;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Mvc\Exception;
 use Zend\Mvc\MvcEvent;
@@ -38,6 +40,18 @@ class ApiController extends AbstractActionController
 
             $apiService->setData($this->getRequest()->getContent());
 
+
+            /** @var \SlmQueue\Queue\QueuePluginManager $queue */
+            $queue_manager = $this->serviceLocator->get('SlmQueue\Queue\QueuePluginManager');
+            /** @var AbstractQueue $queue */
+            $queue = $queue_manager->get('Prison\Queue');
+
+            $job = new ExceptionBackgroundJob();
+            $job->setContent(
+                array(
+                    "data" => $apiService->getData(),
+                    "auth" => $apiService->getAuth()->toArray()));
+            $queue->push($job);
 
             return new JsonModel(array("success" => true));
         } else if ($this->getRequest()->isGet()) {

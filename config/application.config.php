@@ -9,6 +9,8 @@ return array(
         'ZfcUser',
         'ZfcUserDoctrineORM',
         'ZfcTwig',
+        'SlmQueue',
+        'SlmQueueDoctrine',
         'Prison',
     ),
 
