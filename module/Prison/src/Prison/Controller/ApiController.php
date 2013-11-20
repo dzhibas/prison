@@ -1,6 +1,8 @@
 <?php
 namespace Prison\Controller;
 
+use Prison\Exception\ApiException;
+use Prison\Exception\DomainException;
 use Prison\Job\ExceptionBackgroundJob;
 use Prison\Service\ApiAuth;
 use SlmQueue\Queue\AbstractQueue;
@@ -39,6 +41,13 @@ class ApiController extends AbstractActionController
             $apiService->setAuth($this->authVars);
 
             $apiService->setData($this->getRequest()->getContent());
+
+            try {
+                $apiService->validateData();
+            } catch( ApiException $exception ) {
+                // return http response with error message
+                // log it
+            }
 
 
             /** @var \SlmQueue\Queue\QueuePluginManager $queue */

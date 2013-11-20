@@ -1,6 +1,7 @@
 <?php
 namespace Prison\Service;
 
+use Prison\Exception\ApiException;
 use Prison\Model;
 use Zend\Log\Logger;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
@@ -89,6 +90,7 @@ class Api implements ServiceLocatorAwareInterface
     }
 
     /**
+     * @throws ApiException
      * validating incomming data
      */
     public function validateData()
@@ -112,6 +114,7 @@ class Api implements ServiceLocatorAwareInterface
          *  'template': 'sentry.interfaces.Template',
          * and then log level
          */
+        throw new ApiException("invalid data supplied");
     }
 
     /**
