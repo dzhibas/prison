@@ -12,6 +12,7 @@ class ExceptionBackgroundJob extends AbstractJob
      */
     public function execute()
     {
+        // @TODO https://github.com/dzhibas/sentry/blob/master/src/sentry/manager.py#L325
         echo "heavy job of parsing exception";
     }
 
