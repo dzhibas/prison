@@ -109,6 +109,7 @@ class ApiAuth
             "version" => $this->getVersion(),
             "publicKey" => $this->getPublicKey(),
             "secretKey" => $this->getSecretKey(),
+            "projectKeyId" => $this->getProjectKey()->getId(),
             "client" => $this->getClient(),
         );
     }

@@ -30,7 +30,7 @@ class Api implements ServiceLocatorAwareInterface
     }
 
     /**
-     * @return mixed
+     * @return \Prison\Model\ApiAuth
      */
     public function getAuth()
     {
@@ -93,8 +93,8 @@ class Api implements ServiceLocatorAwareInterface
     }
 
     /**
+     * validating incoming data
      * @throws ApiException
-     * validating incomming data
      */
     public function validateData()
     {
@@ -166,7 +166,7 @@ class Api implements ServiceLocatorAwareInterface
 
         if (array_key_exists('tags', $data) && !is_array($data['tags'])) {
             $log->info("Discared tags");
-            unet($data['tags']);
+            unset($data['tags']);
         }
 
         // ensure every tag max length

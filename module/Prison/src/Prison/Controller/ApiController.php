@@ -43,10 +43,13 @@ class ApiController extends AbstractActionController
             $apiService->setData($this->getRequest()->getContent());
 
             try {
-                $apiService->validateData();
+                $data = $apiService->validateData();
             } catch( ApiException $exception ) {
-                // return http response with error message
-                // log it
+                /** @var \Zend\Http\Response $response */
+                $response = $this->getResponse();
+                $response->setStatusCode(Response::STATUS_CODE_403);
+                $response->setContent("Forbidden");
+                return $response;
             }
 
 
@@ -58,7 +61,7 @@ class ApiController extends AbstractActionController
             $job = new ExceptionBackgroundJob();
             $job->setContent(
                 array(
-                    "data" => $apiService->getData(),
+                    "data" => $data,
                     "auth" => $apiService->getAuth()->toArray()));
             $queue->push($job);
 
