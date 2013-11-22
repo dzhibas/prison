@@ -192,17 +192,23 @@ class ProjectKey implements ServiceLocatorAwareInterface
         return $this->userAdded;
     }
 
+    /**
+     * generates public and secret keys
+     */
     public function generateKeys()
     {
         if (!$this->getPublicKey()) {
-            $this->setPublicKey($this->generateKey());
+            $this->setPublicKey(ProjectKey::generateKey());
         }
         if (!$this->getSecretKey()) {
-            $this->setSecretKey($this->generateKey());
+            $this->setSecretKey(ProjectKey::generateKey());
         }
     }
 
-    public function generateKey()
+    /**
+     * @return string
+     */
+    public static function generateKey()
     {
         $uuid = Uuid::uuid4();
         return md5($uuid->toString());

@@ -2,6 +2,8 @@
 
 # Transparent 1x1 gif
 # See http://probablyprogramming.com/2009/03/15/the-tiniest-gif-ever
+use Zend\Log\Logger;
+
 define('PIXEL', base64_decode("R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="));
 
 $PLATFORM_LIST = array(
@@ -74,3 +76,56 @@ $MEMBER_TYPES = array(
     MEMBER_USER => 'User',
     MEMBER_SYSTEM => 'System Agent',
 );
+
+$RESERVED_DATA_FIELDS = array(
+    'project',
+    'event_id',
+    'message',
+    'checksum',
+    'culprit',
+    'level',
+    'time_spent',
+    'logger',
+    'server_name',
+    'site',
+    'timestamp',
+    'extra',
+    'modules',
+    'tags',
+    'platform',
+);
+
+$INTERFACE_ALIASES = array(
+    'exception' => 'sentry.interfaces.Exception',
+    'request' => 'sentry.interfaces.Http',
+    'user' => 'sentry.interfaces.User',
+    'stacktrace' => 'sentry.interfaces.Stacktrace',
+    'template' => 'sentry.interfaces.Template',
+);
+
+$PRISON_ALLOWED_INTERFACES = array(
+    'sentry.interfaces.Exception',
+    'sentry.interfaces.Message',
+    'sentry.interfaces.Stacktrace',
+    'sentry.interfaces.Template',
+    'sentry.interfaces.Query',
+    'sentry.interfaces.Http',
+    'sentry.interfaces.User',
+);
+
+define("MAX_TAG_KEY_LENGTH", 32);
+define("MAX_EVENT_ID_LENGTH", 32);
+define("MAX_TAG_VALUE_LENGTH", 200);
+define("MAX_CULPRIT_LENGTH", 200);
+define("MAX_MESSAGE_LENGTH", 1024 * 10);
+
+$LOG_LEVELS = array(
+    Logger::DEBUG => 'debug',
+    Logger::INFO => 'info',
+    Logger::CRIT => 'crit',
+    Logger::ERR => 'error',
+    Logger::NOTICE => 'notice',
+    Logger::WARN => 'warning'
+);
+
+define("DEFAULT_LOG_LEVEL", 'error');
