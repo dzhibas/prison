@@ -1,18 +1,25 @@
 <?php
+$env = getenv('APPLICATION_ENV') ?: 'production';
+
+$modules = array(
+    'DoctrineModule',
+    'DoctrineORMModule',
+    'ZfcBase',
+    'ZfcUser',
+    'ZfcUserDoctrineORM',
+    'ZfcTwig',
+    'SlmQueue',
+    'SlmQueueDoctrine',
+    'Prison',
+);
+
+if ($env == 'development') {
+    $modules[] = 'ZendDeveloperTools';
+}
+
 return array(
     // This should be an array of module namespaces used in the application.
-    'modules' => array(
-        'ZendDeveloperTools',
-        'DoctrineModule',
-        'DoctrineORMModule',
-        'ZfcBase',
-        'ZfcUser',
-        'ZfcUserDoctrineORM',
-        'ZfcTwig',
-        'SlmQueue',
-        'SlmQueueDoctrine',
-        'Prison',
-    ),
+    'modules' => $modules,
 
     // These are various options for the listeners attached to the ModuleManager
     'module_listener_options' => array(
