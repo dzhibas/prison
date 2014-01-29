@@ -87,7 +87,7 @@ class ApiController extends AbstractActionController
         /**
          * 1. extract auth vars
          * 2. check client version support
-         * 3. get project from auth vars if fails respnse
+         * 3. get project from auth vars if fails response
          * 4. project id match with auth pub key project
          * 5. gen api auth var
          */
