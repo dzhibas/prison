@@ -1,5 +1,5 @@
 <?php
-include_once('constants.php');
+include_once __DIR__ . '/constants.php';
 
 return array(
     'router' => array(

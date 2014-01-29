@@ -1,0 +1,8 @@
+<?php
+define('ZF2_PATH', getenv('HOME') . '/www/prison/vendor/zendframework/library');
+
+return array(
+    'modules' => array(
+        'Prison',
+    ),
+);
