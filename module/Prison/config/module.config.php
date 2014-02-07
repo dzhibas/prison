@@ -29,14 +29,6 @@ return array(
         'invokables' => array(
             'Prison\Collector\View' => 'Prison\Collector\ViewCollector',
         ),
-        'factories' => array(
-            'Prison\Service\Api' => function($sm) {
-                    $api = new Prison\Service\Api();
-                    $api->setServiceLocator($sm);
-
-                    return $api;
-            },
-        ),
     ),
     'translator' => array(
         'locale' => 'en_US',
@@ -114,6 +106,7 @@ return array(
             ),
         ),
     ),
+
     'prison' => array(
         'platforms' => $PLATFORM_LIST,
         'reserved_team_slugs' => $RESERVED_TEAM_SLUGS,
@@ -122,6 +115,7 @@ return array(
         'allowed_interfaces' => $PRISON_ALLOWED_INTERFACES,
         'log_levels' => $LOG_LEVELS,
     ),
+
     'slm_queue' => array(
         'queue_manager' => array(
             'factories' => array(
@@ -129,9 +123,7 @@ return array(
             )
         ),
         'job_manager' => array(
-            'factories' => array(
-
-            )
+            'factories' => array()
         )
     )
 );
