@@ -1,0 +1,112 @@
+<?php
+use Zend\Log\Logger;
+
+include_once __DIR__ . '/prison.constants.php';
+
+/**
+ * Prison configuration section for prison variables
+ */
+
+return array(
+    'platforms' => array(
+        'csharp',
+        'connect',
+        'django',
+        'express',
+        'flask',
+        'ios',
+        'java',
+        'java_log4j',
+        'java_log4j2',
+        'java_logback',
+        'java_logging',
+        'javascript',
+        'node.js',
+        'php',
+        'python',
+        'r',
+        'ruby',
+        'rails3',
+        'rails4',
+        'sidekiq',
+        'sinatra',
+        'tornado',
+    ),
+    'platform_titles' => array(
+        'rails3' => 'Rails 3 (Ruby)',
+        'rails4' => 'Rails 4 (Ruby)',
+        'php' => 'PHP',
+        'ios' => 'iOS',
+        'express' => 'Express (Node.js)',
+        'connect' => 'Connect (Node.js)',
+        'django' => 'Django (Python)',
+        'flask' => 'Flask (Python)',
+        'csharp' => 'C#',
+        'java_log4j' => 'Log4j (Java)',
+        'java_log4j2' => 'Log4j 2.x (Java)',
+        'java_logback' => 'Logback (Java)',
+        'java_logging' => 'java.util.logging',
+    ),
+    'platform_roots' => array(
+        'rails3' => 'ruby',
+        'rails4' => 'ruby',
+        'sinatra' => 'ruby',
+        'sidekiq' => 'ruby',
+        'django' => 'python',
+        'flask' => 'python',
+        'tornado' => 'python',
+        'express' => 'node.js',
+        'connect' => 'node.js',
+        'java_log4j' => 'java',
+        'java_log4j2' => 'java',
+        'java_logback' => 'java',
+        'java_logging' => 'java',
+    ),
+    'reserved_team_slugs' => array( 'admin', 'manage', 'login', 'account', 'register', 'api' ),
+    'reserved_data_fields' => array(
+        'project',
+        'event_id',
+        'message',
+        'checksum',
+        'culprit',
+        'level',
+        'time_spent',
+        'logger',
+        'server_name',
+        'site',
+        'timestamp',
+        'extra',
+        'modules',
+        'tags',
+        'platform',
+    ),
+    'interface_aliases' => array(
+        'exception' => 'sentry.interfaces.Exception',
+        'request' => 'sentry.interfaces.Http',
+        'user' => 'sentry.interfaces.User',
+        'stacktrace' => 'sentry.interfaces.Stacktrace',
+        'template' => 'sentry.interfaces.Template',
+    ),
+    'allowed_interfaces' => array(
+        'sentry.interfaces.Exception',
+        'sentry.interfaces.Message',
+        'sentry.interfaces.Stacktrace',
+        'sentry.interfaces.Template',
+        'sentry.interfaces.Query',
+        'sentry.interfaces.Http',
+        'sentry.interfaces.User',
+    ),
+    'log_levels' => array(
+        Logger::DEBUG => 'debug',
+        Logger::INFO => 'info',
+        Logger::CRIT => 'crit',
+        Logger::ERR => 'error',
+        Logger::NOTICE => 'notice',
+        Logger::WARN => 'warning'
+    ),
+    'memeber_types' => array(
+        MEMBER_OWNER => 'Admin',
+        MEMBER_USER => 'User',
+        MEMBER_SYSTEM => 'System Agent',
+    )
+);

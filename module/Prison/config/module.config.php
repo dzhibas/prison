@@ -1,7 +1,8 @@
 <?php
-include_once __DIR__ . '/constants.php';
 
 return array(
+    'prison' => require_once(__DIR__ . '/prison.config.php'),
+
     'router' => array(
         'routes' => array(
             'home' => array(
@@ -105,15 +106,6 @@ return array(
                 ),
             ),
         ),
-    ),
-
-    'prison' => array(
-        'platforms' => $PLATFORM_LIST,
-        'reserved_team_slugs' => $RESERVED_TEAM_SLUGS,
-        'reserved_data_fields' => $RESERVED_DATA_FIELDS,
-        'interface_aliases' => $INTERFACE_ALIASES,
-        'allowed_interfaces' => $PRISON_ALLOWED_INTERFACES,
-        'log_levels' => $LOG_LEVELS,
     ),
 
     'slm_queue' => array(
