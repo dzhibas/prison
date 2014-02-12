@@ -16,7 +16,7 @@ return array(
                 ),
             ),
 
-            'prison' => require_once('routes.config.php'),
+            'prison' => require_once(__DIR__ . '/routes.config.php'),
         ),
     ),
     'service_manager' => array(
