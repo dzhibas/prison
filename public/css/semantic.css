@@ -79,7 +79,6 @@
 .ui.huge.breadcrumb {
   font-size: 1.3em;
 }
-
 /*
  * # Semantic - Form
  * http://github.com/jlukic/semantic-ui/
@@ -145,24 +144,24 @@
 ---------------------*/
 
 .ui.form textarea,
-.ui.form select,
 .ui.form input[type="text"],
 .ui.form input[type="email"],
 .ui.form input[type="date"],
 .ui.form input[type="password"],
 .ui.form input[type="number"],
+.ui.form input[type="url"],
 .ui.form input[type="tel"],
 .ui.form .ui.input {
   width: 100%;
 }
 
 .ui.form textarea,
-.ui.form select,
 .ui.form input[type="text"],
 .ui.form input[type="email"],
 .ui.form input[type="date"],
 .ui.form input[type="password"],
 .ui.form input[type="number"],
+.ui.form input[type="url"],
 .ui.form input[type="tel"] {
   margin: 0em;
   padding: 0.85em 1.2em;
@@ -257,9 +256,9 @@
 .ui.form input[type="date"]:focus,
 .ui.form input[type="password"]:focus,
 .ui.form input[type="number"]:focus,
+.ui.form input[type="url"]:focus,
 .ui.form input[type="tel"]:focus,
-.ui.form textarea:focus,
-.ui.form select:focus {
+.ui.form textarea:focus {
   color: rgba(0, 0, 0, 0.85);
   border-color: rgba(0, 0, 0, 0.2);
   border-bottom-left-radius: 0;
@@ -310,6 +309,7 @@
 .ui.form .fields.error .field input[type="date"],
 .ui.form .fields.error .field input[type="password"],
 .ui.form .fields.error .field input[type="number"],
+.ui.form .fields.error .field input[type="url"],
 .ui.form .fields.error .field input[type="tel"],
 .ui.form .field.error textarea,
 .ui.form .field.error input[type="text"],
@@ -317,6 +317,7 @@
 .ui.form .field.error input[type="date"],
 .ui.form .field.error input[type="password"],
 .ui.form .field.error input[type="number"],
+.ui.form .field.error input[type="url"],
 .ui.form .field.error input[type="tel"] {
   background-color: #FFFAFA;
   border-color: #E7BEBE;
@@ -335,6 +336,7 @@
 .ui.form .field.error input[type="date"]:focus,
 .ui.form .field.error input[type="password"]:focus,
 .ui.form .field.error input[type="number"]:focus,
+.ui.form .field.error input[type="url"]:focus,
 .ui.form .field.error input[type="tel"]:focus {
   border-color: #ff5050;
   color: #ff5050;
@@ -350,19 +352,19 @@
 /* browsers require these rules separate */
 
 .ui.form ::-webkit-input-placeholder {
-  color: #E0E0E0;
+  color: #AAAAAA;
 }
 
 .ui.form ::-moz-placeholder {
-  color: #E0E0E0;
+  color: #AAAAAA;
 }
 
 .ui.form :focus::-webkit-input-placeholder {
-  color: #AAAAAA;
+  color: #999999;
 }
 
 .ui.form :focus::-moz-placeholder {
-  color: #AAAAAA;
+  color: #999999;
 }
 
 /* Error Placeholder */
@@ -478,6 +480,7 @@
 .ui.inverted.form .field.error input[type="date"],
 .ui.inverted.form .field.error input[type="password"],
 .ui.inverted.form .field.error input[type="number"],
+.ui.inverted.form .field.error input[type="url"],
 .ui.inverted.form .field.error input[type="tel"] {
   background-color: #FFCCCC;
 }
@@ -625,9 +628,9 @@
 .ui.small.form input[type="date"],
 .ui.small.form input[type="password"],
 .ui.small.form input[type="number"],
+.ui.small.form input[type="url"],
 .ui.small.form input[type="tel"],
-.ui.small.form label,
-.ui.small.form select {
+.ui.small.form label {
   font-size: 1em;
 }
 
@@ -636,7 +639,6 @@
 .ui.large.form {
   font-size: 1.125em;
 }
-
 /*
  * # Semantic - Grid
  * http://github.com/jlukic/semantic-ui/
@@ -660,13 +662,12 @@
   padding: 0%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 body > .ui.grid {
-  margin-left: 0%;
-  margin-right: 0%;
+  margin-left: 0% !important;
+  margin-right: 0% !important;
 }
 
 .ui.grid:after,
@@ -682,18 +683,27 @@ body > .ui.grid {
        Columns
 --------------------*/
 
+/* Standard 16 column */
+
 .ui.grid > .column,
 .ui.grid > .row > .column {
   display: inline-block;
   text-align: left;
   font-size: 1rem;
+  width: 6.25%;
   padding-left: 1.5%;
   padding-right: 1.5%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
   box-sizing: border-box;
   vertical-align: top;
+}
+
+/* Vertical padding when no rows */
+
+.ui.grid > .column {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 /*-------------------
@@ -704,7 +714,7 @@ body > .ui.grid {
   display: block;
   width: 100% !important;
   margin-top: 1.5%;
-  padding: 1.5% 0% 0%;
+  padding: 1rem 0% 0%;
   font-size: 0rem;
 }
 
@@ -740,13 +750,13 @@ body > .ui.grid {
   margin-right: 0%;
 }
 
-@media only screen and (max-width: 998px) {
+@media only screen and (max-width: 991px) {
   .ui.page.grid {
     padding: 0% 4%;
   }
 }
 
-@media only screen and (min-width: 998px) {
+@media only screen and (min-width: 992px) {
   .ui.page.grid {
     padding: 0% 8%;
   }
@@ -777,95 +787,120 @@ body > .ui.grid {
 /* Sizing Combinations */
 
 .ui.grid > .row > .one.wide.column,
-.ui.grid > .one.wide.column {
+.ui.grid > .column.row > .one.wide.column,
+.ui.grid > .one.wide.column,
+.ui.column.grid > .one.wide.column {
   width: 6.25%;
 }
 
 .ui.grid > .row > .two.wide.column,
-.ui.grid > .two.wide.column {
+.ui.grid > .column.row > .two.wide.column,
+.ui.grid > .two.wide.column,
+.ui.column.grid > .two.wide.column {
   width: 12.5%;
 }
 
 .ui.grid > .row > .three.wide.column,
-.ui.grid > .three.wide.column {
+.ui.grid > .column.row > .three.wide.column,
+.ui.grid > .three.wide.column,
+.ui.column.grid > .three.wide.column {
   width: 18.75%;
 }
 
 .ui.grid > .row > .four.wide.column,
-.ui.grid > .four.wide.column {
+.ui.grid > .column.row > .four.wide.column,
+.ui.grid > .four.wide.column,
+.ui.column.grid > .four.wide.column {
   width: 25%;
 }
 
 .ui.grid > .row > .five.wide.column,
-.ui.grid > .five.wide.column {
+.ui.grid > .column.row > .five.wide.column,
+.ui.grid > .five.wide.column,
+.ui.column.grid > .five.wide.column {
   width: 31.25%;
 }
 
 .ui.grid > .row > .six.wide.column,
-.ui.grid > .six.wide.column {
+.ui.grid > .column.row > .six.wide.column,
+.ui.grid > .six.wide.column,
+.ui.column.grid > .six.wide.column {
   width: 37.5%;
 }
 
 .ui.grid > .row > .seven.wide.column,
-.ui.grid > .seven.wide.column {
+.ui.grid > .column.row > .seven.wide.column,
+.ui.grid > .seven.wide.column,
+.ui.column.grid > .seven.wide.column {
   width: 43.75%;
 }
 
 .ui.grid > .row > .eight.wide.column,
-.ui.grid > .eight.wide.column {
+.ui.grid > .column.row > .eight.wide.column,
+.ui.grid > .eight.wide.column,
+.ui.column.grid > .eight.wide.column {
   width: 50%;
 }
 
 .ui.grid > .row > .nine.wide.column,
-.ui.grid > .nine.wide.column {
+.ui.grid > .column.row > .nine.wide.column,
+.ui.grid > .nine.wide.column,
+.ui.column.grid > .nine.wide.column {
   width: 56.25%;
 }
 
 .ui.grid > .row > .ten.wide.column,
-.ui.grid > .ten.wide.column {
+.ui.grid > .column.row > .ten.wide.column,
+.ui.grid > .ten.wide.column,
+.ui.column.grid > .ten.wide.column {
   width: 62.5%;
 }
 
 .ui.grid > .row > .eleven.wide.column,
-.ui.grid > .eleven.wide.column {
+.ui.grid > .column.row > .eleven.wide.column,
+.ui.grid > .eleven.wide.column,
+.ui.column.grid > .eleven.wide.column {
   width: 68.75%;
 }
 
 .ui.grid > .row > .twelve.wide.column,
-.ui.grid > .twelve.wide.column {
+.ui.grid > .column.row > .twelve.wide.column,
+.ui.grid > .twelve.wide.column,
+.ui.column.grid > .twelve.wide.column {
   width: 75%;
 }
 
 .ui.grid > .row > .thirteen.wide.column,
-.ui.grid > .thirteen.wide.column {
+.ui.grid > .column.row > .thirteen.wide.column,
+.ui.grid > .thirteen.wide.column,
+.ui.column.grid > .thirteen.wide.column {
   width: 81.25%;
 }
 
 .ui.grid > .row > .fourteen.wide.column,
-.ui.grid > .fourteen.wide.column {
+.ui.grid > .column.row > .fourteen.wide.column,
+.ui.grid > .fourteen.wide.column,
+.ui.column.grid > .fourteen.wide.column {
   width: 87.5%;
 }
 
 .ui.grid > .row > .fifteen.wide.column,
-.ui.grid > .fifteen.wide.column {
+.ui.grid > .column.row > .fifteen.wide.column,
+.ui.grid > .fifteen.wide.column,
+.ui.column.grid > .fifteen.wide.column {
   width: 93.75%;
 }
 
 .ui.grid > .row > .sixteen.wide.column,
-.ui.grid > .sixteen.wide.column {
+.ui.grid > .column.row > .sixteen.wide.column,
+.ui.grid > .sixteen.wide.column,
+.ui.column.grid > .sixteen.wide.column {
   width: 100%;
 }
 
 /*-------------------
      Column Count
 --------------------*/
-
-/* Standard */
-
-.ui.grid > .column,
-.ui.grid > .row > .column {
-  width: 6.25%;
-}
 
 /* Assume full width with one column */
 
@@ -1114,6 +1149,18 @@ body > .ui.grid {
   text-align: right;
 }
 
+.ui.justified.grid,
+.ui.justified.grid > .row > .column,
+.ui.justified.grid > .column,
+.ui.grid .justified.column,
+.ui.grid > .justified.row > .column {
+  text-align: justify;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
 /*----------------------
   Vertically Centered
 -----------------------*/
@@ -1163,7 +1210,7 @@ body > .ui.grid {
 
 /* Mobile Only */
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   .ui.mobile.only.grid,
   .ui.grid > .mobile.only.row {
     display: block !important;
@@ -1197,6 +1244,7 @@ body > .ui.grid {
 @media only screen and (min-width: 768px) {
   .ui.mobile.only.grid,
   .ui.grid > .mobile.only.row,
+  .ui.grid > .mobile.only.column,
   .ui.grid > .row > .mobile.only.column {
     display: none;
   }
@@ -1204,7 +1252,7 @@ body > .ui.grid {
 
 /* Tablet Only */
 
-@media only screen and (min-width: 768px) and (max-width: 998px) {
+@media only screen and (min-width: 768px) and (max-width: 991px) {
   .ui.tablet.only.grid,
   .ui.grid > .tablet.only.row {
     display: block !important;
@@ -1235,9 +1283,10 @@ body > .ui.grid {
   }
 }
 
-@media only screen and (max-width: 768px), (min-width: 998px) {
+@media only screen and (max-width: 767px), (min-width: 992px) {
   .ui.tablet.only.grid,
   .ui.grid > .tablet.only.row,
+  .ui.grid > .tablet.only.column,
   .ui.grid > .row > .tablet.only.column {
     display: none;
   }
@@ -1245,7 +1294,7 @@ body > .ui.grid {
 
 /* Computer Only */
 
-@media only screen and (min-width: 998px) {
+@media only screen and (min-width: 992px) {
   .ui.computer.only.grid,
   .ui.grid > .computer.only.row {
     display: block !important;
@@ -1276,30 +1325,188 @@ body > .ui.grid {
   }
 }
 
-@media only screen and (max-width: 998px) {
+@media only screen and (max-width: 991px) {
   .ui.computer.only.grid,
   .ui.grid > .computer.only.row,
+  .ui.grid > .computer.only.column,
   .ui.grid > .row > .computer.only.column {
     display: none;
   }
 }
 
 /*-------------------
-       Stackable
+      Doubling
 --------------------*/
 
-@media only screen and (max-width: 768px) {
+/* Mobily Only */
+
+@media only screen and (max-width: 767px) {
+  .ui.two.column.doubling.grid > .row > .column,
+  .ui.two.column.doubling.grid > .column,
+  .ui.grid > .two.column.doubling.row > .column {
+    width: 100%;
+  }
+
+  .ui.three.column.doubling.grid > .row > .column,
+  .ui.three.column.doubling.grid > .column,
+  .ui.grid > .three.column.doubling.row > .column {
+    width: 100%;
+  }
+
+  .ui.four.column.doubling.grid > .row > .column,
+  .ui.four.column.doubling.grid > .column,
+  .ui.grid > .four.column.doubling.row > .column {
+    width: 100%;
+  }
+
+  .ui.five.column.doubling.grid > .row > .column,
+  .ui.five.column.doubling.grid > .column,
+  .ui.grid > .five.column.doubling.row > .column {
+    width: 100%;
+  }
+
+  .ui.six.column.doubling.grid > .row > .column,
+  .ui.six.column.doubling.grid > .column,
+  .ui.grid > .six.column.doubling.row > .column {
+    width: 50%;
+  }
+
+  .ui.seven.column.doubling.grid > .row > .column,
+  .ui.seven.column.doubling.grid > .column,
+  .ui.grid > .seven.column.doubling.row > .column {
+    width: 50%;
+  }
+
+  .ui.eight.column.doubling.grid > .row > .column,
+  .ui.eight.column.doubling.grid > .column,
+  .ui.grid > .eight.column.doubling.row > .column {
+    width: 50%;
+  }
+
+  .ui.nine.column.doubling.grid > .row > .column,
+  .ui.nine.column.doubling.grid > .column,
+  .ui.grid > .nine.column.doubling.row > .column {
+    width: 50%;
+  }
+
+  .ui.ten.column.doubling.grid > .row > .column,
+  .ui.ten.column.doubling.grid > .column,
+  .ui.grid > .ten.column.doubling.row > .column {
+    width: 50%;
+  }
+
+  .ui.twelve.column.doubling.grid > .row > .column,
+  .ui.twelve.column.doubling.grid > .column,
+  .ui.grid > .twelve.column.doubling.row > .column {
+    width: 33.3333333333333%;
+  }
+
+  .ui.fourteen.column.doubling.grid > .row > .column,
+  .ui.fourteen.column.doubling.grid > .column,
+  .ui.grid > .fourteen.column.doubling.row > .column {
+    width: 33.3333333333333%;
+  }
+
+  .ui.sixteen.column.doubling.grid > .row > .column,
+  .ui.sixteen.column.doubling.grid > .column,
+  .ui.grid > .sixteen.column.doubling.row > .column {
+    width: 25%;
+  }
+}
+
+/* Tablet Only */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .ui.two.column.doubling.grid > .row > .column,
+  .ui.two.column.doubling.grid > .column,
+  .ui.grid > .two.column.doubling.row > .column {
+    width: 100%;
+  }
+
+  .ui.three.column.doubling.grid > .row > .column,
+  .ui.three.column.doubling.grid > .column,
+  .ui.grid > .three.column.doubling.row > .column {
+    width: 50%;
+  }
+
+  .ui.four.column.doubling.grid > .row > .column,
+  .ui.four.column.doubling.grid > .column,
+  .ui.grid > .four.column.doubling.row > .column {
+    width: 50%;
+  }
+
+  .ui.five.column.doubling.grid > .row > .column,
+  .ui.five.column.doubling.grid > .column,
+  .ui.grid > .five.column.doubling.row > .column {
+    width: 33.3333333%;
+  }
+
+  .ui.six.column.doubling.grid > .row > .column,
+  .ui.six.column.doubling.grid > .column,
+  .ui.grid > .six.column.doubling.row > .column {
+    width: 33.3333333%;
+  }
+
+  .ui.eight.column.doubling.grid > .row > .column,
+  .ui.eight.column.doubling.grid > .column,
+  .ui.grid > .eight.column.doubling.row > .column {
+    width: 33.3333333%;
+  }
+
+  .ui.eight.column.doubling.grid > .row > .column,
+  .ui.eight.column.doubling.grid > .column,
+  .ui.grid > .eight.column.doubling.row > .column {
+    width: 25%;
+  }
+
+  .ui.nine.column.doubling.grid > .row > .column,
+  .ui.nine.column.doubling.grid > .column,
+  .ui.grid > .nine.column.doubling.row > .column {
+    width: 25%;
+  }
+
+  .ui.ten.column.doubling.grid > .row > .column,
+  .ui.ten.column.doubling.grid > .column,
+  .ui.grid > .ten.column.doubling.row > .column {
+    width: 20%;
+  }
+
+  .ui.twelve.column.doubling.grid > .row > .column,
+  .ui.twelve.column.doubling.grid > .column,
+  .ui.grid > .twelve.column.doubling.row > .column {
+    width: 16.6666666%;
+  }
+
+  .ui.fourteen.column.doubling.grid > .row > .column,
+  .ui.fourteen.column.doubling.grid > .column,
+  .ui.grid > .fourteen.column.doubling.row > .column {
+    width: 14.28571428571429%;
+  }
+
+  .ui.sixteen.column.doubling.grid > .row > .column,
+  .ui.sixteen.column.doubling.grid > .column,
+  .ui.grid > .sixteen.column.doubling.row > .column {
+    width: 12.5%;
+  }
+}
+
+/*-------------------
+      Stackable
+--------------------*/
+
+@media only screen and (max-width: 767px) {
   .ui.stackable.grid {
     display: block !important;
     padding: 0em;
+    margin: 0em;
   }
 
   .ui.stackable.grid > .row > .column,
   .ui.stackable.grid > .column {
     display: block !important;
     width: auto !important;
-    margin: 1.5em 5% 0em !important;
-    padding: 1.5em 0em 0em !important;
+    margin: 1em 0em 0em !important;
+    padding: 1em 0em 0em !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
   }
@@ -1322,13 +1529,18 @@ body > .ui.grid {
     border-top: none !important;
   }
 
+  .ui.stackable.page.grid > .row > .column,
+  .ui.stackable.page.grid > .column {
+    padding-left: 1em !important;
+    padding-right: 1em !important;
+  }
+
   /* Remove pointers from vertical menus */
 
   .ui.stackable.grid .vertical.pointing.menu .item:after {
     display: none;
   }
 }
-
 /*
  * # Semantic - Menu
  * http://github.com/jlukic/semantic-ui/
@@ -1406,22 +1618,22 @@ body > .ui.grid {
 /* Text Color */
 
 .ui.menu .item,
-.ui.menu .item > a {
+.ui.menu .item > a:not(.button) {
   color: rgba(0, 0, 0, 0.75);
 }
 
 .ui.menu .item .item,
-.ui.menu .item .item > a {
+.ui.menu .item .item > a:not(.button) {
   color: rgba(30, 30, 30, 0.7);
 }
 
 .ui.menu .item .item .item,
-.ui.menu .item .item .item > a {
+.ui.menu .item .item .item > a:not(.button) {
   color: rgba(30, 30, 30, 0.6);
 }
 
 .ui.menu .dropdown.item .menu .item,
-.ui.menu .dropdown.item .menu .item a {
+.ui.menu .dropdown.item .menu .item a:not(.button) {
   color: rgba(0, 0, 0, 0.75);
 }
 
@@ -1434,14 +1646,14 @@ body > .ui.grid {
   color: rgba(0, 0, 0, 0.85);
 }
 
-.ui.menu .dropdown.item .menu .item a:hover {
+.ui.menu .dropdown.item .menu .item a:not(.button):hover {
   color: rgba(0, 0, 0, 0.85);
 }
 
 /* Active */
 
 .ui.menu .active.item,
-.ui.menu .active.item a {
+.ui.menu .active.item a:not(.button) {
   color: rgba(0, 0, 0, 0.85);
   border-radius: 0px;
 }
@@ -1488,7 +1700,7 @@ body > .ui.grid {
   right: 0px;
   width: 1px;
   height: 100%;
-  background-image: -webkit-gradient(linear, top left, bottom left, from(rgba(0, 0, 0, 0.05)), color-stop(50%, rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0.05)));
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.05)), color-stop(50%, rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0.05)));
   background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.05) 100%);
   background-image: linear-gradient(rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.05) 100%);
 }
@@ -1532,8 +1744,6 @@ body > .ui.grid {
   padding-bottom: 0.55em;
   padding-top: 0.55em;
   font-size: 0.875em;
-  -webkit-box-shadow: none;
-  box-shadow: none;
 }
 
 /*--------------
@@ -1541,11 +1751,12 @@ body > .ui.grid {
 ---------------*/
 
 .ui.menu:not(.vertical) .item > .input {
-  margin-top: -0.83em;
-  margin-bottom: -0.83em;
+  margin-top: -0.85em;
+  margin-bottom: -0.85em;
   padding-top: 0.3em;
   padding-bottom: 0.3em;
   width: 100%;
+  vertical-align: top;
 }
 
 .ui.menu .item > .input input {
@@ -1561,6 +1772,39 @@ body > .ui.grid {
 
 .ui.vertical.menu .ui.input > .icon {
   padding-top: 0.63em;
+}
+
+/* Action Input */
+
+.ui.menu:not(.vertical) .item > .button.labeled > .icon {
+  padding-top: 0.6em;
+}
+
+.ui.menu:not(.vertical) .item .action.input > .button {
+  font-size: 0.8em;
+  padding: 0.55em 0.8em;
+}
+
+/* Resizes */
+
+.ui.small.menu:not(.vertical) .item > .input input {
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+}
+
+.ui.large.menu:not(.vertical) .item > .input input {
+  top: -0.125em;
+  padding-bottom: 0.6em;
+  padding-top: 0.6em;
+}
+
+.ui.large.menu:not(.vertical) .item .action.input > .button {
+  font-size: 0.8em;
+  padding: 0.9em;
+}
+
+.ui.large.menu:not(.vertical) .item .action.input > .button > .icon {
+  padding-top: 0.8em;
 }
 
 /*--------------
@@ -1582,11 +1826,16 @@ body > .ui.grid {
 
 .ui.menu .dropdown.item .menu {
   left: 1px;
-  margin: 1px 0px 0px 0px;
+  margin: 0px;
   min-width: -webkit-calc(99%);
   min-width: calc(99%);
-  -webkit-box-shadow: 0 1px 1px 1px #DDDDDD;
-  box-shadow: 0 1px 1px 1px #DDDDDD;
+  -webkit-box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.ui.secondary.menu .dropdown.item .menu {
+  left: 0px;
+  min-width: 100%;
 }
 
 .ui.menu .pointing.dropdown.item .menu {
@@ -1800,8 +2049,8 @@ body > .ui.grid {
   width: 100%;
   height: 1px;
   background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.1) 1.5em, rgba(0, 0, 0, 0.03) 100%);
-  background-image: -webkit-gradient(linear, top left, top right, from(rgba(0, 0, 0, 0.03)), color-stop(1.5em, rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0.03)));
-  background-image: linear-gradient(left, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.1) 1.5em, rgba(0, 0, 0, 0.03) 100%);
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.03)), color-stop(1.5em, rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0.03)));
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.1) 1.5em, rgba(0, 0, 0, 0.03) 100%);
 }
 
 .ui.vertical.menu .item:first-child:before {
@@ -2125,8 +2374,8 @@ body > .ui.grid {
   color: rgba(255, 255, 255, 0.9);
 }
 
-.ui.secondary.inverted.menu > .active.item {
-  background-color: rgba(255, 255, 255, 0.9);
+.ui.secondary.inverted.menu .active.item {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* disable variations */
@@ -2161,8 +2410,11 @@ body > .ui.grid {
 /* Item Types */
 
 .ui.secondary.pointing.menu .header.item {
-  border-right-width: 0px;
-  font-weight: bold;
+  margin-bottom: -3px;
+  background-color: transparent !important;
+  border-right-width: 0px !important;
+  font-weight: bold !important;
+  color: rgba(0, 0, 0, 0.8) !important;
 }
 
 .ui.secondary.pointing.menu .text.item {
@@ -2271,23 +2523,29 @@ body > .ui.grid {
   color: rgba(255, 255, 255, 0.7);
 }
 
+.ui.secondary.inverted.pointing.menu > .header.item {
+  color: #FFFFFF !important;
+}
+
 /* Hover */
 
-.ui.secondary.inverted.pointing.menu > .item.hover,
+.ui.secondary.inverted.pointing.menu > .menu > .item:hover,
 .ui.secondary.inverted.pointing.menu > .item:hover {
   color: rgba(255, 255, 255, 0.85);
 }
 
 /* Down */
 
+.ui.secondary.inverted.pointing.menu > .menu > .item:active,
 .ui.secondary.inverted.pointing.menu > .item:active {
-  border-color: rgba(255, 255, 255, 0.4) !important;
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 /* Active */
 
+.ui.secondary.inverted.pointing.menu > .menu > .item.active,
 .ui.secondary.inverted.pointing.menu > .item.active {
-  border-color: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(255, 255, 255, 0.8);
   color: #ffffff;
 }
 
@@ -2562,14 +2820,14 @@ body > .ui.grid {
 
 .ui.inverted.menu .item:before {
   background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.03) 100%);
-  background-image: -webkit-gradient(linear, top left, bottom left, from(rgba(255, 255, 255, 0.03)), color-stop(50%, rgba(255, 255, 255, 0.1)), to(rgba(255, 255, 255, 0.03)));
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.03)), color-stop(50%, rgba(255, 255, 255, 0.1)), to(rgba(255, 255, 255, 0.03)));
   background-image: linear-gradient(rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.03) 100%);
 }
 
 .ui.vertical.inverted.menu .item:before {
   background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.03) 100%);
-  background-image: -webkit-gradient(linear, top left, top right, from(rgba(255, 255, 255, 0.03)), color-stop(50%, rgba(255, 255, 255, 0.1)), to(rgba(255, 255, 255, 0.03)));
-  background-image: linear-gradient(left, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.03) 100%);
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.03)), color-stop(50%, rgba(255, 255, 255, 0.1)), to(rgba(255, 255, 255, 0.03)));
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.03) 100%);
 }
 
 /*--- Hover ---*/
@@ -2623,13 +2881,13 @@ body > .ui.grid {
 /*--- Pointers ---*/
 
 .ui.inverted.pointing.menu .active.item:after {
-  background-color: #505050;
+  background-color: #5B5B5B;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
 
 .ui.inverted.pointing.menu .active.item:hover:after {
-  background-color: #3B3B3B;
+  background-color: #4A4A4A;
 }
 
 /*--------------
@@ -2858,7 +3116,7 @@ body > .ui.grid {
 
 .ui.menu.fixed {
   position: fixed;
-  z-index: 10;
+  z-index: 999;
   margin: 0em;
   border: none;
   width: 100%;
@@ -2902,13 +3160,19 @@ body > .ui.grid {
   height: 100%;
 }
 
+/* Coupling with Grid */
+
+.ui.fixed.menu + .ui.grid {
+  padding-top: 2.75rem;
+}
+
 /*-------------------
        Pointing
 --------------------*/
 
 .ui.pointing.menu .active.item:after {
   position: absolute;
-  bottom: -0.35em;
+  bottom: -0.3em;
   left: 50%;
   content: "";
   margin-left: -0.3em;
@@ -2991,11 +3255,6 @@ body > .ui.grid {
   font-size: 0.875rem;
 }
 
-.ui.small.menu:not(.vertical) .item > .input input {
-  padding-top: 0.4em;
-  padding-bottom: 0.4em;
-}
-
 .ui.small.vertical.menu {
   width: 13rem;
 }
@@ -3016,12 +3275,6 @@ body > .ui.grid {
   font-size: 0.875rem;
 }
 
-.ui.large.menu:not(.vertical) .item > .input input {
-  top: -0.125em;
-  padding-bottom: 0.6em;
-  padding-top: 0.6em;
-}
-
 .ui.large.menu .dropdown.item .item {
   font-size: 1rem;
 }
@@ -3029,7 +3282,6 @@ body > .ui.grid {
 .ui.large.vertical.menu {
   width: 18rem;
 }
-
 /*
  * # Semantic - Message
  * http://github.com/jlukic/semantic-ui/
@@ -3195,9 +3447,23 @@ body > .ui.grid {
   box-shadow: 0em 0em 0em 1px rgba(0, 0, 0, 0.1) inset;
 }
 
+.ui.attached + .ui.attached.message:not(.top):not(.bottom) {
+  margin-top: -1px;
+  border-radius: 0em;
+}
+
 .ui.bottom.attached.message {
   margin-top: -1px;
   border-radius: 0em 0em 0.325em 0.325em;
+}
+
+.ui.bottom.attached.message:not(:last-child) {
+  margin-bottom: 1em;
+}
+
+.ui.attached.icon.message {
+  display: block;
+  width: auto;
 }
 
 /*--------------
@@ -3209,7 +3475,7 @@ body > .ui.grid {
   width: 100%;
 }
 
-.ui.icon.message > .icon {
+.ui.icon.message > .icon:not(.close) {
   display: table-cell;
   vertical-align: middle;
   font-size: 3.8em;
@@ -3323,7 +3589,6 @@ body > .ui.grid {
 .ui.massive.message {
   font-size: 2em;
 }
-
 /*
  * # Semantic - Table
  * http://github.com/jlukic/semantic-ui/
@@ -3964,7 +4229,6 @@ body > .ui.grid {
 .ui.large.table {
   font-size: 1.1em;
 }
-
 /*
  * # Semantic - basic.Icon (Basic)
  * http://github.com/jlukic/semantic-ui/
@@ -3977,13 +4241,13 @@ body > .ui.grid {
  */
 
 /*******************************
-             basic.Icon
+          Basic Icon
 *******************************/
 
 @font-face {
   font-family: 'Basic Icons';
   src: url(../fonts/basic.icons.eot);
-  src: url(../fonts/basic.icons.eot?#iefix) format('embedded-opentype'), url(../fonts/basic.icons.woff) format('woff'), url(../fonts/basic.icons.ttf) format('truetype'), url(../fonts/basic.icons.svg#basic.icons) format('svg');
+  src: url(../fonts/basic.icons.eot?#iefix) format('embedded-opentype'), url(../fonts/basic.icons.svg#basic.icons) format('svg'), url(../fonts/basic.icons.woff) format('woff'), url(../fonts/basic.icons.ttf) format('truetype');
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -5085,7 +5349,6 @@ i.massive.basic.icon {
   margin-right: 1em;
   vertical-align: middle;
 }
-
 /*
  * # Semantic - Button
  * http://github.com/jlukic/semantic-ui/
@@ -5113,7 +5376,7 @@ i.massive.basic.icon {
   background-color: #FAFAFA;
   color: #808080;
   margin: 0em;
-  padding: 0.8em 1.5em 0.875em;
+  padding: 0.8em 1.5em;
   font-size: 1rem;
   text-transform: uppercase;
   line-height: 1;
@@ -5121,12 +5384,12 @@ i.massive.basic.icon {
   font-style: normal;
   text-align: center;
   text-decoration: none;
-  background-image: -webkit-gradient(linear, top left, bottom left, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.05)));
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.05)));
   background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.05));
   background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.05));
   border-radius: 0.25em;
-  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.08) inset, 0px -0.133em 0px 0px rgba(0, 0, 0, 0.1) inset;
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.08) inset, 0px -0.133em 0px 0px rgba(0, 0, 0, 0.1) inset;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.08) inset;
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.08) inset;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -5161,8 +5424,8 @@ i.massive.basic.icon {
       Hover
 ---------------*/
 
-.ui.button:not(.loading):hover {
-  background-image: -webkit-gradient(linear, top left, bottom left, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.08)));
+.ui.button:hover {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.08)));
   background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.08));
   background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.08));
   color: rgba(0, 0, 0, 0.7);
@@ -5181,8 +5444,8 @@ i.massive.basic.icon {
       Down
 ---------------*/
 
-.ui.button:not(.loading):active,
-.ui.active.button:not(.loading):active {
+.ui.button:active,
+.ui.active.button:active {
   background-color: #F1F1F1;
   color: rgba(0, 0, 0, 0.7);
   -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.05) inset !important;
@@ -5534,6 +5797,23 @@ i.massive.basic.icon {
   color: #FFFFFF;
 }
 
+/* vk.com */
+
+.ui.vk.button {
+  background-color: #4D7198;
+  color: #FFFFFF;
+}
+
+.ui.vk.button:hover {
+  background-color: #537AA5;
+  color: #FFFFFF;
+}
+
+.ui.vk.button:active {
+  background-color: #405E7E;
+  color: #FFFFFF;
+}
+
 /*--------------
      Icon
 ---------------*/
@@ -5582,29 +5862,29 @@ i.massive.basic.icon {
 
 .ui.mini.buttons .button,
 .ui.mini.button {
-  padding: 0.6em 0.8em 0.73em;
+  padding: 0.6em 0.8em;
 }
 
 .ui.mini.icon.buttons .button,
 .ui.mini.buttons .icon.button {
-  padding: 0.6em 0.6em 0.73em;
+  padding: 0.6em 0.6em;
 }
 
 .ui.tiny.buttons .button,
 .ui.tiny.buttons .or,
 .ui.tiny.button {
-  font-size: 0.875rem;
+  font-size: 0.875em;
 }
 
 .ui.tiny.buttons .button,
 .ui.tiny.buttons .button,
 .ui.tiny.button {
-  padding: 0.6em 0.8em 0.73em;
+  padding: 0.6em 0.8em;
 }
 
 .ui.tiny.icon.buttons .button,
 .ui.tiny.buttons .icon.button {
-  padding: 0.6em 0.6em 0.73em;
+  padding: 0.6em 0.6em;
 }
 
 .ui.small.buttons .button,
@@ -5689,7 +5969,7 @@ i.massive.basic.icon {
 
 .ui.icon.buttons .button,
 .ui.icon.button {
-  padding: 0.8em 0.8em 0.875em;
+  padding: 0.8em;
 }
 
 .ui.icon.buttons .button > .icon,
@@ -5749,6 +6029,44 @@ i.massive.basic.icon {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+/* Inverted */
+
+.ui.basic.inverted.buttons .button,
+.ui.basic.inverted.button {
+  color: #FAFAFA !important;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.3) inset;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.3) inset;
+}
+
+.ui.basic.inverted.buttons .button:hover,
+.ui.basic.inverted.button:hover {
+  background-image: none;
+  color: #FFFFFF !important;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.5) inset;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.5) inset;
+}
+
+.ui.basic.inverted.buttons .button:active,
+.ui.basic.inverted.button:active {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  color: #FFFFFF !important;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.8) inset !important;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.8) inset !important;
+}
+
+.ui.basic.inverted.buttons .button.active,
+.ui.basic.inverted.button.active {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #FFFFFF;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.ui.basic.inverted.buttons .button.active:hover,
+.ui.basic.inverted.button.active:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 /* Basic Group */
 
 .ui.basic.buttons .button {
@@ -5791,7 +6109,7 @@ i.massive.basic.icon {
   box-sizing: border-box;
   width: 2.75em;
   height: 100%;
-  padding-top: 0.85em;
+  padding-top: 0.8em;
   background-color: rgba(0, 0, 0, 0.05);
   text-align: center;
   border-radius: 0.25em 0px 0px 0.25em;
@@ -6437,7 +6755,6 @@ i.massive.basic.icon {
 .ui.vertical.buttons .gigantic.button:last-child {
   border-radius: 0px 0px 0.25em 0.25em;
 }
-
 /*
  * # Semantic - Divider
  * http://github.com/jlukic/semantic-ui/
@@ -6618,7 +6935,6 @@ i.massive.basic.icon {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
-
 /*
  * # Semantic - Header
  * http://github.com/jlukic/semantic-ui/
@@ -6662,6 +6978,7 @@ i.massive.basic.icon {
 
 .ui.header .icon:only-child {
   display: inline-block;
+  vertical-align: baseline;
 }
 
 .ui.header .content {
@@ -6913,6 +7230,16 @@ h5.ui.header {
   text-align: center;
 }
 
+.ui.justified.header {
+  text-align: justify;
+}
+
+.ui.justified.header:after {
+  display: inline-block;
+  content: '';
+  width: 100%;
+}
+
 /*-------------------
        Floated
 --------------------*/
@@ -6984,7 +7311,6 @@ h5.ui.header {
   margin-top: 0em;
   border-radius: 0em 0em 0.3125em 0.3125em;
 }
-
 /*
  * # Semantic - Icon
  * http://github.com/jlukic/semantic-ui/
@@ -7016,7 +7342,7 @@ h5.ui.header {
 @font-face {
   font-family: 'Icons';
   src: url(../fonts/icons.eot);
-  src: url(../fonts/icons.eot?#iefix) format('embedded-opentype'), url(../fonts/icons.woff) format('woff'), url(../fonts/icons.ttf) format('truetype'), url(../fonts/icons.svg#icons) format('svg');
+  src: url(../fonts/icons.eot?#iefix) format('embedded-opentype'), url(../fonts/icons.svg#icons) format('svg'), url(../fonts/icons.woff) format('woff'), url(../fonts/icons.ttf) format('truetype');
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -8170,6 +8496,14 @@ i.icon.smile:before {
   content: "\f118";
 }
 
+i.icon.sort.ascending:before {
+  content: "\f0de";
+}
+
+i.icon.sort.descending:before {
+  content: "\f0dd";
+}
+
 i.icon.sort.alphabet.descending:before {
   content: "\f15e";
 }
@@ -8178,20 +8512,12 @@ i.icon.sort.alphabet:before {
   content: "\f15d";
 }
 
-i.icon.sort.ascending:before {
-  content: "\f0de";
-}
-
 i.icon.sort.attributes.descending:before {
   content: "\f161";
 }
 
 i.icon.sort.attributes:before {
   content: "\f160";
-}
-
-i.icon.sort.descending:before {
-  content: "\f0dd";
 }
 
 i.icon.sort.order.descending:before {
@@ -8528,8 +8854,6 @@ i.icon.star {
 
 /* left side icons */
 
-i.icon.left,
-i.icon.left,
 i.icon.left {
   width: auto;
   margin: 0em 0.5em 0em 0em;
@@ -8538,8 +8862,6 @@ i.icon.left {
 /* right side icons */
 
 i.icon.search,
-i.icon.up,
-i.icon.down,
 i.icon.right {
   width: auto;
   margin: 0em 0em 0em 0.5em;
@@ -8813,7 +9135,6 @@ i.massive.icon {
   font-size: 8em;
   vertical-align: middle;
 }
-
 /*
  * # Semantic - Image
  * http://github.com/jlukic/semantic-ui/
@@ -8988,7 +9309,6 @@ img.ui.image {
   display: inline-block;
   margin: 0em 0.25em 0.5em;
 }
-
 /*
  * # Semantic - Input
  * http://github.com/jlukic/semantic-ui/
@@ -9040,12 +9360,12 @@ img.ui.image {
 
 /* browsers require these rules separate */
 
-.ui.input::-web inputkit-input-placeholder {
-  color: #E0E0E0;
+.ui.input::-webkit-input-placeholder {
+  color: #BBBBBB;
 }
 
-.ui.input::-moz input-placeholder {
-  color: #E0E0E0;
+.ui.input::-moz-placeholder {
+  color: #BBBBBB;
 }
 
 /*******************************
@@ -9204,7 +9524,12 @@ img.ui.image {
 .ui.labeled.input .corner.label {
   top: 1px;
   right: 1px;
+  font-size: 0.55em;
   border-top-right-radius: 0.3125em;
+}
+
+.ui.labeled.input .corner.label > .icon {
+  margin: 0.4em 0em 0em 2em;
 }
 
 .ui.labeled.input input {
@@ -9218,7 +9543,7 @@ img.ui.image {
 }
 
 .ui.labeled.icon.input:not(.left) > .icon {
-  margin-right: 0.75em;
+  margin-right: 1.25em;
 }
 
 /*--------------------
@@ -9236,16 +9561,27 @@ img.ui.image {
   border-right: none;
 }
 
-.ui.action.input > .button {
+.ui.action.input > .button,
+.ui.action.input > .buttons {
   display: table-cell;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   white-space: nowrap;
 }
 
-.ui.action.input > .button > .icon {
+.ui.action.input > .button > .icon,
+.ui.action.input > .buttons > .button > .icon {
   display: inline;
   vertical-align: top;
+}
+
+.ui.fluid.action.input {
+  display: table;
+  width: 100%;
+}
+
+.ui.fluid.action.input > .button {
+  width: 0.01%;
 }
 
 /*--------------------
@@ -9262,10 +9598,6 @@ img.ui.image {
 
 .ui.mini.input {
   font-size: 0.8125rem;
-}
-
-.ui.tiny.input {
-  font-size: 0.875rem;
 }
 
 .ui.small.input {
@@ -9291,7 +9623,6 @@ img.ui.image {
 .ui.massive.input {
   font-size: 1.5rem;
 }
-
 /*
  * # Semantic - Label
  * http://github.com/jlukic/semantic-ui/
@@ -10160,7 +10491,6 @@ a.ui.teal.label:hover:before {
 .ui.huge.label {
   font-size: 1rem;
 }
-
 /*
  * # Semantic - Loader
  * http://github.com/jlukic/semantic-ui/
@@ -10348,7 +10678,6 @@ a.ui.teal.label:hover:before {
 .ui.inline.loader.visible {
   display: inline-block;
 }
-
 /*
  * # Semantic - Progress Bar
  * http://github.com/jlukic/semantic-ui/
@@ -10400,6 +10729,16 @@ a.ui.teal.label:hover:before {
 
 .ui.successful.progress .bar,
 .ui.successful.progress .bar::after {
+  -webkit-animation: none !important;
+  animation: none !important;
+}
+
+.ui.warning.progress .bar {
+  background-color: #E96633 !important;
+}
+
+.ui.warning.progress .bar,
+.ui.warning.progress .bar::after {
   -webkit-animation: none !important;
   animation: none !important;
 }
@@ -10605,3033 +10944,6 @@ a.ui.teal.label:hover:before {
 .ui.small.progress .bar {
   height: 14px;
 }
-
-/*
- * # Semantic - Segment
- * http://github.com/jlukic/semantic-ui/
- *
- *
- * Copyright 2013 Contributors
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
- *
- */
-
-/*******************************
-            Segment
-*******************************/
-
-.ui.segment {
-  position: relative;
-  background-color: #FFFFFF;
-  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
-  margin: 1em 0em;
-  padding: 1em;
-  border-radius: 5px 5px 5px 5px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.ui.segment:first-child {
-  margin-top: 0em;
-}
-
-.ui.segment:last-child {
-  margin-bottom: 0em;
-}
-
-.ui.segment:after {
-  content: '';
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
-}
-
-.ui.vertical.segment {
-  margin: 0em;
-  padding-left: 0em;
-  padding-right: 0em;
-  background-color: transparent;
-  border-radius: 0px;
-  -webkit-box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
-}
-
-.ui.vertical.segment:first-child {
-  padding-top: 0em;
-}
-
-.ui.horizontal.segment {
-  margin: 0em;
-  padding-top: 0em;
-  padding-bottom: 0em;
-  background-color: transparent;
-  border-radius: 0px;
-  -webkit-box-shadow: 1px 0px 0px rgba(0, 0, 0, 0.1);
-  box-shadow: 1px 0px 0px rgba(0, 0, 0, 0.1);
-}
-
-.ui.horizontal.segment:first-child {
-  padding-left: 0em;
-}
-
-/*-------------------
-    Loose Coupling
---------------------*/
-
-.ui.pointing.menu + .ui.attached.segment {
-  top: 1px;
-}
-
-/* No padding on edge content */
-
-.ui.segment > :first-child {
-  margin-top: 0em;
-}
-
-.ui.segment > :last-child {
-  margin-bottom: 0em;
-}
-
-/*******************************
-             Types
-*******************************/
-
-/*-------------------
-        Piled
---------------------*/
-
-.ui.piled.segment {
-  margin: 2em 0em;
-  -webkit-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
-  -ms-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
-  -o-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
-}
-
-.ui.piled.segment:first-child {
-  margin-top: 0em;
-}
-
-.ui.piled.segment:last-child {
-  margin-bottom: 0em;
-}
-
-.ui.piled.segment:after,
-.ui.piled.segment:before {
-  background-color: #FFFFFF;
-  visibility: visible;
-  content: "";
-  display: block;
-  height: 100%;
-  left: -1px;
-  position: absolute;
-  width: 100%;
-  -webkit-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
-}
-
-.ui.piled.segment:after {
-  -webkit-transform: rotate(1.2deg);
-  -ms-transform: rotate(1.2deg);
-  transform: rotate(1.2deg);
-  top: 0;
-  z-index: -1;
-}
-
-.ui.piled.segment:before {
-  -webkit-transform: rotate(-1.2deg);
-  -ms-transform: rotate(-1.2deg);
-  transform: rotate(-1.2deg);
-  top: 0;
-  z-index: -2;
-}
-
-/*-------------------
-       Stacked
---------------------*/
-
-.ui.stacked.segment {
-  padding-bottom: 1.7em;
-}
-
-.ui.stacked.segment:after,
-.ui.stacked.segment:before {
-  content: '';
-  position: absolute;
-  bottom: -3px;
-  left: 0%;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: rgba(0, 0, 0, 0.02);
-  width: 100%;
-  height: 5px;
-  visibility: visible;
-}
-
-.ui.stacked.segment:before {
-  bottom: 0px;
-}
-
-/* Inverted */
-
-.ui.stacked.inverted.segment:after,
-.ui.stacked.inverted.segment:before {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-top: 1px solid rgba(255, 255, 255, 0.35);
-}
-
-/*-------------------
-       Raised
---------------------*/
-
-.ui.raised.segment {
-  -webkit-box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
-}
-
-/*******************************
-            States
-*******************************/
-
-.ui.disabled.segment {
-  opacity: 0.8;
-  color: #DDDDDD;
-}
-
-/*******************************
-           Variations
-*******************************/
-
-/*-------------------
-       Basic
---------------------*/
-
-.ui.basic.segment {
-  position: relative;
-  background-color: transparent;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  border-radius: 0px;
-}
-
-.ui.basic.segment:first-child {
-  padding-top: 0em;
-}
-
-.ui.basic.segment:last-child {
-  padding-bottom: 0em;
-}
-
-/*-------------------
-       Fittted
---------------------*/
-
-.ui.fitted.segment {
-  padding: 0em;
-}
-
-/*-------------------
-       Colors
---------------------*/
-
-.ui.blue.segment {
-  border-top: 0.2em solid #6ECFF5;
-}
-
-.ui.green.segment {
-  border-top: 0.2em solid #A1CF64;
-}
-
-.ui.red.segment {
-  border-top: 0.2em solid #D95C5C;
-}
-
-.ui.orange.segment {
-  border-top: 0.2em solid #F05940;
-}
-
-.ui.purple.segment {
-  border-top: 0.2em solid #564F8A;
-}
-
-.ui.teal.segment {
-  border-top: 0.2em solid #00B5AD;
-}
-
-/*-------------------
-   Inverted Colors
---------------------*/
-
-.ui.inverted.black.segment {
-  background-color: #5C6166 !important;
-  color: #FFFFFF !important;
-}
-
-.ui.inverted.blue.segment {
-  background-color: #6ECFF5 !important;
-  color: #FFFFFF !important;
-}
-
-.ui.inverted.green.segment {
-  background-color: #A1CF64 !important;
-  color: #FFFFFF !important;
-}
-
-.ui.inverted.red.segment {
-  background-color: #D95C5C !important;
-  color: #FFFFFF !important;
-}
-
-.ui.inverted.orange.segment {
-  background-color: #F05940 !important;
-  color: #FFFFFF !important;
-}
-
-.ui.inverted.purple.segment {
-  background-color: #564F8A !important;
-  color: #FFFFFF !important;
-}
-
-.ui.inverted.teal.segment {
-  background-color: #00B5AD !important;
-  color: #FFFFFF !important;
-}
-
-/*-------------------
-       Aligned
---------------------*/
-
-.ui.left.aligned.segment {
-  text-align: left;
-}
-
-.ui.right.aligned.segment {
-  text-align: right;
-}
-
-.ui.center.aligned.segment {
-  text-align: center;
-}
-
-/*-------------------
-       Floated
---------------------*/
-
-.ui.floated.segment,
-.ui.left.floated.segment {
-  float: left;
-}
-
-.ui.right.floated.segment {
-  float: right;
-}
-
-/*-------------------
-      Inverted
---------------------*/
-
-.ui.inverted.segment {
-  border: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-.ui.inverted.segment,
-.ui.primary.inverted.segment {
-  background-color: #222222;
-  color: #FFFFFF;
-}
-
-/*-------------------
-     Ordinality
---------------------*/
-
-.ui.primary.segment {
-  background-color: #FFFFFF;
-  color: #555555;
-}
-
-.ui.secondary.segment {
-  background-color: #FAF9FA;
-  color: #777777;
-}
-
-.ui.tertiary.segment {
-  background-color: #EBEBEB;
-  color: #B0B0B0;
-}
-
-.ui.secondary.inverted.segment {
-  background-color: #555555;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255, 255, 255, 0.3)), to(rgba(255, 255, 255, 0.3)));
-  background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.3) 100%);
-  background-image: -webkit-gradient(linear, top left, bottom left, from(rgba(255, 255, 255, 0.3)), to(rgba(255, 255, 255, 0.3)));
-  background-image: linear-gradient(rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.3) 100%);
-  color: #FAFAFA;
-}
-
-.ui.tertiary.inverted.segment {
-  background-color: #555555;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255, 255, 255, 0.6)), to(rgba(255, 255, 255, 0.6)));
-  background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.6) 100%);
-  background-image: -webkit-gradient(linear, top left, bottom left, from(rgba(255, 255, 255, 0.6)), to(rgba(255, 255, 255, 0.6)));
-  background-image: linear-gradient(rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.6) 100%);
-  color: #EEEEEE;
-}
-
-/*-------------------
-      Attached
---------------------*/
-
-.ui.segment.attached {
-  top: -1px;
-  bottom: -1px;
-  border-radius: 0px;
-  margin: 0em;
-  -webkit-box-shadow: 0px 0px 0px 1px #DDDDDD;
-  box-shadow: 0px 0px 0px 1px #DDDDDD;
-}
-
-.ui.top.attached.segment {
-  top: 0px;
-  bottom: -1px;
-  margin-top: 1em;
-  margin-bottom: 0em;
-  border-radius: 5px 5px 0px 0px;
-}
-
-.ui.segment.bottom.attached {
-  top: -1px;
-  bottom: 0px;
-  margin-top: 0em;
-  margin-bottom: 1em;
-  border-radius: 0px 0px 5px 5px;
-}
-
-/*
- * # Semantic - Steps
- * http://github.com/jlukic/semantic-ui/
- *
- *
- * Copyright 2013 Contributors
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
- *
- */
-
-/*******************************
-            Step
-*******************************/
-
-.ui.step,
-.ui.steps .step {
-  display: inline-block;
-  position: relative;
-  padding: 1em 2em 1em 3em;
-  vertical-align: top;
-  background-color: #FFFFFF;
-  color: #888888;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.ui.step:after,
-.ui.steps .step:after {
-  position: absolute;
-  z-index: 2;
-  content: '';
-  top: 0em;
-  right: -1.45em;
-  border-bottom: 1.5em solid transparent;
-  border-left: 1.5em solid #FFFFFF;
-  border-top: 1.5em solid transparent;
-  width: 0em;
-  height: 0em;
-}
-
-.ui.step,
-.ui.steps .step,
-.ui.steps .step:after {
-  -webkit-transition: opacity 0.1s ease, color 0.1s ease, -webkit-box-shadow 0.1s ease;
-  transition: opacity 0.1s ease, color 0.1s ease, box-shadow 0.1s ease;
-}
-
-/*******************************
-            Group
-*******************************/
-
-.ui.steps {
-  cursor: pointer;
-  display: inline-block;
-  font-size: 0em;
-  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
-  line-height: 1;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-  border-radius: 0.3125rem;
-}
-
-.ui.steps .step:first-child {
-  padding-left: 1.35em;
-  border-radius: 0.3125em 0em 0em 0.3125em;
-}
-
-.ui.steps .step:last-child {
-  border-radius: 0em 0.3125em 0.3125em 0em;
-}
-
-.ui.steps .step:only-child {
-  border-radius: 0.3125em;
-}
-
-.ui.steps .step:last-child {
-  margin-right: 0em;
-}
-
-.ui.steps .step:last-child:after {
-  display: none;
-}
-
-/*******************************
-             States
-*******************************/
-
-/* Hover */
-
-.ui.step:hover,
-.ui.step.hover {
-  background-color: #F7F7F7;
-  color: rgba(0, 0, 0, 0.8);
-}
-
-.ui.steps .step.hover:after,
-.ui.steps .step:hover:after,
-.ui.step:hover,
-.ui.step.hover::after {
-  border-left-color: #F7F7F7;
-}
-
-/* Hover */
-
-.ui.steps .step.down,
-.ui.steps .step:active,
-.ui.step.down,
-.ui.step:active {
-  background-color: #F0F0F0;
-}
-
-.ui.steps .step.down:after,
-.ui.steps .step:active:after,
-.ui.steps.down::after,
-.ui.steps:active::after {
-  border-left-color: #F0F0F0;
-}
-
-/* Active */
-
-.ui.steps .step.active,
-.ui.active.step {
-  cursor: auto;
-  background-color: #555555;
-  color: #FFFFFF;
-  font-weight: bold;
-}
-
-.ui.steps .step.active:after,
-.ui.active.steps:after {
-  border-left-color: #555555;
-}
-
-/* Disabled */
-
-.ui.steps .disabled.step,
-.ui.disabled.step {
-  cursor: auto;
-  background-color: #FFFFFF;
-  color: #CBCBCB;
-}
-
-.ui.disabled.step:after {
-  border: none;
-  background-color: #FFFFFF;
-  top: 0.42em;
-  right: -1em;
-  width: 2.15em;
-  height: 2.15em;
-  -webkit-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  -webkit-box-shadow: -1px -1px 0px 0px rgba(0, 0, 0, 0.1) inset;
-  box-shadow: -1px -1px 0px 0px rgba(0, 0, 0, 0.1) inset;
-}
-
-/*******************************
-           Variations
-*******************************/
-
-/* Attached */
-
-.attached.ui.steps {
-  margin: 0em;
-  border-radius: 0.3125em 0.3125em 0em 0em;
-}
-
-.attached.ui.steps .step:first-child {
-  border-radius: 0.3125em 0em 0em 0em;
-}
-
-.attached.ui.steps .step:last-child {
-  border-radius: 0em 0.3125em 0em 0em;
-}
-
-/* Bottom Side */
-
-.bottom.attached.ui.steps {
-  margin-top: -1px;
-  border-radius: 0em 0em 0.3125em 0.3125em;
-}
-
-.bottom.attached.ui.steps .step:first-child {
-  border-radius: 0em 0em 0em 0.3125em;
-}
-
-.bottom.attached.ui.steps .step:last-child {
-  border-radius: 0em 0em 0.3125em 0em;
-}
-
-/* Evenly divided  */
-
-.ui.one.steps,
-.ui.two.steps,
-.ui.three.steps,
-.ui.four.steps,
-.ui.five.steps,
-.ui.six.steps,
-.ui.seven.steps,
-.ui.eight.steps {
-  display: block;
-}
-
-.ui.one.steps > .step {
-  width: 100%;
-}
-
-.ui.two.steps > .step {
-  width: 50%;
-}
-
-.ui.three.steps > .step {
-  width: 33.333%;
-}
-
-.ui.four.steps > .step {
-  width: 25%;
-}
-
-.ui.five.steps > .step {
-  width: 20%;
-}
-
-.ui.six.steps > .step {
-  width: 16.666%;
-}
-
-.ui.seven.steps > .step {
-  width: 14.285%;
-}
-
-.ui.eight.steps > .step {
-  width: 12.500%;
-}
-
-/*******************************
-             Sizes
-*******************************/
-
-.ui.small.step,
-.ui.small.steps .step {
-  font-size: 0.8rem;
-}
-
-.ui.step,
-.ui.steps .step {
-  font-size: 1rem;
-}
-
-.ui.large.step,
-.ui.large.steps .step {
-  font-size: 1.25rem;
-}
-
-/*
- * # Semantic - Accordion
- * http://github.com/jlukic/semantic-ui/
- *
- *
- * Copyright 2013 Contributors
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
- *
- */
-
-/*******************************
-            Accordion
-*******************************/
-
-.ui.accordion {
-  width: 600px;
-  max-width: 100%;
-  overflow: hidden;
-  font-size: 1rem;
-  border-radius: 0.3125em;
-  background-color: #FFFFFF;
-  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
-}
-
-.ui.accordion .title {
-  cursor: pointer;
-  margin: 0em;
-  padding: 0.75em 1em;
-  color: rgba(0, 0, 0, 0.6);
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  -webkit-transition: background-color 0.2s ease-out;
-  transition: background-color 0.2s ease-out;
-}
-
-.ui.accordion .title:first-child {
-  border-top: none;
-}
-
-/* Content */
-
-.ui.accordion .content {
-  display: none;
-  margin: 0em;
-  padding: 1.3em 1em;
-}
-
-/* Arrow */
-
-.ui.accordion .title .dropdown.icon {
-  display: inline-block;
-  float: none;
-  margin: 0em 0.5em 0em 0em;
-  -webkit-transition: -webkit-transform 0.2s ease, opacity 0.2s ease;
-  transition: transform 0.2s ease,
-    opacity 0.2s ease;
-  -webkit-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  transform: rotate(0deg);
-}
-
-.ui.accordion .title .dropdown.icon:before {
-  content: '\f0da';
-}
-
-/*--------------
- Loose Coupling
----------------*/
-
-.ui.basic.accordion.menu {
-  background-color: #FFFFFF;
-  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
-}
-
-.ui.basic.accordion.menu .title,
-.ui.basic.accordion.menu .content {
-  padding: 0em;
-}
-
-/*******************************
-            Types
-*******************************/
-
-/*--------------
-     Basic
----------------*/
-
-.ui.basic.accordion {
-  background-color: transparent;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-.ui.basic.accordion .title,
-.ui.basic.accordion .title {
-  background-color: transparent;
-  border-top: none;
-  padding-left: 0em;
-  padding-right: 0em;
-}
-
-.ui.basic.accordion .content {
-  padding: 0.5em 0em;
-}
-
-.ui.basic.accordion .active.title {
-  background-color: transparent;
-}
-
-/*******************************
-            States
-*******************************/
-
-/*--------------
-      Hover
----------------*/
-
-.ui.accordion .title:hover,
-.ui.accordion .active.title {
-  color: rgba(0, 0, 0, 0.8);
-}
-
-/*--------------
-     Active
----------------*/
-
-.ui.accordion .active.title {
-  background-color: rgba(0, 0, 0, 0.1);
-  color: rgba(0, 0, 0, 0.8);
-}
-
-.ui.accordion .active.title .dropdown.icon {
-  -webkit-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
-}
-
-.ui.accordion .active.content {
-  display: block;
-}
-
-/*******************************
-           Variations
-*******************************/
-
-/*--------------
-     Fluid
----------------*/
-
-.ui.fluid.accordion {
-  width: 100%;
-}
-
-/*
- * # Semantic - Chat Room
- * http://github.com/jlukic/semantic-ui/
- *
- *
- * Copyright 2013 Contributors
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
- *
- */
-
-/*******************************
-           Chat Room
-*******************************/
-
-.ui.chatroom {
-  background-color: #F8F8F8;
-  width: 330px;
-  height: 370px;
-  padding: 0px;
-}
-
-.ui.chatroom .room {
-  position: relative;
-  background-color: #FFFFFF;
-  overflow: hidden;
-  height: 286px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-top: none;
-  border-bottom: none;
-}
-
-.ui.chatroom .room .loader {
-  display: none;
-  margin: -25px 0px 0px -25px;
-}
-
-/* Chat Room Actions */
-
-.ui.chatroom .actions {
-  overflow: hidden;
-  background-color: #EEEEEE;
-  padding: 4px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 5px 5px 0px 0px;
-}
-
-.ui.chatroom .actions .button {
-  float: right;
-  margin-left: 3px;
-}
-
-/* Online User Count */
-
-.ui.chatroom .actions .message {
-  float: left;
-  margin-left: 6px;
-  font-size: 11px;
-  color: #AAAAAA;
-  text-shadow: 0px -1px 0px rgba(255, 255, 255, 0.8);
-  line-height: 28px;
-}
-
-.ui.chatroom .actions .message .loader {
-  display: inline-block;
-  margin-right: 8px;
-}
-
-/* Chat Room Text Log */
-
-.ui.chatroom .log {
-  float: left;
-  overflow: auto;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-.ui.chatroom .log .message {
-  padding: 3px 0px;
-  border-top: 1px dotted #DADADA;
-}
-
-.ui.chatroom .log .message:first-child {
-  border-top: none;
-}
-
-/* status event */
-
-.ui.chatroom .status {
-  padding: 5px 0px;
-  color: #AAAAAA;
-  font-size: 12px;
-  font-style: italic;
-  line-height: 1.33;
-  border-top: 1px dotted #DADADA;
-}
-
-.ui.chatroom .log .status:first-child {
-  border-top: none;
-}
-
-.ui.chatroom .log .flag {
-  float: left;
-}
-
-.ui.chatroom .log p {
-  margin-left: 0px;
-}
-
-.ui.chatroom .log .author {
-  font-weight: bold;
-  -webkit-transition: color 0.3s ease-out;
-  transition: color 0.3s ease-out;
-}
-
-.ui.chatroom .log a.author:hover {
-  opacity: 0.8;
-}
-
-.ui.chatroom .log .message.admin p {
-  font-weight: bold;
-  margin: 1px 0px 0px 23px;
-}
-
-.ui.chatroom .log .divider {
-  margin: -1px 0px;
-  font-size: 11px;
-  padding: 10px 0px;
-  border-top: 1px solid #F8F8F8;
-  border-bottom: 1px solid #F8F8F8;
-}
-
-.ui.chatroom .log .divider .rule {
-  top: 50%;
-  width: 15%;
-}
-
-.ui.chatroom .log .divider .label {
-  color: #777777;
-  margin: 0px;
-}
-
-/* Chat Room User List */
-
-.ui.chatroom .room .list {
-  position: relative;
-  overflow: auto;
-  overflow-x: hidden;
-  overflow-y: auto;
-  float: left;
-  background-color: #EEEEEE;
-  border-left: 1px solid #DDDDDD;
-}
-
-.ui.chatroom .room .list .user {
-  display: table;
-  padding: 3px 7px;
-  border-bottom: 1px solid #DDDDDD;
-}
-
-.ui.chatroom .room .list .user:hover {
-  background-color: #F8F8F8;
-}
-
-.ui.chatroom .room .list .image {
-  display: table-cell;
-  vertical-align: middle;
-  width: 20px;
-}
-
-.ui.chatroom .room .list .image img {
-  width: 20px;
-  height: 20px;
-  vertical-align: middle;
-}
-
-.ui.chatroom .room .list p {
-  display: table-cell;
-  vertical-align: middle;
-  padding-left: 7px;
-  padding-right: 14px;
-  font-size: 11px;
-  line-height: 1.2;
-  font-weight: bold;
-}
-
-.ui.chatroom .room .list a:hover {
-  opacity: 0.8;
-}
-
-/* User List Loading */
-
-.ui.chatroom.loading .loader {
-  display: block;
-}
-
-/* Chat Room Talk Input */
-
-.ui.chatroom .talk {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 5px 0px 0px;
-  background-color: #EEEEEE;
-  border-radius: 0px 0px 5px 5px;
-}
-
-.ui.chatroom .talk .avatar,
-.ui.chatroom .talk input,
-.ui.chatroom .talk .button {
-  float: left;
-}
-
-.ui.chatroom .talk .avatar img {
-  display: block;
-  width: 30px;
-  height: 30px;
-  margin-right: 4px;
-  border-radius: 500rem;
-}
-
-.ui.chatroom .talk input {
-  border: 1px solid #CCCCCC;
-  margin: 0px;
-  width: 196px;
-  height: 14px;
-  padding: 8px 5px;
-  font-size: 12px;
-  color: #555555;
-}
-
-.ui.chatroom .talk input.focus {
-  border: 1px solid #AAAAAA;
-}
-
-.ui.chatroom .send {
-  width: 80px;
-  height: 32px;
-  margin-left: -1px;
-  padding: 4px 12px;
-  font-size: 12px;
-  line-height: 23px;
-  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
-  border-radius: 0 5px 5px 0;
-}
-
-.ui.chatroom .talk .log-in.button {
-  display: block;
-  float: none;
-  margin-top: -6px;
-  height: 22px;
-  border-radius: 0px 0px 4px 4px;
-}
-
-.ui.chatroom .talk .log-in.button i {
-  vertical-align: text-top;
-}
-
-/* Quirky Flags */
-
-.ui.chatroom .log .team.flag {
-  width: 18px;
-}
-
-/* Chat room Loaded */
-
-.ui.chatroom.loading .loader {
-  display: block;
-}
-
-/* Standard Size */
-
-.ui.chatroom {
-  width: 330px;
-  height: 370px;
-}
-
-.ui.chatroom .room .container {
-  width: 3000px;
-}
-
-.ui.chatroom .log {
-  width: 314px;
-  height: 278px;
-  padding: 4px 7px;
-}
-
-.ui.chatroom .room .list {
-  width: 124px;
-  height: 278px;
-  padding: 4px 0px;
-}
-
-.ui.chatroom .room .list .user {
-  width: 110px;
-}
-
-.ui.chatroom .talk {
-  height: 40px;
-}
-
-/*
- * # Semantic - Checkbox
- * http://github.com/jlukic/semantic-ui/
- *
- *
- * Copyright 2013 Contributors
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
- *
- */
-
-/*******************************
-           Checkbox
-*******************************/
-
-/*--------------
-    Standard
----------------*/
-
-/*--- Content ---*/
-
-.ui.checkbox {
-  position: relative;
-  display: inline-block;
-  min-width: 1em;
-  height: 1.25em;
-  line-height: 1em;
-  outline: none;
-  vertical-align: middle;
-}
-
-.ui.checkbox input {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  opacity: 0;
-  outline: none;
-}
-
-/*--- Box ---*/
-
-.ui.checkbox .box,
-.ui.checkbox label {
-  cursor: pointer;
-  padding-left: 2em;
-  outline: none;
-}
-
-.ui.checkbox .box:before,
-.ui.checkbox label:before {
-  position: absolute;
-  top: 0em;
-  line-height: 1;
-  width: 1em;
-  height: 1em;
-  left: 0em;
-  content: '';
-  border-radius: 4px;
-  background: #FFFFFF;
-  -webkit-transition: background-color 0.3s ease, -webkit-box-shadow 0.3s ease;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  -webkit-box-shadow: 0em 0em 0em 1px rgba(0, 0, 0, 0.2);
-  box-shadow: 0em 0em 0em 1px rgba(0, 0, 0, 0.2);
-}
-
-/*--- Checkbox ---*/
-
-.ui.checkbox .box:after,
-.ui.checkbox label:after {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: alpha(opacity=0);
-  opacity: 0;
-  content: '';
-  position: absolute;
-  background: transparent;
-  border: 0.2em solid #333333;
-  border-top: none;
-  border-right: none;
-  -webkit-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-
-.ui.checkbox .box:after,
-.ui.checkbox label:after {
-  top: 0.275em;
-  left: 0.2em;
-  width: 0.45em;
-  height: 0.15em;
-}
-
-/*--- Inside Label ---*/
-
-.ui.checkbox label {
-  color: rgba(0, 0, 0, 0.6);
-  -webkit-transition: color 0.2s ease;
-  transition: color 0.2s ease;
-}
-
-.ui.checkbox label:hover {
-  color: rgba(0, 0, 0, 0.8);
-}
-
-.ui.checkbox input:focus + label {
-  color: rgba(0, 0, 0, 0.8);
-}
-
-/*--- Outside Label  ---*/
-
-.ui.checkbox + label {
-  cursor: pointer;
-  opacity: 0.85;
-  vertical-align: middle;
-}
-
-.ui.checkbox + label:hover {
-  opacity: 1;
-}
-
-/*******************************
-           States
-*******************************/
-
-/*--- Hover ---*/
-
-.ui.checkbox .box:hover::before,
-.ui.checkbox label:hover::before {
-  -webkit-box-shadow: 0em 0em 0em 1px rgba(0, 0, 0, 0.3);
-  box-shadow: 0em 0em 0em 1px rgba(0, 0, 0, 0.3);
-}
-
-/*--- Down ---*/
-
-.ui.checkbox .box:active::before,
-.ui.checkbox label:active::before {
-  background-color: #F5F5F5;
-}
-
-/*--- Focus ---*/
-
-.ui.checkbox input:focus + .box:before,
-.ui.checkbox input:focus + label:before {
-  -webkit-box-shadow: 0em 0em 0em 1px rgba(0, 0, 0, 0.3);
-  box-shadow: 0em 0em 0em 1px rgba(0, 0, 0, 0.3);
-}
-
-/*--- Active ---*/
-
-.ui.checkbox input:checked + .box:after,
-.ui.checkbox input:checked + label:after {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-  filter: alpha(opacity=100);
-  opacity: 1;
-}
-
-/*--- Disabled ---*/
-
-.ui.disabled.checkbox + .box:after,
-.ui.checkbox input[disabled] + .box:after,
-.ui.disabled.checkbox label,
-.ui.checkbox input[disabled] + label {
-  opacity: 0.4;
-  color: rgba(0, 0, 0, 0.3);
-}
-
-/*******************************
-          Variations
-*******************************/
-
-/*--------------
-     Radio
----------------*/
-
-.ui.radio.checkbox .box:before,
-.ui.radio.checkbox label:before {
-  min-width: 1em;
-  height: 1em;
-  border-radius: 500px;
-}
-
-.ui.radio.checkbox .box:after,
-.ui.radio.checkbox label:after {
-  border: none;
-  top: 0.2em;
-  left: 0.2em;
-  width: 0.6em;
-  height: 0.6em;
-  background-color: #555555;
-  -webkit-transform: none;
-  -ms-transform: none;
-  transform: none;
-  border-radius: 500px;
-}
-
-/*--------------
-     Slider
----------------*/
-
-.ui.slider.checkbox {
-  cursor: pointer;
-  min-width: 3em;
-}
-
-/* Line */
-
-.ui.slider.checkbox:after {
-  position: absolute;
-  top: 0.5em;
-  left: 0em;
-  content: '';
-  width: 3em;
-  height: 2px;
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-/* Button */
-
-.ui.slider.checkbox .box,
-.ui.slider.checkbox label {
-  padding-left: 4em;
-}
-
-.ui.slider.checkbox .box:before,
-.ui.slider.checkbox label:before {
-  cursor: pointer;
-  display: block;
-  position: absolute;
-  top: -0.25em;
-  left: 0em;
-  z-index: 1;
-  width: 1.5em;
-  height: 1.5em;
-  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1) inset;
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1) inset;
-  border-radius: 50rem;
-  -webkit-transition: left 0.3s ease 0s;
-  transition: left 0.3s ease 0s;
-}
-
-/* Button Activation Light */
-
-.ui.slider.checkbox .box:after,
-.ui.slider.checkbox label:after {
-  opacity: 1;
-  position: absolute;
-  content: '';
-  top: 0.15em;
-  left: 0em;
-  z-index: 2;
-  margin-left: 0.375em;
-  border: none;
-  width: 0.75em;
-  height: 0.75em;
-  border-radius: 50rem;
-  -webkit-transform: none;
-  -ms-transform: none;
-  transform: none;
-  -webkit-transition: background 0.3s ease 0s,
-    left 0.3s ease 0s;
-  transition: background 0.3s ease 0s,
-    left 0.3s ease 0s;
-}
-
-/* Selected Slider Toggle */
-
-.ui.slider.checkbox input:checked + .box:before,
-.ui.slider.checkbox input:checked + label:before,
-.ui.slider.checkbox input:checked + .box:after,
-.ui.slider.checkbox input:checked + label:after {
-  left: 1.75em;
-}
-
-/* Off Color */
-
-.ui.slider.checkbox .box:after,
-.ui.slider.checkbox label:after {
-  background-color: #D95C5C;
-}
-
-/* On Color */
-
-.ui.slider.checkbox input:checked + .box:after,
-.ui.slider.checkbox input:checked + label:after {
-  background-color: #89B84C;
-}
-
-/*--------------
-     Toggle
----------------*/
-
-.ui.toggle.checkbox {
-  cursor: pointer;
-}
-
-.ui.toggle.checkbox .box,
-.ui.toggle.checkbox label {
-  padding-left: 4em;
-}
-
-/* Switch */
-
-.ui.toggle.checkbox .box:before,
-.ui.toggle.checkbox label:before {
-  cursor: pointer;
-  display: block;
-  position: absolute;
-  content: '';
-  top: -0.25em;
-  left: 0em;
-  z-index: 1;
-  background-color: #FFFFFF;
-  width: 3em;
-  height: 1.5em;
-  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1) inset;
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1) inset;
-  border-radius: 50rem;
-}
-
-/* Activation Light */
-
-.ui.toggle.checkbox .box:after,
-.ui.toggle.checkbox label:after {
-  opacity: 1;
-  background-color: transparent;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  content: '';
-  position: absolute;
-  top: 0.15em;
-  left: 0.5em;
-  z-index: 2;
-  border: none;
-  width: 0.75em;
-  height: 0.75em;
-  background-color: #D95C5C;
-  border-radius: 50rem;
-  -webkit-transition: background 0.3s ease 0s,
-    left 0.3s ease 0s;
-  transition: background 0.3s ease 0s,
-    left 0.3s ease 0s;
-}
-
-/* Active */
-
-.ui.toggle.checkbox:active .box:before,
-.ui.toggle.checkbox:active label:before {
-  background-color: #F5F5F5;
-}
-
-/* Active */
-
-.ui.toggle.checkbox input:checked + .box:after,
-.ui.toggle.checkbox input:checked + label:after {
-  left: 1.75em;
-  background-color: #89B84C;
-}
-
-/*--------------
-     Sizes
----------------*/
-
-.ui.checkbox {
-  font-size: 1em;
-}
-
-.ui.large.checkbox {
-  font-size: 1.25em;
-}
-
-.ui.huge.checkbox {
-  font-size: 1.5em;
-}
-
-/*
- * # Semantic - Dimmer
- * http://github.com/jlukic/semantic-ui/
- *
- *
- * Copyright 2013 Contributors
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
- *
- */
-
-/*******************************
-            Dimmer
-*******************************/
-
-.ui.dimmable {
-  position: relative;
-}
-
-.ui.dimmer {
-  display: none;
-  position: absolute;
-  top: 0em !important;
-  left: 0em !important;
-  width: 0%;
-  height: 0%;
-  text-align: center;
-  vertical-align: middle;
-  background-color: rgba(0, 0, 0, 0.85);
-  opacity: 0;
-  line-height: 1;
-  -webkit-animation-fill-mode: both;
-  -ms-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-animation-duration: 0.5s;
-  -ms-animation-duration: 0.5s;
-  animation-duration: 0.5s;
-  -webkit-transition: background-color 0.5s linear;
-  transition: background-color 0.5s linear;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-  z-index: 1000;
-}
-
-/* Dimmer Content */
-
-.ui.dimmer > .content {
-  width: 100%;
-  height: 100%;
-  display: table;
-  -webkit-user-select: text;
-  -moz-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
-}
-
-.ui.dimmer > .content > div {
-  display: table-cell;
-  vertical-align: middle;
-  color: #FFFFFF;
-}
-
-/* Loose Coupling */
-
-.ui.segment > .ui.dimmer {
-  border-radius: 5px;
-}
-
-.ui.horizontal.segment > .ui.dimmer,
-.ui.vertical.segment > .ui.dimmer {
-  border-radius: 5px;
-}
-
-/*******************************
-            States
-*******************************/
-
-.ui.dimmed.dimmable:not(body) {
-  overflow: hidden;
-}
-
-.ui.dimmed.dimmable > .ui.dimmer,
-.ui.active.dimmer {
-  display: block;
-  width: 100%;
-  height: 100%;
-  opacity: 1;
-}
-
-.ui.disabled.dimmer {
-  width: 0em !important;
-  height: 0em !important;
-}
-
-/*******************************
-           Variations
-*******************************/
-
-/*--------------
-      Page
----------------*/
-
-.ui.page.dimmer {
-  position: fixed;
-  -webkit-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  -webkit-perspective: 2000px;
-  -ms-perspective: 2000px;
-  perspective: 2000px;
-  -webkit-transform-origin: center center;
-  -ms-transform-origin: center center;
-  transform-origin: center center;
-}
-
-.ui.scrolling.page.dimmer {
-  position: absolute;
-}
-
-/*--------------
-    Aligned
----------------*/
-
-.ui.dimmer > .top.aligned.content > * {
-  vertical-align: top;
-}
-
-.ui.dimmer > .bottom.aligned.content > * {
-  vertical-align: bottom;
-}
-
-/*--------------
-    Inverted
----------------*/
-
-.ui.inverted.dimmer {
-  background-color: rgba(255, 255, 255, 0.85);
-}
-
-.ui.inverted.dimmer > .content > * {
-  color: rgba(0, 0, 0, 0.8);
-}
-
-/*--------------
-     Simple
----------------*/
-
-/* Displays without javascript */
-
-.ui.simple.dimmer {
-  display: block;
-  overflow: hidden;
-  opacity: 1;
-  z-index: -100;
-  background-color: rgba(0, 0, 0, 0);
-}
-
-.ui.dimmed.dimmable > .ui.simple.dimmer {
-  overflow: visible;
-  opacity: 1;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.85);
-  z-index: 1;
-}
-
-.ui.simple.inverted.dimmer {
-  background-color: rgba(255, 255, 255, 0);
-}
-
-.ui.dimmed.dimmable > .ui.simple.inverted.dimmer {
-  background-color: rgba(255, 255, 255, 0.85);
-}
-
-/*
- * # Semantic - Dropdown
- * http://github.com/jlukic/semantic-ui/
- *
- *
- * Copyright 2013 Contributors
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
- *
- */
-
-/*******************************
-            Dropdown
-*******************************/
-
-.ui.dropdown {
-  position: relative;
-  display: inline-block;
-  line-height: 1;
-  -webkit-transition: border-radius 0.1s ease, width 0.2s ease;
-  transition: border-radius 0.1s ease, width 0.2s ease;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  -moz-tap-highlight-color: rgba(0, 0, 0, 0);
-  tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-/*******************************
-            Content
-*******************************/
-
-/*--------------
-     Menu
----------------*/
-
-.ui.dropdown .menu {
-  position: absolute;
-  display: none;
-  top: 100%;
-  margin: 0em;
-  background-color: #FFFFFF;
-  min-width: 100%;
-  white-space: nowrap;
-  font-size: 0.875em;
-  text-shadow: none;
-  -webkit-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
-  border-radius: 0px 0px 0.325em 0.325em;
-  -webkit-transition: opacity 0.2s ease;
-  transition: opacity 0.2s ease;
-  z-index: 11;
-}
-
-/*--------------
-      Icon
----------------*/
-
-.ui.dropdown > .dropdown.icon {
-  width: auto;
-  margin: 0em 0em 0em 1em;
-}
-
-.ui.dropdown > .dropdown.icon:before {
-  content: "\f0d7";
-}
-
-.ui.dropdown .menu .item .dropdown.icon {
-  width: auto;
-  float: right;
-  margin: 0em 0em 0em 0.5em;
-}
-
-.ui.dropdown .menu .item .dropdown.icon:before {
-  content: "\f0da";
-}
-
-/*--------------
-      Text
----------------*/
-
-.ui.dropdown > .text {
-  cursor: pointer;
-  display: inline-block;
-  -webkit-transition: color 0.2s ease;
-  transition: color 0.2s ease;
-}
-
-/* Flyout Direction */
-
-.ui.dropdown .menu {
-  left: 0px;
-}
-
-/*--------------
-    Sub Menu
----------------*/
-
-.ui.dropdown .menu .menu {
-  top: 0% !important;
-  left: 100% !important;
-  margin: 0em !important;
-  border-radius: 0 0.325em 0.325em 0em !important;
-}
-
-.ui.dropdown .menu .menu:after {
-  display: none;
-}
-
-.ui.dropdown .menu .item {
-  cursor: pointer;
-  border: none;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  height: auto;
-  font-size: 0.875em;
-  display: block;
-  color: rgba(0, 0, 0, 0.75);
-  padding: 0.85em 1em !important;
-  font-size: 0.875rem;
-  text-transform: none;
-  font-weight: normal;
-  text-align: left;
-  -webkit-touch-callout: none;
-}
-
-.ui.dropdown .menu .item:before {
-  display: none;
-}
-
-.ui.dropdown .menu .item .icon {
-  margin-right: 0.75em;
-}
-
-.ui.dropdown .menu .item:first-child {
-  border-top: none;
-}
-
-/*******************************
-            Coupling
-*******************************/
-
-/* Opposite on last menu on right */
-
-.ui.menu .right.menu .dropdown:last-child .menu,
-.ui.buttons > .ui.dropdown:last-child .menu {
-  left: auto;
-  right: 0px;
-}
-
-.ui.vertical.menu .dropdown.item > .dropdown.icon:before {
-  content: "\f0da";
-}
-
-.ui.dropdown.icon.button > .dropdown.icon {
-  margin: 0em;
-}
-
-/*******************************
-            States
-*******************************/
-
-/* Dropdown Visible */
-
-.ui.visible.dropdown > .menu {
-  display: block;
-}
-
-/* Menu Item Hover */
-
-.ui.dropdown .menu .item:hover {
-  background-color: rgba(0, 0, 0, 0.02);
-  z-index: 12;
-}
-
-/* Menu Item Active */
-
-.ui.dropdown .menu .active.item {
-  background-color: rgba(0, 0, 0, 0.06) !important;
-  border-left: none;
-  border-color: transparent !important;
-  -webkit-box-shadow: none;
-  -moz-shadow: none;
-  box-shadow: none;
-  z-index: 12;
-}
-
-/* Default Text */
-
-.ui.dropdown > .default.text,
-.ui.default.dropdown > .text {
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.ui.dropdown:hover > .default.text,
-.ui.default.dropdown:hover > .text {
-  color: rgba(0, 0, 0, 0.8);
-}
-
-/*******************************
-           Variations
-*******************************/
-
-/*--------------
-     Simple
----------------*/
-
-/* Displays without javascript */
-
-.ui.simple.dropdown .menu:before,
-.ui.simple.dropdown .menu:after {
-  display: none;
-}
-
-.ui.simple.dropdown .menu {
-  display: block;
-  overflow: hidden;
-  top: -9999px !important;
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-  -webkit-transition: opacity 0.2s ease-out;
-  transition: opacity 0.2s ease-out;
-}
-
-.ui.simple.active.dropdown,
-.ui.simple.dropdown:hover {
-  border-bottom-left-radius: 0em !important;
-  border-bottom-right-radius: 0em !important;
-}
-
-.ui.simple.active.dropdown > .menu,
-.ui.simple.dropdown:hover > .menu {
-  overflow: visible;
-  width: auto;
-  height: auto;
-  top: 100% !important;
-  opacity: 1;
-}
-
-.ui.simple.dropdown > .menu .item:active > .menu,
-.ui.simple.dropdown:hover > .menu .item:hover > .menu {
-  overflow: visible;
-  width: auto;
-  height: auto;
-  top: 0% !important;
-  left: 100% !important;
-  opacity: 1;
-}
-
-.ui.simple.disabled.dropdown:hover .menu {
-  display: none;
-  height: 0px;
-  width: 0px;
-  overflow: hidden;
-}
-
-/*--------------
-    Selection
----------------*/
-
-/* Displays like a select box */
-
-.ui.selection.dropdown {
-  cursor: pointer;
-  display: inline-block;
-  word-wrap: break-word;
-  white-space: normal;
-  background-color: #FFFFFF;
-  padding: 0.5em 1em;
-  line-height: 1.33;
-  color: rgba(0, 0, 0, 0.8);
-  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1) !important;
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1) !important;
-  border-radius: 0.3125em !important;
-}
-
-.ui.selection.dropdown select {
-  display: none;
-}
-
-.ui.selection.dropdown > .dropdown.icon {
-  opacity: 0.7;
-  margin: 0.2em 0em 0.2em 1.25em;
-  -webkit-transition: opacity 0.2s ease-out;
-  transition: opacity 0.2s ease-out;
-}
-
-.ui.selection.dropdown,
-.ui.selection.dropdown .menu {
-  top: 100%;
-  -webkit-transition: -webkit-box-shadow 0.2s ease-out;
-  transition: box-shadow 0.2s ease-out;
-}
-
-.ui.selection.dropdown .menu {
-  max-height: 312px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-box-shadow: 0px 1px 0px 1px #E0E0E0;
-  box-shadow: 0px 1px 0px 1px #E0E0E0;
-  border-radius: 0px 0px 0.325em 0.325em;
-}
-
-.ui.selection.dropdown .menu:after,
-.ui.selection.dropdown .menu:before {
-  display: none;
-}
-
-.ui.selection.dropdown .menu img {
-  height: 2.5em;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 0.5em;
-}
-
-/* Hover */
-
-.ui.selection.dropdown:hover {
-  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.2) !important;
-  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.2) !important;
-}
-
-.ui.selection.dropdown:hover .menu {
-  -webkit-box-shadow: 0px 1px 0px 1px #D3D3D3;
-  box-shadow: 0px 1px 0px 1px #D3D3D3;
-}
-
-.ui.selection.dropdown:hover > .dropdown.icon {
-  opacity: 1;
-}
-
-/* Visible */
-
-.ui.visible.selection.dropdown {
-  border-bottom-left-radius: 0em !important;
-  border-bottom-right-radius: 0em !important;
-}
-
-/* Active */
-
-.ui.active.selection.dropdown {
-  border-radius: 0.3125em 0.3125em 0em 0em !important;
-}
-
-.ui.active.selection.dropdown > .dropdown.icon {
-  opacity: 1;
-}
-
-/*--------------
-      Fluid
----------------*/
-
-.ui.fluid.dropdown {
-  display: block;
-}
-
-.ui.fluid.dropdown > .dropdown.icon {
-  float: right;
-}
-
-/*--------------
-     Inline
----------------*/
-
-.ui.inline.dropdown {
-  cursor: pointer;
-  display: inline-block;
-  color: inherit;
-}
-
-.ui.inline.dropdown .dropdown.icon {
-  margin: 0em 0.5em 0em 0.25em;
-}
-
-.ui.inline.dropdown .text {
-  font-weight: bold;
-}
-
-.ui.inline.dropdown .menu {
-  cursor: auto;
-  margin-top: 0.25em;
-  border-radius: 0.325em;
-}
-
-/*--------------
-    Floating
----------------*/
-
-.ui.floating.dropdown .menu {
-  left: 0;
-  right: auto;
-  margin-top: 0.5em;
-  border-radius: 0.325em;
-}
-
-/*--------------
-     Pointing
----------------*/
-
-.ui.pointing.dropdown .menu {
-  top: 100%;
-  margin-top: 0.75em;
-  border-radius: 0.325em;
-}
-
-.ui.pointing.dropdown .menu:after {
-  display: block;
-  position: absolute;
-  pointer-events: none;
-  content: " ";
-  visibility: visible;
-  width: 0.5em;
-  height: 0.5em;
-  -webkit-box-shadow: -1px -1px 0px 1px rgba(0, 0, 0, 0.05);
-  box-shadow: -1px -1px 0px 1px rgba(0, 0, 0, 0.05);
-  background-image: none;
-  background-color: #FFFFFF;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  z-index: 2;
-}
-
-.ui.pointing.dropdown .menu .active.item:first-child {
-  background: transparent -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.03));
-  background: transparent-webkit-gradient(linear, top left, bottom left, from(transparent), to(rgba(0, 0, 0, 0.03)));
-  background: transparent linear-gradient(transparent, rgba(0, 0, 0, 0.03));
-}
-
-/* Directions */
-
-.ui.pointing.dropdown .menu:after {
-  top: -0.25em;
-  left: 50%;
-  margin: 0em 0em 0em -0.25em;
-}
-
-.ui.top.left.pointing.dropdown .menu {
-  top: 100%;
-  bottom: auto;
-  left: 0%;
-  right: auto;
-  margin: 0.75em 0em 0em;
-}
-
-.ui.top.left.pointing.dropdown .menu:after {
-  top: -0.25em;
-  left: 1.25em;
-  right: auto;
-  margin: 0em;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-.ui.top.right.pointing.dropdown .menu {
-  top: 100%;
-  bottom: auto;
-  right: 0%;
-  left: auto;
-  margin: 0.75em 0em 0em;
-}
-
-.ui.top.right.pointing.dropdown .menu:after {
-  top: -0.25em;
-  left: auto;
-  right: 1.25em;
-  margin: 0em;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-.ui.left.pointing.dropdown .menu {
-  top: 0%;
-  left: 100%;
-  right: auto;
-  margin: 0em 0em 0em 0.75em;
-}
-
-.ui.left.pointing.dropdown .menu:after {
-  top: 1em;
-  left: -0.25em;
-  margin: 0em 0em 0em 0em;
-  -webkit-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-
-.ui.right.pointing.dropdown .menu {
-  top: 0%;
-  left: auto;
-  right: 100%;
-  margin: 0em 0.75em 0em 0em;
-}
-
-.ui.right.pointing.dropdown .menu:after {
-  top: 1em;
-  left: auto;
-  right: -0.25em;
-  margin: 0em 0em 0em 0em;
-  -webkit-transform: rotate(135deg);
-  -ms-transform: rotate(135deg);
-  transform: rotate(135deg);
-}
-
-/*
- * # Semantic - Modal
- * http://github.com/jlukic/semantic-ui/
- *
- *
- * Copyright 2013 Contributors
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
- *
- */
-
-/*******************************
-             Modal
-*******************************/
-
-.ui.modal {
-  display: none;
-  position: fixed;
-  z-index: 1001;
-  top: 50%;
-  left: 50%;
-  text-align: left;
-  width: 90%;
-  margin-left: -45%;
-  background-color: #FFFFFF;
-  border: 1px solid #DDDDDD;
-  border-radius: 5px;
-}
-
-/*******************************
-            Content
-*******************************/
-
-/*--------------
-     Close
----------------*/
-
-.ui.modal > .close {
-  cursor: pointer;
-  position: absolute;
-  opacity: 0.8;
-  font-size: 1.25em;
-  top: -1.75em;
-  right: -1.75em;
-  color: #FFFFFF;
-}
-
-.ui.modal > .close:hover {
-  opacity: 1;
-}
-
-/*--------------
-     Header
----------------*/
-
-.ui.modal > .header {
-  margin: 0em;
-  padding: 1.5rem 2rem;
-  font-size: 1.6em;
-  font-weight: bold;
-  border-radius: 0.325em 0.325em 0px 0px;
-}
-
-/*--------------
-     Content
----------------*/
-
-.ui.modal > .content {
-  display: table;
-  width: 100%;
-  position: relative;
-  padding: 2em;
-  background-color: #F4F4F4;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.ui.modal > .content > .left {
-  display: table-cell;
-  padding-right: 1.5%;
-  min-width: 25%;
-}
-
-.ui.modal > .content > .right {
-  display: table-cell;
-  padding-left: 1.5%;
-  vertical-align: top;
-}
-
-.ui.modal > .content > .left > .icon {
-  font-size: 8em;
-  margin: 0em;
-}
-
-.ui.modal > .content p {
-  line-height: 1.6;
-}
-
-/*--------------
-     Actions
----------------*/
-
-.ui.modal .actions {
-  padding: 1rem 2rem;
-  text-align: right;
-}
-
-.ui.modal .actions > .button {
-  margin-left: 0.75em;
-}
-
-/*-------------------
-       Sizing
---------------------*/
-
-/* Mobile Only */
-
-@media only screen and (max-width: 768px) {
-  .ui.modal .content .left {
-    display: block;
-    padding: 0em 0em 0em 1em;
-  }
-
-  .ui.modal .content .right {
-    display: block;
-    padding: 1em 0em 0em 0em;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-}
-
-/* Tablet and Mobile */
-
-@media only screen and (max-width: 998px) {
-  .ui.modal {
-    width: 92%;
-    margin-left: -46%;
-  }
-
-  .ui.modal > .close {
-    color: rgba(0, 0, 0, 0.8);
-    top: 1.5rem;
-    right: 1rem;
-  }
-}
-
-/* Computer / Responsive */
-
-@media only screen and (min-width: 998px) {
-  .ui.modal {
-    width: 74%;
-    margin-left: -37%;
-  }
-}
-
-@media only screen and (min-width: 1500px) {
-  .ui.modal {
-    width: 56%;
-    margin-left: -28%;
-  }
-}
-
-@media only screen and (min-width: 1750px) {
-  .ui.modal {
-    width: 42%;
-    margin-left: -21%;
-  }
-}
-
-@media only screen and (min-width: 2000px) {
-  .ui.modal {
-    width: 36%;
-    margin-left: -18%;
-  }
-}
-
-/*******************************
-             Types
-*******************************/
-
-.ui.basic.modal {
-  background-color: transparent;
-  border: none;
-  color: #FFFFFF;
-}
-
-.ui.basic.modal > .close {
-  top: 1.5rem;
-  right: 1rem;
-}
-
-.ui.basic.modal .content {
-  background-color: transparent;
-}
-
-/*******************************
-            Variations
-*******************************/
-
-/* A modal that cannot fit on the page */
-
-.ui.modal.scrolling {
-  position: absolute;
-  margin-top: 10px;
-}
-
-/*******************************
-              States
-*******************************/
-
-.ui.active.modal {
-  display: block;
-}
-
-/*--------------
-      Size
----------------*/
-
-/* Small */
-
-.ui.small.modal > .header {
-  font-size: 1.3em;
-}
-
-@media only screen and (min-width: 998px) {
-  .ui.small.modal {
-    width: 58%;
-    margin-left: -29%;
-  }
-}
-
-@media only screen and (min-width: 1500px) {
-  .ui.small.modal {
-    width: 40%;
-    margin-left: -20%;
-  }
-}
-
-@media only screen and (min-width: 1750px) {
-  .ui.small.modal {
-    width: 26%;
-    margin-left: -13%;
-  }
-}
-
-@media only screen and (min-width: 2000px) {
-  .ui.small.modal {
-    width: 20%;
-    margin-left: -10%;
-  }
-}
-
-/* Large */
-
-@media only screen and (min-width: 998px) {
-  .ui.large.modal {
-    width: 74%;
-    margin-left: -37%;
-  }
-}
-
-@media only screen and (min-width: 1500px) {
-  .ui.large.modal {
-    width: 64%;
-    margin-left: -32%;
-  }
-}
-
-@media only screen and (min-width: 1750px) {
-  .ui.large.modal {
-    width: 54%;
-    margin-left: -27%;
-  }
-}
-
-@media only screen and (min-width: 2000px) {
-  .ui.large.modal {
-    width: 44%;
-    margin-left: -22%;
-  }
-}
-
-/*
- * # Semantic - Nag
- * http://github.com/jlukic/semantic-ui/
- *
- *
- * Copyright 2013 Contributors
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
- *
- */
-
-/*******************************
-             Nag
-*******************************/
-
-.ui.nag {
-  display: none;
-  opacity: 0.95;
-  position: relative;
-  top: 0px;
-  left: 0%;
-  z-index: 101;
-  min-height: 0;
-  width: 100%;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-  margin: 0em;
-  line-height: 3em;
-  padding: 0em 1em;
-  background-color: #555555;
-  -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
-  font-size: 1em;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.8);
-  border-radius: 0px 0px 5px 5px;
-  -webkit-transition: 0.2s background;
-  transition: 0.2s background;
-}
-
-a.ui.nag {
-  cursor: pointer;
-}
-
-.ui.nag > .title {
-  display: inline-block;
-  margin: 0em 0.5em;
-  color: #FFFFFF;
-}
-
-.ui.nag > .close.icon {
-  cursor: pointer;
-  opacity: 0.4;
-  position: absolute;
-  top: 50%;
-  right: 1em;
-  margin-top: -0.5em;
-  color: #FFFFFF;
-  -webkit-transition: 0.1s opacity;
-  transition: 0.1s opacity;
-}
-
-/*******************************
-             States
-*******************************/
-
-/* Hover */
-
-.ui.nag:hover {
-  opacity: 1;
-}
-
-.ui.nag .close:hover {
-  opacity: 1;
-}
-
-/*******************************
-           Variations
-*******************************/
-
-/*--------------
-     Static
----------------*/
-
-.ui.overlay.nag {
-  position: absolute;
-  display: block;
-}
-
-/*--------------
-     Fixed
----------------*/
-
-.ui.fixed.nag {
-  position: fixed;
-}
-
-/*--------------
-     Bottom
----------------*/
-
-.ui.botton.nag {
-  border-radius: 5px 5px 0px 0px;
-}
-
-.ui.fixed.bottom.nags,
-.ui.fixed.bottom.nag {
-  top: auto;
-  bottom: 0px;
-}
-
-/*--------------
-     White
----------------*/
-
-.ui.white.nags .nag,
-.ui.white.nag {
-  background-color: #F1F1F1;
-  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.8);
-  color: #ACACAC;
-}
-
-.ui.white.nags .nag .close,
-.ui.white.nags .nag .title,
-.ui.white.nag .close,
-.ui.white.nag .title {
-  color: #333333;
-}
-
-/*******************************
-           Groups
-*******************************/
-
-.ui.nags .nag {
-  border-radius: 0px;
-}
-
-/*
- * # Semantic - Popup
- * http://github.com/jlukic/semantic-ui/
- *
- *
- * Copyright 2013 Contributors
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
- *
- */
-
-/*******************************
-            Popup
-*******************************/
-
-.ui.popup {
-  display: none;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  z-index: 900;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  max-width: 250px;
-  background-color: #FFFFFF;
-  padding: 0.8em 1.2em;
-  font-size: 0.875rem;
-  font-weight: normal;
-  font-style: normal;
-  color: rgba(0, 0, 0, 0.7);
-  border-radius: 0.2em;
-  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.ui.popup .header {
-  padding: 0em 0em 0.5em;
-  font-size: 1.125em;
-  line-height: 1.2;
-  font-weight: bold;
-}
-
-.ui.popup:before {
-  position: absolute;
-  content: "";
-  width: 0.75em;
-  height: 0.75rem;
-  background-image: none;
-  background-color: #FFFFFF;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  z-index: 2;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-}
-
-.ui.popup .ui.button {
-  width: 100%;
-}
-
-/*******************************
-            Types
-*******************************/
-
-/*--------------
-     Spacing
----------------*/
-
-.ui.popup {
-  margin: 0em;
-}
-
-.ui.popup.bottom {
-  margin: 0.75em 0em 0em;
-}
-
-.ui.popup.top {
-  margin: 0em 0em 0.75em;
-}
-
-.ui.popup.left.center {
-  margin: 0em 0.75em 0em 0em;
-}
-
-.ui.popup.right.center {
-  margin: 0em 0em 0em 0.75em;
-}
-
-.ui.popup.center {
-  margin-left: -1.25em;
-}
-
-/*--------------
-     Pointer
----------------*/
-
-/*--- Below ---*/
-
-.ui.bottom.center.popup:before {
-  margin-left: -0.4em;
-  top: -0.4em;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-  -webkit-box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.2);
-  box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.2);
-}
-
-.ui.bottom.left.popup {
-  margin-right: -2em;
-}
-
-.ui.bottom.left.popup:before {
-  top: -0.4em;
-  right: 1em;
-  bottom: auto;
-  left: auto;
-  margin-left: 0em;
-  -webkit-box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.2);
-  box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.2);
-}
-
-.ui.bottom.right.popup {
-  margin-left: -2em;
-}
-
-.ui.bottom.right.popup:before {
-  top: -0.4em;
-  left: 1em;
-  right: auto;
-  bottom: auto;
-  margin-left: 0em;
-  -webkit-box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.2);
-  box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.2);
-}
-
-/*--- Above ---*/
-
-.ui.top.center.popup:before {
-  top: auto;
-  right: auto;
-  bottom: -0.4em;
-  left: 50%;
-  margin-left: -0.4em;
-}
-
-.ui.top.left.popup {
-  margin-right: -2em;
-}
-
-.ui.top.left.popup:before {
-  bottom: -0.4em;
-  right: 1em;
-  top: auto;
-  left: auto;
-  margin-left: 0em;
-}
-
-.ui.top.right.popup {
-  margin-left: -2em;
-}
-
-.ui.top.right.popup:before {
-  bottom: -0.4em;
-  left: 1em;
-  top: auto;
-  right: auto;
-  margin-left: 0em;
-}
-
-/*--- Left Center ---*/
-
-.ui.left.center.popup:before {
-  top: 50%;
-  right: -0.35em;
-  bottom: auto;
-  left: auto;
-  margin-top: -0.4em;
-  -webkit-box-shadow: 1px -1px 1px rgba(0, 0, 0, 0.2);
-  box-shadow: 1px -1px 1px rgba(0, 0, 0, 0.2);
-}
-
-/*--- Right Center  ---*/
-
-.ui.right.center.popup:before {
-  top: 50%;
-  left: -0.35em;
-  bottom: auto;
-  right: auto;
-  margin-top: -0.4em;
-  -webkit-box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.2);
-  box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.2);
-}
-
-/*******************************
-            States
-*******************************/
-
-.ui.loading.popup {
-  display: block;
-  visibility: hidden;
-}
-
-.ui.active.popup {
-  display: block;
-}
-
-/*******************************
-            Variations
-*******************************/
-
-/*--------------
-      Size
----------------*/
-
-.ui.small.popup {
-  font-size: 0.75rem;
-}
-
-.ui.large.popup {
-  font-size: 1rem;
-}
-
-/*--------------
-     Colors
----------------*/
-
-/* Inverted colors  */
-
-.ui.inverted.popup {
-  background-color: #333333;
-  border: none;
-  color: #FFFFFF;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-.ui.inverted.popup .header {
-  background-color: rgba(0, 0, 0, 0.2);
-  color: #FFFFFF;
-}
-
-.ui.inverted.popup:before {
-  background-color: #333333;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-/*
- * # Semantic - Rating
- * http://github.com/jlukic/semantic-ui/
- *
- *
- * Copyright 2013 Contributors
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
- *
- */
-
-/*******************************
-           Rating
-*******************************/
-
-.ui.rating {
-  display: inline-block;
-  font-size: 0em;
-  vertical-align: baseline;
-  margin: 0em 0.5rem 0em 0em;
-}
-
-.ui.rating:last-child {
-  margin-right: 0em;
-}
-
-.ui.rating:before {
-  display: block;
-  content: '';
-  visibility: hidden;
-  clear: both;
-  height: 0;
-}
-
-/* Icon */
-
-.ui.rating .icon {
-  cursor: default;
-  margin: 0em;
-  width: 1em;
-  height: auto;
-  padding: 0em;
-  color: rgba(0, 0, 0, 0.15);
-  font-weight: normal;
-  font-style: normal;
-}
-
-.ui.rating .icon:before {
-  content: "\2605";
-  -webkit-transition: color 0.3s ease,
-    opacity 0.3s ease;
-  transition: color 0.3s ease,
-    opacity 0.3s ease;
-}
-
-/*******************************
-             Types
-*******************************/
-
-/*-------------------
-        Star
---------------------*/
-
-.ui.star.rating .icon {
-  width: 1.2em;
-}
-
-/* Star */
-
-.ui.star.rating .icon:before {
-  content: '\f006';
-  font-family: 'Icons';
-}
-
-/* Active Star */
-
-.ui.star.rating .active.icon:before {
-  content: '\f005';
-  font-family: 'Icons';
-}
-
-/*-------------------
-        Heart
---------------------*/
-
-.ui.heart.rating .icon {
-  width: 1.2em;
-}
-
-.ui.heart.rating .icon:before {
-  content: '\f08a';
-  font-family: 'Icons';
-}
-
-/* Active */
-
-.ui.heart.rating .active.icon:before {
-  content: '\f004';
-  font-family: 'Icons';
-}
-
-.ui.heart.rating .active.icon {
-  color: #EF404A !important;
-}
-
-/* Hovered */
-
-.ui.heart.rating .hover.icon,
-.ui.heart.rating .active.hover.icon {
-  color: #FF2733 !important;
-}
-
-/*******************************
-             States
-*******************************/
-
-/*-------------------
-        Active
---------------------*/
-
-/* active rating */
-
-.ui.active.rating .icon {
-  cursor: pointer;
-}
-
-/* active icons */
-
-.ui.rating .active.icon {
-  color: #FFCB08 !important;
-}
-
-/*-------------------
-        Hover
---------------------*/
-
-/* rating */
-
-.ui.rating.hover .active.icon {
-  opacity: 0.5;
-}
-
-/* icon */
-
-.ui.rating .icon.hover,
-.ui.rating .icon.hover.active {
-  opacity: 1;
-  color: #FFB70A !important;
-}
-
-/*******************************
-          Variations
-*******************************/
-
-.ui.small.rating .icon {
-  font-size: 0.75rem;
-}
-
-.ui.rating .icon {
-  font-size: 1rem;
-}
-
-.ui.large.rating .icon {
-  font-size: 1.5rem;
-  vertical-align: middle;
-}
-
-.ui.huge.rating .icon {
-  font-size: 2rem;
-  vertical-align: middle;
-}
-
 /*
  * # Semantic - Reveal
  * http://github.com/jlukic/semantic-ui/
@@ -13947,7 +11259,3100 @@ a.ui.nag {
   -webkit-transition-delay: 0s !important;
   transition-delay: 0s !important;
 }
+/*
+ * # Semantic - Segment
+ * http://github.com/jlukic/semantic-ui/
+ *
+ *
+ * Copyright 2013 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
 
+/*******************************
+            Segment
+*******************************/
+
+.ui.segment {
+  position: relative;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+  margin: 1em 0em;
+  padding: 1em;
+  border-radius: 5px 5px 5px 5px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.ui.segment:first-child {
+  margin-top: 0em;
+}
+
+.ui.segment:last-child {
+  margin-bottom: 0em;
+}
+
+.ui.segment:after {
+  content: '';
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.ui.vertical.segment {
+  margin: 0em;
+  padding-left: 0em;
+  padding-right: 0em;
+  background-color: transparent;
+  border-radius: 0px;
+  -webkit-box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.1);
+}
+
+.ui.vertical.segment:first-child {
+  padding-top: 0em;
+}
+
+.ui.horizontal.segment {
+  margin: 0em;
+  padding-top: 0em;
+  padding-bottom: 0em;
+  background-color: transparent;
+  border-radius: 0px;
+  -webkit-box-shadow: 1px 0px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 0px 0px rgba(0, 0, 0, 0.1);
+}
+
+.ui.horizontal.segment:first-child {
+  padding-left: 0em;
+}
+
+/*-------------------
+    Loose Coupling
+--------------------*/
+
+.ui.pointing.menu + .ui.attached.segment {
+  top: 1px;
+}
+
+.ui.page.grid.segment .ui.grid .ui.segment.column {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.ui.grid.segment,
+.ui.grid .ui.segment.row,
+.ui.grid .ui.segment.column {
+  border-radius: 0em;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: none;
+}
+
+/* No padding on edge content */
+
+.ui.segment > :first-child {
+  margin-top: 0em;
+}
+
+.ui.segment > :last-child {
+  margin-bottom: 0em;
+}
+
+/*******************************
+             Types
+*******************************/
+
+/*-------------------
+        Piled
+--------------------*/
+
+.ui.piled.segment {
+  margin: 2em 0em;
+  -webkit-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
+  -ms-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
+  -o-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+.ui.piled.segment:first-child {
+  margin-top: 0em;
+}
+
+.ui.piled.segment:last-child {
+  margin-bottom: 0em;
+}
+
+.ui.piled.segment:after,
+.ui.piled.segment:before {
+  background-color: #FFFFFF;
+  visibility: visible;
+  content: "";
+  display: block;
+  height: 100%;
+  left: -1px;
+  position: absolute;
+  width: 100%;
+  -webkit-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.ui.piled.segment:after {
+  -webkit-transform: rotate(1.2deg);
+  -ms-transform: rotate(1.2deg);
+  transform: rotate(1.2deg);
+  top: 0;
+  z-index: -1;
+}
+
+.ui.piled.segment:before {
+  -webkit-transform: rotate(-1.2deg);
+  -ms-transform: rotate(-1.2deg);
+  transform: rotate(-1.2deg);
+  top: 0;
+  z-index: -2;
+}
+
+/*-------------------
+       Stacked
+--------------------*/
+
+.ui.stacked.segment {
+  padding-bottom: 1.7em;
+}
+
+.ui.stacked.segment:after,
+.ui.stacked.segment:before {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0%;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.02);
+  width: 100%;
+  height: 5px;
+  visibility: visible;
+}
+
+.ui.stacked.segment:before {
+  bottom: 0px;
+}
+
+/* Inverted */
+
+.ui.stacked.inverted.segment:after,
+.ui.stacked.inverted.segment:before {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+/*-------------------
+       Circular
+--------------------*/
+
+.ui.circular.segment {
+  display: table-cell;
+  padding: 2em;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 500em;
+}
+
+/*-------------------
+       Raised
+--------------------*/
+
+.ui.raised.segment {
+  -webkit-box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
+}
+
+/*******************************
+            States
+*******************************/
+
+.ui.disabled.segment {
+  opacity: 0.8;
+  color: #DDDDDD;
+}
+
+/*******************************
+           Variations
+*******************************/
+
+/*-------------------
+       Basic
+--------------------*/
+
+.ui.basic.segment {
+  position: relative;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0px;
+}
+
+.ui.basic.segment:first-child {
+  padding-top: 0em;
+}
+
+.ui.basic.segment:last-child {
+  padding-bottom: 0em;
+}
+
+/*-------------------
+       Fittted
+--------------------*/
+
+.ui.fitted.segment {
+  padding: 0em;
+}
+
+/*-------------------
+       Colors
+--------------------*/
+
+.ui.blue.segment {
+  border-top: 0.2em solid #6ECFF5;
+}
+
+.ui.green.segment {
+  border-top: 0.2em solid #A1CF64;
+}
+
+.ui.red.segment {
+  border-top: 0.2em solid #D95C5C;
+}
+
+.ui.orange.segment {
+  border-top: 0.2em solid #F05940;
+}
+
+.ui.purple.segment {
+  border-top: 0.2em solid #564F8A;
+}
+
+.ui.teal.segment {
+  border-top: 0.2em solid #00B5AD;
+}
+
+/*-------------------
+   Inverted Colors
+--------------------*/
+
+.ui.inverted.black.segment {
+  background-color: #5C6166 !important;
+  color: #FFFFFF !important;
+}
+
+.ui.inverted.blue.segment {
+  background-color: #6ECFF5 !important;
+  color: #FFFFFF !important;
+}
+
+.ui.inverted.green.segment {
+  background-color: #A1CF64 !important;
+  color: #FFFFFF !important;
+}
+
+.ui.inverted.red.segment {
+  background-color: #D95C5C !important;
+  color: #FFFFFF !important;
+}
+
+.ui.inverted.orange.segment {
+  background-color: #F05940 !important;
+  color: #FFFFFF !important;
+}
+
+.ui.inverted.purple.segment {
+  background-color: #564F8A !important;
+  color: #FFFFFF !important;
+}
+
+.ui.inverted.teal.segment {
+  background-color: #00B5AD !important;
+  color: #FFFFFF !important;
+}
+
+/*-------------------
+       Aligned
+--------------------*/
+
+.ui.left.aligned.segment {
+  text-align: left;
+}
+
+.ui.right.aligned.segment {
+  text-align: right;
+}
+
+.ui.center.aligned.segment {
+  text-align: center;
+}
+
+.ui.justified.segment {
+  text-align: justify;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
+/*-------------------
+       Floated
+--------------------*/
+
+.ui.floated.segment,
+.ui.left.floated.segment {
+  float: left;
+}
+
+.ui.right.floated.segment {
+  float: right;
+}
+
+/*-------------------
+      Inverted
+--------------------*/
+
+.ui.inverted.segment {
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.ui.inverted.segment .segment {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.ui.inverted.segment .inverted.segment {
+  color: #FFFFFF;
+}
+
+.ui.inverted.segment,
+.ui.primary.inverted.segment {
+  background-color: #222222;
+  color: #FFFFFF;
+}
+
+/*-------------------
+     Ordinality
+--------------------*/
+
+.ui.primary.segment {
+  background-color: #FFFFFF;
+  color: #555555;
+}
+
+.ui.secondary.segment {
+  background-color: #FAF9FA;
+  color: #777777;
+}
+
+.ui.tertiary.segment {
+  background-color: #EBEBEB;
+  color: #B0B0B0;
+}
+
+.ui.secondary.inverted.segment {
+  background-color: #555555;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255, 255, 255, 0.3)), to(rgba(255, 255, 255, 0.3)));
+  background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.3) 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.3)), to(rgba(255, 255, 255, 0.3)));
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.3) 100%);
+  color: #FAFAFA;
+}
+
+.ui.tertiary.inverted.segment {
+  background-color: #555555;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255, 255, 255, 0.6)), to(rgba(255, 255, 255, 0.6)));
+  background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.6) 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.6)), to(rgba(255, 255, 255, 0.6)));
+  background-image: linear-gradient(rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.6) 100%);
+  color: #EEEEEE;
+}
+
+/*-------------------
+      Attached
+--------------------*/
+
+.ui.segment.attached {
+  top: -1px;
+  bottom: -1px;
+  border-radius: 0px;
+  margin: 0em;
+  -webkit-box-shadow: 0px 0px 0px 1px #DDDDDD;
+  box-shadow: 0px 0px 0px 1px #DDDDDD;
+}
+
+.ui.top.attached.segment {
+  top: 0px;
+  bottom: -1px;
+  margin-top: 1em;
+  margin-bottom: 0em;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.ui.segment.top.attached:first-child {
+  margin-top: 0em;
+}
+
+.ui.segment.bottom.attached {
+  top: -1px;
+  bottom: 0px;
+  margin-top: 0em;
+  margin-bottom: 1em;
+  border-radius: 0px 0px 5px 5px;
+}
+
+.ui.segment.bottom.attached:last-child {
+  margin-bottom: 0em;
+}
+/*
+ * # Semantic - Steps
+ * http://github.com/jlukic/semantic-ui/
+ *
+ *
+ * Copyright 2013 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+/*******************************
+            Step
+*******************************/
+
+.ui.step,
+.ui.steps .step {
+  display: inline-block;
+  position: relative;
+  padding: 1em 2em 1em 3em;
+  vertical-align: top;
+  background-color: #FFFFFF;
+  color: #888888;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.ui.step:after,
+.ui.steps .step:after {
+  position: absolute;
+  z-index: 2;
+  content: '';
+  top: 0em;
+  right: -1.45em;
+  border-bottom: 1.5em solid transparent;
+  border-left: 1.5em solid #FFFFFF;
+  border-top: 1.5em solid transparent;
+  width: 0em;
+  height: 0em;
+}
+
+.ui.step,
+.ui.steps .step,
+.ui.steps .step:after {
+  -webkit-transition: opacity 0.1s ease, color 0.1s ease, -webkit-box-shadow 0.1s ease;
+  transition: opacity 0.1s ease, color 0.1s ease, box-shadow 0.1s ease;
+}
+
+/*******************************
+            Group
+*******************************/
+
+.ui.steps {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0em;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+  line-height: 1;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 0.3125rem;
+}
+
+.ui.steps .step:first-child {
+  padding-left: 1.35em;
+  border-radius: 0.3125em 0em 0em 0.3125em;
+}
+
+.ui.steps .step:last-child {
+  border-radius: 0em 0.3125em 0.3125em 0em;
+}
+
+.ui.steps .step:only-child {
+  border-radius: 0.3125em;
+}
+
+.ui.steps .step:last-child {
+  margin-right: 0em;
+}
+
+.ui.steps .step:last-child:after {
+  display: none;
+}
+
+/*******************************
+             States
+*******************************/
+
+/* Hover */
+
+.ui.step:hover,
+.ui.step.hover {
+  background-color: #F7F7F7;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.ui.steps .step.hover:after,
+.ui.steps .step:hover:after,
+.ui.step:hover,
+.ui.step.hover::after {
+  border-left-color: #F7F7F7;
+}
+
+/* Hover */
+
+.ui.steps .step.down,
+.ui.steps .step:active,
+.ui.step.down,
+.ui.step:active {
+  background-color: #F0F0F0;
+}
+
+.ui.steps .step.down:after,
+.ui.steps .step:active:after,
+.ui.steps.down::after,
+.ui.steps:active::after {
+  border-left-color: #F0F0F0;
+}
+
+/* Active */
+
+.ui.steps .step.active,
+.ui.active.step {
+  cursor: auto;
+  background-color: #555555;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+.ui.steps .step.active:after,
+.ui.active.steps:after {
+  border-left-color: #555555;
+}
+
+/* Disabled */
+
+.ui.steps .disabled.step,
+.ui.disabled.step {
+  cursor: auto;
+  background-color: #FFFFFF;
+  color: #CBCBCB;
+}
+
+.ui.disabled.step:after {
+  border: none;
+  background-color: #FFFFFF;
+  top: 0.42em;
+  right: -1em;
+  width: 2.15em;
+  height: 2.15em;
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-box-shadow: -1px -1px 0px 0px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: -1px -1px 0px 0px rgba(0, 0, 0, 0.1) inset;
+}
+
+/*******************************
+           Variations
+*******************************/
+
+/* Attached */
+
+.attached.ui.steps {
+  margin: 0em;
+  border-radius: 0.3125em 0.3125em 0em 0em;
+}
+
+.attached.ui.steps .step:first-child {
+  border-radius: 0.3125em 0em 0em 0em;
+}
+
+.attached.ui.steps .step:last-child {
+  border-radius: 0em 0.3125em 0em 0em;
+}
+
+/* Bottom Side */
+
+.bottom.attached.ui.steps {
+  margin-top: -1px;
+  border-radius: 0em 0em 0.3125em 0.3125em;
+}
+
+.bottom.attached.ui.steps .step:first-child {
+  border-radius: 0em 0em 0em 0.3125em;
+}
+
+.bottom.attached.ui.steps .step:last-child {
+  border-radius: 0em 0em 0.3125em 0em;
+}
+
+/* Evenly divided  */
+
+.ui.one.steps,
+.ui.two.steps,
+.ui.three.steps,
+.ui.four.steps,
+.ui.five.steps,
+.ui.six.steps,
+.ui.seven.steps,
+.ui.eight.steps {
+  display: block;
+}
+
+.ui.one.steps > .step {
+  width: 100%;
+}
+
+.ui.two.steps > .step {
+  width: 50%;
+}
+
+.ui.three.steps > .step {
+  width: 33.333%;
+}
+
+.ui.four.steps > .step {
+  width: 25%;
+}
+
+.ui.five.steps > .step {
+  width: 20%;
+}
+
+.ui.six.steps > .step {
+  width: 16.666%;
+}
+
+.ui.seven.steps > .step {
+  width: 14.285%;
+}
+
+.ui.eight.steps > .step {
+  width: 12.500%;
+}
+
+/*******************************
+             Sizes
+*******************************/
+
+.ui.small.step,
+.ui.small.steps .step {
+  font-size: 0.8rem;
+}
+
+.ui.step,
+.ui.steps .step {
+  font-size: 1rem;
+}
+
+.ui.large.step,
+.ui.large.steps .step {
+  font-size: 1.25rem;
+}
+/*
+ * # Semantic - Accordion
+ * http://github.com/jlukic/semantic-ui/
+ *
+ *
+ * Copyright 2013 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+/*******************************
+            Accordion
+*******************************/
+
+.ui.accordion,
+.ui.accordion .accordion {
+  width: 600px;
+  max-width: 100%;
+  font-size: 1rem;
+  border-radius: 0.3125em;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+}
+
+.ui.accordion .title {
+  cursor: pointer;
+  margin: 0em;
+  padding: 0.75em 1em;
+  color: rgba(0, 0, 0, 0.6);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  -webkit-transition: background-color 0.2s ease-out;
+  transition: background-color 0.2s ease-out;
+}
+
+.ui.accordion .title:first-child {
+  border-top: none;
+}
+
+/* Content */
+
+.ui.accordion .content {
+  display: none;
+  margin: 0em;
+  padding: 1.3em 1em;
+}
+
+/* Arrow */
+
+.ui.accordion .title .dropdown.icon {
+  display: inline-block;
+  float: none;
+  margin: 0em 0.5em 0em 0em;
+  -webkit-transition: -webkit-transform 0.2s ease, opacity 0.2s ease;
+  transition: transform 0.2s ease,
+    opacity 0.2s ease;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+
+.ui.accordion .title .dropdown.icon:before {
+  content: '\f0da';
+}
+
+/*--------------
+ Loose Coupling
+---------------*/
+
+.ui.basic.accordion.menu {
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+}
+
+.ui.basic.accordion.menu .title,
+.ui.basic.accordion.menu .content {
+  padding: 0em;
+}
+
+/*******************************
+            Types
+*******************************/
+
+/*--------------
+     Basic
+---------------*/
+
+.ui.basic.accordion {
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.ui.basic.accordion .title,
+.ui.basic.accordion .title {
+  background-color: transparent;
+  border-top: none;
+  padding-left: 0em;
+  padding-right: 0em;
+}
+
+.ui.basic.accordion .content {
+  padding: 0.5em 0em;
+}
+
+.ui.basic.accordion .active.title {
+  background-color: transparent;
+}
+
+/*******************************
+            States
+*******************************/
+
+/*--------------
+      Hover
+---------------*/
+
+.ui.accordion .title:hover,
+.ui.accordion .active.title {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/*--------------
+     Active
+---------------*/
+
+.ui.accordion .active.title {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.ui.accordion .active.title .dropdown.icon {
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.ui.accordion .active.content {
+  display: block;
+}
+
+/*******************************
+           Variations
+*******************************/
+
+/*--------------
+     Fluid
+---------------*/
+
+.ui.fluid.accordion,
+.ui.fluid.accordion .accordion {
+  width: 100%;
+}
+/*
+ * # Semantic - Chat Room
+ * http://github.com/jlukic/semantic-ui/
+ *
+ *
+ * Copyright 2013 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+/*******************************
+           Chat Room
+*******************************/
+
+.ui.chatroom {
+  background-color: #F8F8F8;
+  width: 330px;
+  height: 370px;
+  padding: 0px;
+}
+
+.ui.chatroom .room {
+  position: relative;
+  background-color: #FFFFFF;
+  overflow: hidden;
+  height: 286px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: none;
+  border-bottom: none;
+}
+
+.ui.chatroom .room .loader {
+  display: none;
+  margin: -25px 0px 0px -25px;
+}
+
+/* Chat Room Actions */
+
+.ui.chatroom .actions {
+  overflow: hidden;
+  background-color: #EEEEEE;
+  padding: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px 5px 0px 0px;
+}
+
+.ui.chatroom .actions .button {
+  float: right;
+  margin-left: 3px;
+}
+
+/* Online User Count */
+
+.ui.chatroom .actions .message {
+  float: left;
+  margin-left: 6px;
+  font-size: 11px;
+  color: #AAAAAA;
+  text-shadow: 0px -1px 0px rgba(255, 255, 255, 0.8);
+  line-height: 28px;
+}
+
+.ui.chatroom .actions .message .loader {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+/* Chat Room Text Log */
+
+.ui.chatroom .log {
+  float: left;
+  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.ui.chatroom .log .message {
+  padding: 3px 0px;
+  border-top: 1px dotted #DADADA;
+}
+
+.ui.chatroom .log .message:first-child {
+  border-top: none;
+}
+
+/* status event */
+
+.ui.chatroom .status {
+  padding: 5px 0px;
+  color: #AAAAAA;
+  font-size: 12px;
+  font-style: italic;
+  line-height: 1.33;
+  border-top: 1px dotted #DADADA;
+}
+
+.ui.chatroom .log .status:first-child {
+  border-top: none;
+}
+
+.ui.chatroom .log .flag {
+  float: left;
+}
+
+.ui.chatroom .log p {
+  margin-left: 0px;
+}
+
+.ui.chatroom .log .author {
+  font-weight: bold;
+  -webkit-transition: color 0.3s ease-out;
+  transition: color 0.3s ease-out;
+}
+
+.ui.chatroom .log a.author:hover {
+  opacity: 0.8;
+}
+
+.ui.chatroom .log .message.admin p {
+  font-weight: bold;
+  margin: 1px 0px 0px 23px;
+}
+
+.ui.chatroom .log .divider {
+  margin: -1px 0px;
+  font-size: 11px;
+  padding: 10px 0px;
+  border-top: 1px solid #F8F8F8;
+  border-bottom: 1px solid #F8F8F8;
+}
+
+.ui.chatroom .log .divider .rule {
+  top: 50%;
+  width: 15%;
+}
+
+.ui.chatroom .log .divider .label {
+  color: #777777;
+  margin: 0px;
+}
+
+/* Chat Room User List */
+
+.ui.chatroom .room .list {
+  position: relative;
+  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  float: left;
+  background-color: #EEEEEE;
+  border-left: 1px solid #DDDDDD;
+}
+
+.ui.chatroom .room .list .user {
+  display: table;
+  padding: 3px 7px;
+  border-bottom: 1px solid #DDDDDD;
+}
+
+.ui.chatroom .room .list .user:hover {
+  background-color: #F8F8F8;
+}
+
+.ui.chatroom .room .list .image {
+  display: table-cell;
+  vertical-align: middle;
+  width: 20px;
+}
+
+.ui.chatroom .room .list .image img {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+
+.ui.chatroom .room .list p {
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 7px;
+  padding-right: 14px;
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: bold;
+}
+
+.ui.chatroom .room .list a:hover {
+  opacity: 0.8;
+}
+
+/* User List Loading */
+
+.ui.chatroom.loading .loader {
+  display: block;
+}
+
+/* Chat Room Talk Input */
+
+.ui.chatroom .talk {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 5px 0px 0px;
+  background-color: #EEEEEE;
+  border-radius: 0px 0px 5px 5px;
+}
+
+.ui.chatroom .talk .avatar,
+.ui.chatroom .talk input,
+.ui.chatroom .talk .button {
+  float: left;
+}
+
+.ui.chatroom .talk .avatar img {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin-right: 4px;
+  border-radius: 500rem;
+}
+
+.ui.chatroom .talk input {
+  border: 1px solid #CCCCCC;
+  margin: 0px;
+  width: 196px;
+  height: 14px;
+  padding: 8px 5px;
+  font-size: 12px;
+  color: #555555;
+}
+
+.ui.chatroom .talk input.focus {
+  border: 1px solid #AAAAAA;
+}
+
+.ui.chatroom .send {
+  width: 80px;
+  height: 32px;
+  margin-left: -1px;
+  padding: 4px 12px;
+  font-size: 12px;
+  line-height: 23px;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+  border-radius: 0 5px 5px 0;
+}
+
+.ui.chatroom .talk .log-in.button {
+  display: block;
+  float: none;
+  margin-top: -6px;
+  height: 22px;
+  border-radius: 0px 0px 4px 4px;
+}
+
+.ui.chatroom .talk .log-in.button i {
+  vertical-align: text-top;
+}
+
+/* Quirky Flags */
+
+.ui.chatroom .log .team.flag {
+  width: 18px;
+}
+
+/* Chat room Loaded */
+
+.ui.chatroom.loading .loader {
+  display: block;
+}
+
+/* Standard Size */
+
+.ui.chatroom {
+  width: 330px;
+  height: 370px;
+}
+
+.ui.chatroom .room .container {
+  width: 3000px;
+}
+
+.ui.chatroom .log {
+  width: 314px;
+  height: 278px;
+  padding: 4px 7px;
+}
+
+.ui.chatroom .room .list {
+  width: 124px;
+  height: 278px;
+  padding: 4px 0px;
+}
+
+.ui.chatroom .room .list .user {
+  width: 110px;
+}
+
+.ui.chatroom .talk {
+  height: 40px;
+}
+/*
+ * # Semantic - Checkbox
+ * http://github.com/jlukic/semantic-ui/
+ *
+ *
+ * Copyright 2013 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+/*******************************
+           Checkbox
+*******************************/
+
+/*--------------
+    Standard
+---------------*/
+
+/*--- Content ---*/
+
+.ui.checkbox {
+  position: relative;
+  display: inline-block;
+  min-width: 1em;
+  height: 1.25em;
+  line-height: 1em;
+  outline: none;
+  vertical-align: middle;
+}
+
+.ui.checkbox input {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  opacity: 0;
+  outline: none;
+}
+
+/*--- Box ---*/
+
+.ui.checkbox .box,
+.ui.checkbox label {
+  cursor: pointer;
+  padding-left: 2em;
+  outline: none;
+}
+
+.ui.checkbox .box:before,
+.ui.checkbox label:before {
+  position: absolute;
+  top: 0em;
+  line-height: 1;
+  width: 1em;
+  height: 1em;
+  left: 0em;
+  content: '';
+  border-radius: 4px;
+  background: #FFFFFF;
+  -webkit-transition: background-color 0.3s ease, -webkit-box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  -webkit-box-shadow: 0em 0em 0em 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0em 0em 0em 1px rgba(0, 0, 0, 0.2);
+}
+
+/*--- Checkbox ---*/
+
+.ui.checkbox .box:after,
+.ui.checkbox label:after {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
+  content: '';
+  position: absolute;
+  background: transparent;
+  border: 0.2em solid #333333;
+  border-top: none;
+  border-right: none;
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.ui.checkbox .box:after,
+.ui.checkbox label:after {
+  top: 0.275em;
+  left: 0.2em;
+  width: 0.45em;
+  height: 0.15em;
+}
+
+/*--- Inside Label ---*/
+
+.ui.checkbox label {
+  color: rgba(0, 0, 0, 0.6);
+  -webkit-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+
+.ui.checkbox label:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.ui.checkbox input:focus + label {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/*--- Outside Label  ---*/
+
+.ui.checkbox + label {
+  cursor: pointer;
+  opacity: 0.85;
+  vertical-align: middle;
+}
+
+.ui.checkbox + label:hover {
+  opacity: 1;
+}
+
+/*******************************
+           States
+*******************************/
+
+/*--- Hover ---*/
+
+.ui.checkbox .box:hover::before,
+.ui.checkbox label:hover::before {
+  -webkit-box-shadow: 0em 0em 0em 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0em 0em 0em 1px rgba(0, 0, 0, 0.3);
+}
+
+/*--- Down ---*/
+
+.ui.checkbox .box:active::before,
+.ui.checkbox label:active::before {
+  background-color: #F5F5F5;
+}
+
+/*--- Focus ---*/
+
+.ui.checkbox input:focus + .box:before,
+.ui.checkbox input:focus + label:before {
+  -webkit-box-shadow: 0em 0em 0em 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0em 0em 0em 1px rgba(0, 0, 0, 0.3);
+}
+
+/*--- Active ---*/
+
+.ui.checkbox input:checked + .box:after,
+.ui.checkbox input:checked + label:after {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+
+/*--- Disabled ---*/
+
+.ui.disabled.checkbox + .box:after,
+.ui.checkbox input[disabled] + .box:after,
+.ui.disabled.checkbox label,
+.ui.checkbox input[disabled] + label {
+  opacity: 0.4;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+/*******************************
+          Variations
+*******************************/
+
+/*--------------
+     Radio
+---------------*/
+
+.ui.radio.checkbox .box:before,
+.ui.radio.checkbox label:before {
+  min-width: 1em;
+  height: 1em;
+  border-radius: 500px;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+.ui.radio.checkbox .box:after,
+.ui.radio.checkbox label:after {
+  border: none;
+  top: 0.2em;
+  left: 0.2em;
+  width: 0.6em;
+  height: 0.6em;
+  background-color: #555555;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  border-radius: 500px;
+}
+
+/*--------------
+     Slider
+---------------*/
+
+.ui.slider.checkbox {
+  cursor: pointer;
+  min-width: 3em;
+}
+
+/* Line */
+
+.ui.slider.checkbox:after {
+  position: absolute;
+  top: 0.5em;
+  left: 0em;
+  content: '';
+  width: 3em;
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Button */
+
+.ui.slider.checkbox .box,
+.ui.slider.checkbox label {
+  padding-left: 4em;
+}
+
+.ui.slider.checkbox .box:before,
+.ui.slider.checkbox label:before {
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  top: -0.25em;
+  left: 0em;
+  z-index: 1;
+  width: 1.5em;
+  height: 1.5em;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1) inset;
+  border-radius: 50rem;
+  -webkit-transition: left 0.3s ease 0s;
+  transition: left 0.3s ease 0s;
+}
+
+/* Button Activation Light */
+
+.ui.slider.checkbox .box:after,
+.ui.slider.checkbox label:after {
+  opacity: 1;
+  position: absolute;
+  content: '';
+  top: 0.15em;
+  left: 0em;
+  z-index: 2;
+  margin-left: 0.375em;
+  border: none;
+  width: 0.75em;
+  height: 0.75em;
+  border-radius: 50rem;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  -webkit-transition: background 0.3s ease 0s,
+    left 0.3s ease 0s;
+  transition: background 0.3s ease 0s,
+    left 0.3s ease 0s;
+}
+
+/* Selected Slider Toggle */
+
+.ui.slider.checkbox input:checked + .box:before,
+.ui.slider.checkbox input:checked + label:before,
+.ui.slider.checkbox input:checked + .box:after,
+.ui.slider.checkbox input:checked + label:after {
+  left: 1.75em;
+}
+
+/* Off Color */
+
+.ui.slider.checkbox .box:after,
+.ui.slider.checkbox label:after {
+  background-color: #D95C5C;
+}
+
+/* On Color */
+
+.ui.slider.checkbox input:checked + .box:after,
+.ui.slider.checkbox input:checked + label:after {
+  background-color: #89B84C;
+}
+
+/*--------------
+     Toggle
+---------------*/
+
+.ui.toggle.checkbox {
+  cursor: pointer;
+}
+
+.ui.toggle.checkbox .box,
+.ui.toggle.checkbox label {
+  padding-left: 4em;
+}
+
+/* Switch */
+
+.ui.toggle.checkbox .box:before,
+.ui.toggle.checkbox label:before {
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  content: '';
+  top: -0.25em;
+  left: 0em;
+  z-index: 1;
+  background-color: #FFFFFF;
+  width: 3em;
+  height: 1.5em;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1) inset;
+  border-radius: 50rem;
+}
+
+/* Activation Light */
+
+.ui.toggle.checkbox .box:after,
+.ui.toggle.checkbox label:after {
+  opacity: 1;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  content: '';
+  position: absolute;
+  top: 0.15em;
+  left: 0.5em;
+  z-index: 2;
+  border: none;
+  width: 0.75em;
+  height: 0.75em;
+  background-color: #D95C5C;
+  border-radius: 50rem;
+  -webkit-transition: background 0.3s ease 0s,
+    left 0.3s ease 0s;
+  transition: background 0.3s ease 0s,
+    left 0.3s ease 0s;
+}
+
+/* Active */
+
+.ui.toggle.checkbox:active .box:before,
+.ui.toggle.checkbox:active label:before {
+  background-color: #F5F5F5;
+}
+
+/* Active */
+
+.ui.toggle.checkbox input:checked + .box:after,
+.ui.toggle.checkbox input:checked + label:after {
+  left: 1.75em;
+  background-color: #89B84C;
+}
+
+/*--------------
+     Sizes
+---------------*/
+
+.ui.checkbox {
+  font-size: 1em;
+}
+
+.ui.large.checkbox {
+  font-size: 1.25em;
+}
+
+.ui.huge.checkbox {
+  font-size: 1.5em;
+}
+/*
+ * # Semantic - Dimmer
+ * http://github.com/jlukic/semantic-ui/
+ *
+ *
+ * Copyright 2013 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+/*******************************
+            Dimmer
+*******************************/
+
+.ui.dimmable {
+  position: relative;
+}
+
+.ui.dimmer {
+  display: none;
+  position: absolute;
+  top: 0em !important;
+  left: 0em !important;
+  width: 0%;
+  height: 0%;
+  text-align: center;
+  vertical-align: middle;
+  background-color: rgba(0, 0, 0, 0.85);
+  opacity: 0;
+  line-height: 1;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-transition: background-color 0.5s linear;
+  transition: background-color 0.5s linear;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+/* Dimmer Content */
+
+.ui.dimmer > .content {
+  width: 100%;
+  height: 100%;
+  display: table;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+.ui.dimmer > .content > div {
+  display: table-cell;
+  vertical-align: middle;
+  color: #FFFFFF;
+}
+
+/* Loose Coupling */
+
+.ui.segment > .ui.dimmer {
+  border-radius: 5px;
+}
+
+.ui.horizontal.segment > .ui.dimmer,
+.ui.vertical.segment > .ui.dimmer {
+  border-radius: 5px;
+}
+
+/*******************************
+            States
+*******************************/
+
+.ui.dimmed.dimmable:not(body) {
+  overflow: hidden;
+}
+
+.ui.dimmed.dimmable > .ui.animating.dimmer,
+.ui.dimmed.dimmable > .ui.visible.dimmer,
+.ui.active.dimmer {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+.ui.disabled.dimmer {
+  width: 0em !important;
+  height: 0em !important;
+}
+
+/*******************************
+           Variations
+*******************************/
+
+/*--------------
+      Page
+---------------*/
+
+.ui.page.dimmer {
+  position: fixed;
+  -webkit-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-perspective: 2000px;
+  -ms-perspective: 2000px;
+  perspective: 2000px;
+  -webkit-transform-origin: center center;
+  -ms-transform-origin: center center;
+  transform-origin: center center;
+}
+
+.ui.scrolling.dimmable > .dimmer,
+.ui.scrolling.page.dimmer {
+  position: absolute;
+}
+
+/*--------------
+    Aligned
+---------------*/
+
+.ui.dimmer > .top.aligned.content > * {
+  vertical-align: top;
+}
+
+.ui.dimmer > .bottom.aligned.content > * {
+  vertical-align: bottom;
+}
+
+/*--------------
+    Inverted
+---------------*/
+
+.ui.inverted.dimmer {
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+.ui.inverted.dimmer > .content > * {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/*--------------
+     Simple
+---------------*/
+
+/* Displays without javascript */
+
+.ui.simple.dimmer {
+  display: block;
+  overflow: hidden;
+  opacity: 1;
+  z-index: -100;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.ui.dimmed.dimmable > .ui.simple.dimmer {
+  overflow: visible;
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1;
+}
+
+.ui.simple.inverted.dimmer {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.ui.dimmed.dimmable > .ui.simple.inverted.dimmer {
+  background-color: rgba(255, 255, 255, 0.85);
+}
+/*
+ * # Semantic - Dropdown
+ * http://github.com/jlukic/semantic-ui/
+ *
+ *
+ * Copyright 2013 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+/*******************************
+            Dropdown
+*******************************/
+
+.ui.dropdown {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  -webkit-transition: border-radius 0.1s ease, width 0.2s ease;
+  transition: border-radius 0.1s ease, width 0.2s ease;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -moz-tap-highlight-color: rgba(0, 0, 0, 0);
+  tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/*******************************
+            Content
+*******************************/
+
+/*--------------
+     Menu
+---------------*/
+
+.ui.dropdown .menu {
+  cursor: auto;
+  position: absolute;
+  display: none;
+  top: 100%;
+  margin: 0em;
+  background-color: #FFFFFF;
+  min-width: 100%;
+  white-space: nowrap;
+  font-size: 0.875em;
+  text-shadow: none;
+  -webkit-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 0px 0px 0.325em 0.325em;
+  -webkit-transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease;
+  z-index: 11;
+}
+
+/*--------------
+      Icon
+---------------*/
+
+.ui.dropdown > .dropdown.icon {
+  width: auto;
+  margin: 0em 0em 0em 1em;
+}
+
+.ui.dropdown > .dropdown.icon:before {
+  content: "\f0d7";
+}
+
+.ui.dropdown .menu .item .dropdown.icon {
+  width: auto;
+  float: right;
+  margin: 0em 0em 0em 0.5em;
+}
+
+.ui.dropdown .menu .item .dropdown.icon:before {
+  content: "\f0da";
+}
+
+/*--------------
+      Text
+---------------*/
+
+.ui.dropdown > .text {
+  display: inline-block;
+  -webkit-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+
+/* Flyout Direction */
+
+.ui.dropdown .menu {
+  left: 0px;
+}
+
+/*--------------
+    Sub Menu
+---------------*/
+
+.ui.dropdown .menu .menu {
+  top: 0% !important;
+  left: 100% !important;
+  margin: 0em !important;
+  border-radius: 0 0.325em 0.325em 0em !important;
+}
+
+.ui.dropdown .menu .menu:after {
+  display: none;
+}
+
+.ui.dropdown .menu .item {
+  cursor: pointer;
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  height: auto;
+  font-size: 0.875em;
+  display: block;
+  color: rgba(0, 0, 0, 0.75);
+  padding: 0.85em 1em !important;
+  font-size: 0.875rem;
+  text-transform: none;
+  font-weight: normal;
+  text-align: left;
+  -webkit-touch-callout: none;
+}
+
+.ui.dropdown .menu .item:before {
+  display: none;
+}
+
+.ui.dropdown .menu .item .icon {
+  margin-right: 0.75em;
+}
+
+.ui.dropdown .menu .item:first-child {
+  border-top: none;
+}
+
+/*******************************
+            Coupling
+*******************************/
+
+/* Opposite on last menu on right */
+
+.ui.menu .right.menu .dropdown:last-child .menu,
+.ui.buttons > .ui.dropdown:last-child .menu {
+  left: auto;
+  right: 0px;
+}
+
+.ui.vertical.menu .dropdown.item > .dropdown.icon:before {
+  content: "\f0da";
+}
+
+.ui.dropdown.icon.button > .dropdown.icon {
+  margin: 0em;
+}
+
+/*******************************
+            States
+*******************************/
+
+/* Dropdown Visible */
+
+.ui.visible.dropdown > .menu {
+  display: block;
+}
+
+/* Menu Item Hover */
+
+.ui.dropdown .menu .item:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+  z-index: 12;
+}
+
+/* Menu Item Active */
+
+.ui.dropdown .menu .active.item {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+  border-left: none;
+  border-color: transparent !important;
+  -webkit-box-shadow: none;
+  -moz-shadow: none;
+  box-shadow: none;
+  z-index: 12;
+}
+
+/* Default Text */
+
+.ui.dropdown > .default.text,
+.ui.default.dropdown > .text {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.ui.dropdown:hover > .default.text,
+.ui.default.dropdown:hover > .text {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/*******************************
+           Variations
+*******************************/
+
+/*--------------
+     Simple
+---------------*/
+
+/* Displays without javascript */
+
+.ui.simple.dropdown .menu:before,
+.ui.simple.dropdown .menu:after {
+  display: none;
+}
+
+.ui.simple.dropdown .menu {
+  display: block;
+  overflow: hidden;
+  top: -9999px !important;
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  -webkit-transition: opacity 0.2s ease-out;
+  transition: opacity 0.2s ease-out;
+}
+
+.ui.simple.active.dropdown,
+.ui.simple.dropdown:hover {
+  border-bottom-left-radius: 0em !important;
+  border-bottom-right-radius: 0em !important;
+}
+
+.ui.simple.active.dropdown > .menu,
+.ui.simple.dropdown:hover > .menu {
+  overflow: visible;
+  width: auto;
+  height: auto;
+  top: 100% !important;
+  opacity: 1;
+}
+
+.ui.simple.dropdown > .menu .item:active > .menu,
+.ui.simple.dropdown:hover > .menu .item:hover > .menu {
+  overflow: visible;
+  width: auto;
+  height: auto;
+  top: 0% !important;
+  left: 100% !important;
+  opacity: 1;
+}
+
+.ui.simple.disabled.dropdown:hover .menu {
+  display: none;
+  height: 0px;
+  width: 0px;
+  overflow: hidden;
+}
+
+/*--------------
+    Selection
+---------------*/
+
+/* Displays like a select box */
+
+.ui.selection.dropdown {
+  cursor: pointer;
+  display: inline-block;
+  word-wrap: break-word;
+  white-space: normal;
+  background-color: #FFFFFF;
+  padding: 0.5em 1em;
+  line-height: 1.33;
+  color: rgba(0, 0, 0, 0.8);
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 0.3125em !important;
+}
+
+.ui.selection.dropdown select {
+  display: none;
+}
+
+.ui.selection.dropdown > .dropdown.icon {
+  opacity: 0.7;
+  margin: 0.2em 0em 0.2em 1.25em;
+  -webkit-transition: opacity 0.2s ease-out;
+  transition: opacity 0.2s ease-out;
+}
+
+.ui.selection.dropdown,
+.ui.selection.dropdown .menu {
+  top: 100%;
+  -webkit-transition: -webkit-box-shadow 0.2s ease-out;
+  transition: box-shadow 0.2s ease-out;
+}
+
+.ui.selection.dropdown .menu {
+  max-height: 312px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-box-shadow: 0px 1px 0px 1px #E0E0E0;
+  box-shadow: 0px 1px 0px 1px #E0E0E0;
+  border-radius: 0px 0px 0.325em 0.325em;
+}
+
+.ui.selection.dropdown .menu:after,
+.ui.selection.dropdown .menu:before {
+  display: none;
+}
+
+.ui.selection.dropdown .menu img {
+  height: 2.5em;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.5em;
+}
+
+/* Hover */
+
+.ui.selection.dropdown:hover {
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.2) !important;
+}
+
+.ui.selection.dropdown:hover .menu {
+  -webkit-box-shadow: 0px 1px 0px 1px #D3D3D3;
+  box-shadow: 0px 1px 0px 1px #D3D3D3;
+}
+
+.ui.selection.dropdown:hover > .dropdown.icon {
+  opacity: 1;
+}
+
+/* Visible */
+
+.ui.visible.selection.dropdown {
+  border-bottom-left-radius: 0em !important;
+  border-bottom-right-radius: 0em !important;
+}
+
+/* Active */
+
+.ui.active.selection.dropdown {
+  border-radius: 0.3125em 0.3125em 0em 0em !important;
+}
+
+.ui.active.selection.dropdown > .dropdown.icon {
+  opacity: 1;
+}
+
+/*--------------
+      Fluid
+---------------*/
+
+.ui.fluid.dropdown {
+  display: block;
+}
+
+.ui.fluid.dropdown > .dropdown.icon {
+  float: right;
+}
+
+/*--------------
+     Inline
+---------------*/
+
+.ui.inline.dropdown {
+  cursor: pointer;
+  display: inline-block;
+  color: inherit;
+}
+
+.ui.inline.dropdown .dropdown.icon {
+  margin: 0em 0.5em 0em 0.25em;
+}
+
+.ui.inline.dropdown .text {
+  font-weight: bold;
+}
+
+.ui.inline.dropdown .menu {
+  cursor: auto;
+  margin-top: 0.25em;
+  border-radius: 0.325em;
+}
+
+/*--------------
+    Floating
+---------------*/
+
+.ui.floating.dropdown .menu {
+  left: 0;
+  right: auto;
+  margin-top: 0.5em !important;
+  border-radius: 0.325em;
+}
+
+/*--------------
+     Pointing
+---------------*/
+
+.ui.pointing.dropdown .menu {
+  top: 100%;
+  margin-top: 0.75em;
+  border-radius: 0.325em;
+}
+
+.ui.pointing.dropdown .menu:after {
+  display: block;
+  position: absolute;
+  pointer-events: none;
+  content: " ";
+  visibility: visible;
+  width: 0.5em;
+  height: 0.5em;
+  -webkit-box-shadow: -1px -1px 0px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: -1px -1px 0px 1px rgba(0, 0, 0, 0.05);
+  background-image: none;
+  background-color: #FFFFFF;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  z-index: 2;
+}
+
+.ui.pointing.dropdown .menu .active.item:first-child {
+  background: transparent -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.03));
+  background: transparent-webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.03)));
+  background: transparent linear-gradient(transparent, rgba(0, 0, 0, 0.03));
+}
+
+/* Directions */
+
+.ui.pointing.dropdown .menu:after {
+  top: -0.25em;
+  left: 50%;
+  margin: 0em 0em 0em -0.25em;
+}
+
+.ui.top.left.pointing.dropdown .menu {
+  top: 100%;
+  bottom: auto;
+  left: 0%;
+  right: auto;
+  margin: 0.75em 0em 0em;
+}
+
+.ui.top.left.pointing.dropdown .menu:after {
+  top: -0.25em;
+  left: 1.25em;
+  right: auto;
+  margin: 0em;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.ui.top.right.pointing.dropdown .menu {
+  top: 100%;
+  bottom: auto;
+  right: 0%;
+  left: auto;
+  margin: 0.75em 0em 0em;
+}
+
+.ui.top.right.pointing.dropdown .menu:after {
+  top: -0.25em;
+  left: auto;
+  right: 1.25em;
+  margin: 0em;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.ui.left.pointing.dropdown .menu {
+  top: 0%;
+  left: 100%;
+  right: auto;
+  margin: 0em 0em 0em 0.75em;
+}
+
+.ui.left.pointing.dropdown .menu:after {
+  top: 1em;
+  left: -0.25em;
+  margin: 0em 0em 0em 0em;
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.ui.right.pointing.dropdown .menu {
+  top: 0%;
+  left: auto;
+  right: 100%;
+  margin: 0em 0.75em 0em 0em;
+}
+
+.ui.right.pointing.dropdown .menu:after {
+  top: 1em;
+  left: auto;
+  right: -0.25em;
+  margin: 0em 0em 0em 0em;
+  -webkit-transform: rotate(135deg);
+  -ms-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+/*
+ * # Semantic - Modal
+ * http://github.com/jlukic/semantic-ui/
+ *
+ *
+ * Copyright 2013 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+/*******************************
+             Modal
+*******************************/
+
+.ui.modal {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  top: 50%;
+  left: 50%;
+  text-align: left;
+  width: 90%;
+  margin-left: -45%;
+  background-color: #FFFFFF;
+  border: 1px solid #DDDDDD;
+  border-radius: 5px;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/*******************************
+            Content
+*******************************/
+
+/*--------------
+     Close
+---------------*/
+
+.ui.modal > .close {
+  cursor: pointer;
+  position: absolute;
+  opacity: 0.8;
+  font-size: 1.25em;
+  top: -1.75em;
+  right: -1.75em;
+  color: #FFFFFF;
+}
+
+.ui.modal > .close:hover {
+  opacity: 1;
+}
+
+/*--------------
+     Header
+---------------*/
+
+.ui.modal > .header {
+  margin: 0em;
+  padding: 1.5rem 2rem;
+  font-size: 1.6em;
+  font-weight: bold;
+  border-radius: 0.325em 0.325em 0px 0px;
+}
+
+/*--------------
+     Content
+---------------*/
+
+.ui.modal > .content {
+  display: table;
+  width: 100%;
+  position: relative;
+  padding: 2em;
+  background-color: #F4F4F4;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.ui.modal > .content > .left:not(.ui) {
+  display: table-cell;
+  padding-right: 1.5%;
+  min-width: 25%;
+}
+
+.ui.modal > .content > .right:not(.ui) {
+  display: table-cell;
+  padding-left: 1.5%;
+  vertical-align: top;
+}
+
+.ui.modal > .content > .left:not(.ui) > i.icon {
+  font-size: 8em;
+  margin: 0em;
+}
+
+.ui.modal > .content p {
+  line-height: 1.6;
+}
+
+/*--------------
+     Actions
+---------------*/
+
+.ui.modal .actions {
+  padding: 1rem 2rem;
+  text-align: right;
+}
+
+.ui.modal .actions > .button {
+  margin-left: 0.75em;
+}
+
+/*-------------------
+       Sizing
+--------------------*/
+
+/* Mobile Only */
+
+@media only screen and (max-width: 768px) {
+  .ui.modal .content > .left:not(.ui) {
+    display: block;
+    padding: 0em 0em 1em;
+  }
+
+  .ui.modal .content > .right:not(.ui) {
+    display: block;
+    padding: 1em 0em 0em;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .ui.modal .content .image {
+    width: auto !important;
+    max-width: 100%;
+  }
+
+  .ui.modal .actions {
+    padding-bottom: 0em;
+  }
+
+  .ui.modal .actions > .buttons,
+  .ui.modal .actions > .button {
+    margin-bottom: 1em;
+  }
+}
+
+/* Tablet and Mobile */
+
+@media only screen and (max-width: 998px) {
+  .ui.modal {
+    width: 92%;
+    margin-left: -46%;
+  }
+
+  .ui.modal > .close {
+    color: rgba(0, 0, 0, 0.8);
+    top: 1.5rem;
+    right: 1rem;
+  }
+}
+
+/* Computer / Responsive */
+
+@media only screen and (min-width: 998px) {
+  .ui.modal {
+    width: 74%;
+    margin-left: -37%;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .ui.modal {
+    width: 56%;
+    margin-left: -28%;
+  }
+}
+
+@media only screen and (min-width: 1750px) {
+  .ui.modal {
+    width: 42%;
+    margin-left: -21%;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .ui.modal {
+    width: 36%;
+    margin-left: -18%;
+  }
+}
+
+/*******************************
+             Types
+*******************************/
+
+.ui.basic.modal {
+  background-color: transparent;
+  border: none;
+  color: #FFFFFF;
+}
+
+.ui.basic.modal > .close {
+  top: 1.5rem;
+  right: 1rem;
+}
+
+.ui.basic.modal .content {
+  background-color: transparent;
+}
+
+/*******************************
+            Variations
+*******************************/
+
+/* A modal that cannot fit on the page */
+
+.ui.modal.scrolling {
+  position: absolute;
+  margin-top: 10px;
+}
+
+/*******************************
+              States
+*******************************/
+
+.ui.active.modal {
+  display: block;
+}
+
+/*--------------
+      Size
+---------------*/
+
+/* Small */
+
+.ui.small.modal > .header {
+  font-size: 1.3em;
+}
+
+@media only screen and (min-width: 998px) {
+  .ui.small.modal {
+    width: 58%;
+    margin-left: -29%;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .ui.small.modal {
+    width: 40%;
+    margin-left: -20%;
+  }
+}
+
+@media only screen and (min-width: 1750px) {
+  .ui.small.modal {
+    width: 26%;
+    margin-left: -13%;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .ui.small.modal {
+    width: 20%;
+    margin-left: -10%;
+  }
+}
+
+/* Large */
+
+@media only screen and (min-width: 998px) {
+  .ui.large.modal {
+    width: 74%;
+    margin-left: -37%;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .ui.large.modal {
+    width: 64%;
+    margin-left: -32%;
+  }
+}
+
+@media only screen and (min-width: 1750px) {
+  .ui.large.modal {
+    width: 54%;
+    margin-left: -27%;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .ui.large.modal {
+    width: 44%;
+    margin-left: -22%;
+  }
+}
+/*
+ * # Semantic - Nag
+ * http://github.com/jlukic/semantic-ui/
+ *
+ *
+ * Copyright 2013 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+/*******************************
+             Nag
+*******************************/
+
+.ui.nag {
+  display: none;
+  opacity: 0.95;
+  position: relative;
+  top: 0px;
+  left: 0%;
+  z-index: 101;
+  min-height: 0;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0em;
+  line-height: 3em;
+  padding: 0em 1em;
+  background-color: #555555;
+  -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+  font-size: 1em;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  border-radius: 0px 0px 5px 5px;
+  -webkit-transition: 0.2s background;
+  transition: 0.2s background;
+}
+
+a.ui.nag {
+  cursor: pointer;
+}
+
+.ui.nag > .title {
+  display: inline-block;
+  margin: 0em 0.5em;
+  color: #FFFFFF;
+}
+
+.ui.nag > .close.icon {
+  cursor: pointer;
+  opacity: 0.4;
+  position: absolute;
+  top: 50%;
+  right: 1em;
+  margin-top: -0.5em;
+  color: #FFFFFF;
+  -webkit-transition: 0.1s opacity;
+  transition: 0.1s opacity;
+}
+
+/*******************************
+             States
+*******************************/
+
+/* Hover */
+
+.ui.nag:hover {
+  opacity: 1;
+}
+
+.ui.nag .close:hover {
+  opacity: 1;
+}
+
+/*******************************
+           Variations
+*******************************/
+
+/*--------------
+     Static
+---------------*/
+
+.ui.overlay.nag {
+  position: absolute;
+  display: block;
+}
+
+/*--------------
+     Fixed
+---------------*/
+
+.ui.fixed.nag {
+  position: fixed;
+}
+
+/*--------------
+     Bottom
+---------------*/
+
+.ui.bottom.nag {
+  border-radius: 5px 5px 0px 0px;
+}
+
+.ui.fixed.bottom.nags,
+.ui.fixed.bottom.nag {
+  top: auto;
+  bottom: 0px;
+}
+
+/*--------------
+     White
+---------------*/
+
+.ui.white.nags .nag,
+.ui.white.nag {
+  background-color: #F1F1F1;
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.8);
+  color: #ACACAC;
+}
+
+.ui.white.nags .nag .close,
+.ui.white.nags .nag .title,
+.ui.white.nag .close,
+.ui.white.nag .title {
+  color: #333333;
+}
+
+/*******************************
+           Groups
+*******************************/
+
+.ui.nags .nag {
+  border-radius: 0px;
+}
+/*
+ * # Semantic - Popup
+ * http://github.com/jlukic/semantic-ui/
+ *
+ *
+ * Copyright 2013 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+/*******************************
+            Popup
+*******************************/
+
+.ui.popup {
+  display: none;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 900;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  max-width: 250px;
+  background-color: #FFFFFF;
+  padding: 0.8em 1.2em;
+  font-size: 0.875rem;
+  font-weight: normal;
+  font-style: normal;
+  color: rgba(0, 0, 0, 0.7);
+  border-radius: 0.2em;
+  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.ui.popup .header {
+  padding: 0em 0em 0.5em;
+  font-size: 1.125em;
+  line-height: 1.2;
+  font-weight: bold;
+}
+
+.ui.popup:before {
+  position: absolute;
+  content: "";
+  width: 0.75em;
+  height: 0.75rem;
+  background-image: none;
+  background-color: #FFFFFF;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  z-index: 2;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.ui.popup .ui.button {
+  width: 100%;
+}
+
+/*******************************
+            Types
+*******************************/
+
+/*--------------
+     Spacing
+---------------*/
+
+.ui.popup {
+  margin: 0em;
+}
+
+.ui.popup.bottom {
+  margin: 0.75em 0em 0em;
+}
+
+.ui.popup.top {
+  margin: 0em 0em 0.75em;
+}
+
+.ui.popup.left.center {
+  margin: 0em 0.75em 0em 0em;
+}
+
+.ui.popup.right.center {
+  margin: 0em 0em 0em 0.75em;
+}
+
+.ui.popup.center {
+  margin-left: -1.25em;
+}
+
+/*--------------
+     Pointer
+---------------*/
+
+/*--- Below ---*/
+
+.ui.bottom.center.popup:before {
+  margin-left: -0.4em;
+  top: -0.4em;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  -webkit-box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.ui.bottom.left.popup {
+  margin-right: -2em;
+}
+
+.ui.bottom.left.popup:before {
+  top: -0.4em;
+  right: 1em;
+  bottom: auto;
+  left: auto;
+  margin-left: 0em;
+  -webkit-box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.ui.bottom.right.popup {
+  margin-left: -2em;
+}
+
+.ui.bottom.right.popup:before {
+  top: -0.4em;
+  left: 1em;
+  right: auto;
+  bottom: auto;
+  margin-left: 0em;
+  -webkit-box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.2);
+}
+
+/*--- Above ---*/
+
+.ui.top.center.popup:before {
+  top: auto;
+  right: auto;
+  bottom: -0.4em;
+  left: 50%;
+  margin-left: -0.4em;
+}
+
+.ui.top.left.popup {
+  margin-right: -2em;
+}
+
+.ui.top.left.popup:before {
+  bottom: -0.4em;
+  right: 1em;
+  top: auto;
+  left: auto;
+  margin-left: 0em;
+}
+
+.ui.top.right.popup {
+  margin-left: -2em;
+}
+
+.ui.top.right.popup:before {
+  bottom: -0.4em;
+  left: 1em;
+  top: auto;
+  right: auto;
+  margin-left: 0em;
+}
+
+/*--- Left Center ---*/
+
+.ui.left.center.popup:before {
+  top: 50%;
+  right: -0.35em;
+  bottom: auto;
+  left: auto;
+  margin-top: -0.4em;
+  -webkit-box-shadow: 1px -1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px -1px 1px rgba(0, 0, 0, 0.2);
+}
+
+/*--- Right Center  ---*/
+
+.ui.right.center.popup:before {
+  top: 50%;
+  left: -0.35em;
+  bottom: auto;
+  right: auto;
+  margin-top: -0.4em;
+  -webkit-box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+/*******************************
+            States
+*******************************/
+
+.ui.loading.popup {
+  display: block;
+  visibility: hidden;
+}
+
+.ui.animating.popup,
+.ui.visible.popup {
+  display: block;
+}
+
+/*******************************
+            Variations
+*******************************/
+
+/*--------------
+      Size
+---------------*/
+
+.ui.small.popup {
+  font-size: 0.75rem;
+}
+
+.ui.large.popup {
+  font-size: 1rem;
+}
+
+/*--------------
+     Colors
+---------------*/
+
+/* Inverted colors  */
+
+.ui.inverted.popup {
+  background-color: #333333;
+  border: none;
+  color: #FFFFFF;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.ui.inverted.popup .header {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #FFFFFF;
+}
+
+.ui.inverted.popup:before {
+  background-color: #333333;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+/*
+ * # Semantic - Rating
+ * http://github.com/jlukic/semantic-ui/
+ *
+ *
+ * Copyright 2013 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+/*******************************
+           Rating
+*******************************/
+
+.ui.rating {
+  display: inline-block;
+  font-size: 0em;
+  vertical-align: middle;
+  margin: 0em 0.5rem 0em 0em;
+}
+
+.ui.rating:last-child {
+  margin-right: 0em;
+}
+
+.ui.rating:before {
+  display: block;
+  content: '';
+  visibility: hidden;
+  clear: both;
+  height: 0;
+}
+
+/* Icon */
+
+.ui.rating .icon {
+  cursor: pointer;
+  margin: 0em;
+  width: 1em;
+  height: auto;
+  padding: 0em;
+  color: rgba(0, 0, 0, 0.15);
+  font-weight: normal;
+  font-style: normal;
+}
+
+.ui.rating .icon:before {
+  content: "\2605";
+  -webkit-transition: color 0.3s ease,
+    opacity 0.3s ease;
+  transition: color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/*******************************
+             Types
+*******************************/
+
+/*-------------------
+        Star
+--------------------*/
+
+.ui.star.rating .icon {
+  width: 1.2em;
+}
+
+/* Star */
+
+.ui.star.rating .icon:before {
+  content: '\f006';
+  font-family: 'Icons';
+}
+
+/* Active Star */
+
+.ui.star.rating .active.icon:before {
+  content: '\f005';
+  font-family: 'Icons';
+}
+
+/*-------------------
+        Heart
+--------------------*/
+
+.ui.heart.rating .icon {
+  width: 1.2em;
+}
+
+.ui.heart.rating .icon:before {
+  content: '\f08a';
+  font-family: 'Icons';
+}
+
+/* Active */
+
+.ui.heart.rating .active.icon:before {
+  content: '\f004';
+  font-family: 'Icons';
+}
+
+.ui.heart.rating .active.icon {
+  color: #EF404A !important;
+}
+
+/* Hovered */
+
+.ui.heart.rating .hover.icon,
+.ui.heart.rating .active.hover.icon {
+  color: #FF2733 !important;
+}
+
+/*******************************
+             States
+*******************************/
+
+/*-------------------
+        Active
+--------------------*/
+
+/* disabled rating */
+
+.ui.disabled.rating .icon {
+  cursor: default;
+}
+
+/* active icons */
+
+.ui.rating .active.icon {
+  color: #FFCB08 !important;
+}
+
+/*-------------------
+        Hover
+--------------------*/
+
+/* rating */
+
+.ui.rating.hover .active.icon {
+  opacity: 0.5;
+}
+
+/* icon */
+
+.ui.rating .icon.hover,
+.ui.rating .icon.hover.active {
+  opacity: 1;
+  color: #FFB70A !important;
+}
+
+/*******************************
+          Variations
+*******************************/
+
+.ui.small.rating .icon {
+  font-size: 0.75rem;
+}
+
+.ui.rating .icon {
+  font-size: 1rem;
+}
+
+.ui.large.rating .icon {
+  font-size: 1.5rem;
+  vertical-align: middle;
+}
+
+.ui.huge.rating .icon {
+  font-size: 2rem;
+  vertical-align: middle;
+}
 /*
  * # Semantic - Search
  * http://github.com/jlukic/semantic-ui/
@@ -14202,7 +14607,6 @@ a.ui.nag {
 .ui.search .large.results .info .description {
   font-size: 11px;
 }
-
 /*
  * # Semantic - Shape
  * http://github.com/jlukic/semantic-ui/
@@ -14359,7 +14763,6 @@ a.ui.nag {
 .ui.shape .active.side {
   display: block;
 }
-
 /*
  * # Semantic - Sidebar
  * http://github.com/jlukic/semantic-ui/
@@ -14399,6 +14802,14 @@ body {
   transition: margin-left 0.3s ease, margin-top 0.3s ease;
 }
 
+/*-------------------
+      Coupling
+--------------------*/
+
+body.pushed.scrolling.ui.dimmable {
+  position: static;
+}
+
 /*******************************
              Types
 *******************************/
@@ -14407,7 +14818,11 @@ body {
        Direction
 --------------------*/
 
-.ui.right.sidebar {
+.ui.right.very.thin.sidebar,
+.ui.right.thin.sidebar,
+.ui.right.sidebar,
+.ui.right.wide.sidebar,
+.ui.right.very.wide.sidebar {
   left: 100%;
   margin: 0px !important;
 }
@@ -14579,7 +14994,6 @@ body {
 .ui.active.bottom.sidebar {
   margin-top: -40px !important;
 }
-
 /*
  * # Semantic - Tab
  * http://github.com/jlukic/semantic-ui/
@@ -14643,7 +15057,6 @@ body {
   background: url(../images/loader-large.gif) no-repeat 0px 0px;
   visibility: visible;
 }
-
 /*******************************
   Semantic - Transition
   Author: Jack Lukic
@@ -14674,6 +15087,7 @@ body {
 *******************************/
 
 .ui.animating.transition {
+  display: block;
   -webkit-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -14836,7 +15250,7 @@ body {
 }
 
 /*--------------
-      Slide
+     Slide
 ---------------*/
 
 .ui.slide.down.transition.in {
@@ -14850,25 +15264,25 @@ body {
 .ui.slide.down.transition.out {
   -webkit-animation-name: slideOut;
   animation-name: slideOut;
-  transform-origin: 50% 0%;
-  -ms-transform-origin: 50% 0%;
   -webkit-transform-origin: 50% 0%;
+  -ms-transform-origin: 50% 0%;
+  transform-origin: 50% 0%;
 }
 
 .ui.slide.up.transition.in {
   -webkit-animation-name: slide;
   animation-name: slide;
-  transform-origin: 50% 100%;
-  -ms-transform-origin: 50% 100%;
   -webkit-transform-origin: 50% 100%;
+  -ms-transform-origin: 50% 100%;
+  transform-origin: 50% 100%;
 }
 
 .ui.slide.up.transition.out {
   -webkit-animation-name: slideOut;
   animation-name: slideOut;
-  transform-origin: 50% 100%;
-  -ms-transform-origin: 50% 100%;
   -webkit-transform-origin: 50% 100%;
+  -ms-transform-origin: 50% 100%;
+  transform-origin: 50% 100%;
 }
 
 @-webkit-keyframes slide {
@@ -14936,7 +15350,7 @@ body {
 *******************************/
 
 /*--------------
-  Emphasis
+    Emphasis
 ---------------*/
 
 /* Flash */
@@ -15187,13 +15601,13 @@ body {
   0% {
     -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
-    opacity: 0;
+    opacity: 1;
   }
 
   100% {
     -webkit-transform: rotateY(90deg);
     transform: rotateY(90deg);
-    opacity: 1;
+    opacity: 0;
   }
 }
 
@@ -15202,14 +15616,14 @@ body {
     -webkit-transform: rotateY(0deg);
     -ms-transform: rotateY(0deg);
     transform: rotateY(0deg);
-    opacity: 0;
+    opacity: 1;
   }
 
   100% {
     -webkit-transform: rotateY(90deg);
     -ms-transform: rotateY(90deg);
     transform: rotateY(90deg);
-    opacity: 1;
+    opacity: 0;
   }
 }
 
@@ -15510,7 +15924,6 @@ body {
     transform: scale(0.7);
   }
 }
-
 /*
  * # Semantic - Video
  * http://github.com/jlukic/semantic-ui/
@@ -15605,7 +16018,6 @@ body {
 .ui.video.active .embed {
   display: block;
 }
-
 /*
  * # Semantic Comment View
  * http://github.com/jlukic/semantic-ui/
@@ -15823,7 +16235,6 @@ body {
 .ui.small.comments {
   font-size: 0.875em;
 }
-
 /*
  * # Activity Feed View
  * http://github.com/jlukic/semantic-ui/
@@ -15984,7 +16395,6 @@ body {
 .ui.small.feed .content .extra.text {
   padding: 0.25em 0.5em;
 }
-
 /*
  * # Semantic Item View
  * http://github.com/jlukic/semantic-ui/
@@ -16245,28 +16655,28 @@ body {
   color: rgba(0, 0, 0, 0.5);
 }
 
-.ui.items .item:nth-of-type(n+1):hover {
+.ui.items .item:nth-of-type(6n+1):hover {
   border-bottom-color: #6ECFF5 !important;
 }
 
-.ui.items .item:nth-of-type(n+2):hover {
+.ui.items .item:nth-of-type(6n+2):hover {
   border-bottom-color: #5C6166 !important;
 }
 
-.ui.items .item:nth-of-type(n+3):hover {
+.ui.items .item:nth-of-type(6n+3):hover {
   border-bottom-color: #A1CF64 !important;
 }
 
-.ui.items .item:nth-of-type(n+4):hover {
+.ui.items .item:nth-of-type(6n+4):hover {
   border-bottom-color: #D95C5C !important;
 }
 
-.ui.items .item:nth-of-type(n+5):hover {
-  border-bottom-color: #564F8A !important;
+.ui.items .item:nth-of-type(6n+5):hover {
+  border-bottom-color: #00B5AD !important;
 }
 
-.ui.items .item:nth-of-type(n+6):hover {
-  border-bottom-color: #00B5AD !important;
+.ui.items .item:nth-of-type(6n+6):hover {
+  border-bottom-color: #564F8A !important;
 }
 
 /*******************************
@@ -16440,7 +16850,8 @@ body {
   display: table;
 }
 
-.ui.horizontal.items > .item > .image .ui.items > .horizontal.item > .image {
+.ui.horizontal.items > .item > .image,
+.ui.items > .horizontal.item > .image {
   display: table-cell;
   width: 50%;
 }
@@ -16667,7 +17078,6 @@ body {
 .ui.twelve.items > .item:nth-child(12n+1) {
   clear: left;
 }
-
 /*
  * # Semantic List - Flat
  * http://github.com/jlukic/semantic-ui/
@@ -16735,13 +17145,19 @@ ol.ui.list li,
   visibility: hidden;
 }
 
+/* Sub-List */
+
+.ui.list .list {
+  clear: both;
+}
+
 /* Icon */
 
 .ui.list .item > .icon {
-  display: table-cell;
-  margin: 0em;
-  padding: 0.1em 0.5em 0em 0em;
-  vertical-align: top;
+  display: block;
+  float: left;
+  margin: 0em 1em 0em 0em;
+  padding: 0.1em 0em 0em 0em;
 }
 
 .ui.list .item > .icon:only-child {
@@ -16749,17 +17165,23 @@ ol.ui.list li,
 }
 
 .ui.horizontal.list .item > .icon {
+  margin: 0em;
   padding: 0em 0.25em 0em 0em;
+}
+
+.ui.horizontal.list .item > .icon,
+.ui.horizontal.list .item > .icon + .content {
+  float: none;
+  display: inline-block;
 }
 
 /* Image */
 
 .ui.list .item > img {
-  display: inline-block;
-  width: 2em;
-  margin-right: 0.5em;
+  display: block;
+  float: left;
+  margin-right: 1em;
   vertical-align: middle;
-  border-radius: 0.2em;
 }
 
 /* Content */
@@ -16773,7 +17195,6 @@ ol.ui.list li,
 .ui.list .item > .icon + .content {
   display: table-cell;
   vertical-align: top;
-  padding-left: 0.5em;
 }
 
 /* Link */
@@ -16823,14 +17244,19 @@ ol.ui.list li,
   font-size: 0em;
 }
 
-.ui.horizontal.list .item {
+.ui.horizontal.list > .item {
   display: inline-block;
   margin-left: 1em;
   font-size: 1rem;
 }
 
-.ui.horizontal.list .item:first-child {
+.ui.horizontal.list > .item:first-child {
   margin-left: 0em;
+}
+
+.ui.horizontal.list .list {
+  padding-left: 0em;
+  padding-bottom: 0em;
 }
 
 /*******************************
@@ -16850,16 +17276,32 @@ ol.ui.list li,
 *******************************/
 
 /*-------------------
+       Inverted
+--------------------*/
+
+.ui.inverted.list a .icon {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ui.inverted.list .description {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ui.inverted.link.list .item {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/*-------------------
        Link
 --------------------*/
 
 .ui.link.list .item {
-  color: rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.3);
 }
 
 .ui.link.list a.item,
 .ui.link.list .item a {
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .ui.link.list a.item:hover,
@@ -16869,12 +17311,34 @@ ol.ui.list li,
 
 .ui.link.list a.item:active,
 .ui.link.list .item a:active {
-  color: rgba(0, 0, 0, 0.9);
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .ui.link.list a.active.item,
 .ui.link.list .active.item a {
   color: rgba(0, 0, 0, 0.8);
+}
+
+/* Inverted */
+
+.ui.inverted.link.list a.item,
+.ui.inverted.link.list .item a {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ui.inverted.link.list a.item:hover,
+.ui.inverted.link.list .item a:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ui.inverted.link.list a.item:active,
+.ui.inverted.link.list .item a:active {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.ui.inverted.link.list a.active.item,
+.ui.inverted.link.list .active.item a {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /*-------------------
@@ -16894,16 +17358,6 @@ ol.ui.list li,
   color: rgba(0, 0, 0, 0.7);
 }
 
-.ui.selection.list:not(.horizontal,
-.ordered) .item:hover {
-  padding-left: 1em;
-}
-
-.ui.selection.list:not(.horizontal,
-.ordered) .item:hover .item:hover {
-  padding-left: 0.5em;
-}
-
 .ui.selection.list .item:active {
   background-color: rgba(0, 0, 0, 0.05);
   color: rgba(0, 0, 0, 0.7);
@@ -16912,6 +17366,40 @@ ol.ui.list li,
 .ui.selection.list .item.active {
   background-color: rgba(0, 0, 0, 0.04);
   color: rgba(0, 0, 0, 0.7);
+}
+
+.ui.animated.list .item {
+  -webkit-transition: 0.2s color ease, 0.2s padding-left ease, 0.2s background-color ease;
+  transition: 0.2s color ease, 0.2s padding-left ease, 0.2s background-color ease;
+}
+
+.ui.animated.list:not(.horizontal) .item:hover {
+  padding-left: 1em;
+}
+
+.ui.animated.list:not(.horizontal) .item:hover .item:hover {
+  padding-left: 0.5em;
+}
+
+/* Inverted */
+
+.ui.inverted.selection.list .item {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ui.inverted.selection.list .item:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ui.inverted.selection.list .item:active {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.ui.inverted.selection.list .item.active {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
 }
 
 /*-------------------
@@ -17026,7 +17514,7 @@ ol.ui.horizontal.list li:before,
 --------------------*/
 
 .ui.divided.list > .item,
-.ui.divided.list > .list {
+.ui.divided.list:not(.horizontal) > .list {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding-left: 0.5em;
   padding-right: 0.5em;
@@ -17042,17 +17530,17 @@ ol.ui.horizontal.list li:before,
 
 /* Sub Menu */
 
-.ui.divided.list .list {
+.ui.divided.list:not(.horizontal) .list {
   margin-left: -0.5em;
   margin-right: -0.5em;
 }
 
-.ui.divided.list .list .item {
+.ui.divided.list:not(.horizontal) .list .item {
   padding-left: 1em;
   padding-right: 1em;
 }
 
-.ui.divided.list .list .item:first-child {
+.ui.divided.list:not(.horizontal) .list .item:first-child {
   border-top-width: 1px;
 }
 
@@ -17096,7 +17584,7 @@ ol.ui.horizontal.list li:before,
   margin-left: 0em;
 }
 
-.ui.divided.horizontal.list .item {
+.ui.divided.horizontal.list > .item {
   border-top: none;
   border-left: 1px solid rgba(0, 0, 0, 0.1);
   margin: 0em;
@@ -17105,9 +17593,20 @@ ol.ui.horizontal.list li:before,
   line-height: 0.6;
 }
 
-.ui.horizontal.divided.list .item:first-child {
+.ui.horizontal.divided.list > .item:first-child {
   border-left: none;
   padding-left: 0em;
+}
+
+/* Inverted */
+
+.ui.divided.inverted.list > .item,
+.ui.divided.inverted.list > .list {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ui.divided.inverted.horizontal.list .item {
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 /*-------------------
@@ -17194,6 +17693,17 @@ ol.ui.horizontal.list li:before,
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+/* Inverted */
+
+.ui.celled.inverted.list > .item,
+.ui.celled.inverted.list > .list {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ui.celled.inverted.horizontal.list .item {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
 /*-------------------
        Relaxed
 --------------------*/
@@ -17201,6 +17711,10 @@ ol.ui.horizontal.list li:before,
 .ui.relaxed.list:not(.horizontal) .item {
   padding-top: 0.5em;
   padding-bottom: 0.5em;
+}
+
+.ui.relaxed.list .header {
+  margin-bottom: 0.25em;
 }
 
 .ui.horizontal.relaxed.list .item {
@@ -17211,6 +17725,10 @@ ol.ui.horizontal.list li:before,
 .ui.very.relaxed.list:not(.horizontal) .item {
   padding-top: 1em;
   padding-bottom: 1em;
+}
+
+.ui.very.relaxed.list .header {
+  margin-bottom: 0.5em;
 }
 
 .ui.horizontal.very.relaxed.list .item {
@@ -17253,7 +17771,6 @@ ol.ui.horizontal.list li:before,
 .ui.massive.list .item {
   font-size: 1.5rem;
 }
-
 /*
  * # Statistic
  *
