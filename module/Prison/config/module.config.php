@@ -29,6 +29,7 @@ return array(
         ),
         'invokables' => array(
             'Prison\Collector\View' => 'Prison\Collector\ViewCollector',
+            'Prison\Service\Api' => 'Prison\Service\Api',
         ),
     ),
     'translator' => array(

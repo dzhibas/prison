@@ -29,13 +29,7 @@ class Module
     public function getServiceManagerConfig()
     {
         return array(
-            'factories' => array(
-                'Prison\Service\Api' => function($sm) {
-                        $api = new Api();
-                        $api->setServiceLocator($sm);
-                        return $api;
-                },
-            )
+            'factories' => array()
         );
     }
 
