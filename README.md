@@ -21,6 +21,10 @@ Installation
 * create database (database name was mentioned in configuration file local.php)
 * vendor/bin/doctrine-module orm:schema-tool:create # create database schemas out of doctrine entities
 
+Note: for testing / development purposes you can run internal PHP server in root of prison:
+
+    php -S localhost:8080 -t public/
+
 prison is up and running. hit URL, create new account, team and project and you will see guide how to register
 exception handler for your specified platform.
 

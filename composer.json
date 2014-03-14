@@ -19,7 +19,7 @@
         "zf-commons/zfc-twig": "dev-master",
         "rhumsaa/uuid": "2.4",
         "raven/raven": "dev-master",
-        "slm/queue": "dev-master",
-        "slm/queue-doctrine": "dev-master"
+        "slm/queue": "0.3.0-beta1",
+        "slm/queue-doctrine": "0.3.0-beta1"
     }
 }

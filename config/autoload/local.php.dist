@@ -11,6 +11,23 @@
  * credentials from accidentally being committed into version control.
  */
 
+ /**
+  * example SQLite connection configuration:
+  */
+
+ //return array(
+ //    'doctrine' => array(
+ //        'connection' => array(
+ //            'orm_default' => array(
+ //                'driverClass' => 'Doctrine\DBAL\Driver\PDOSqlite\Driver',
+ //                'params' => array(
+ //                    'path'=> __DIR__.'/../../data/dev.db',
+ //                )
+ //            )
+ //        )
+ //    ),
+ //);
+
 return array(
     // Whether or not to enable a configuration cache.
     // If enabled, the merged configuration will be cached and used in
@@ -27,7 +44,7 @@ return array(
                     'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
                     'params' => array(
                         'host'     => 'localhost',
-                        'port'     => '8889',
+                        'port'     => '3363',
                         'user'     => 'username',
                         'password' => 'password',
                         'dbname'   => 'prison',
